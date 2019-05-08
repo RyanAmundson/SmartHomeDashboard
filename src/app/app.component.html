@@ -1,15 +1,23 @@
-<router-outlet>
+<!-- <router-outlet>
 
-</router-outlet>
-<a class="weatherwidget-io" href="https://forecast7.com/en/47d67n122d12/redmond/" data-label_1="REDMOND" data-label_2="WEATHER" data-theme="original">REDMOND WEATHER</a>
-<script>
-    ! function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (!d.getElementById(id)) {
-            js = d.createElement(s);
-            js.id = id;
-            js.src = 'https://weatherwidget.io/js/widget.min.js';
-            fjs.parentNode.insertBefore(js, fjs);
-        }
-    }(document, 'script', 'weatherwidget-io-js');
-</script>
+</router-outlet> -->
+
+<mat-tab-group [backgroundColor]="'#1d567c'" [color]="'white'" [dynamicHeight]="false" [headerPosition]="'below'">
+    <mat-tab label="Home">
+        <div class="container">
+            <div id="time-widget">
+                {{date | date:'mediumTime'}}
+            </div>
+            <div id="weather-widget">
+                <a class="weatherwidget-io" href="https://forecast7.com/en/47d67n122d12/redmond/?unit=us" data-label_1="REDMOND" data-label_2="WEATHER" data-font="Roboto Slab" data-icons="Climacons Animated" data-theme="original">REDMOND WEATHER</a>
+            </div>
+
+            <div class="free">
+                free
+            </div>
+        </div>
+    </mat-tab>
+    <mat-tab label="Chores"> Chores </mat-tab>
+    <mat-tab label="Rent"> Rent </mat-tab>
+    <mat-tab label="Utilities"> Utilities </mat-tab>
+</mat-tab-group>

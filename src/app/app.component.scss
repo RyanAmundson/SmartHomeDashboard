@@ -1,0 +1,30 @@
+mat-tab-group,
+mat-tab-body {
+    height: 100%;
+    width: 100%;
+}
+
+.container {
+    height: 100%;
+    width: 100%;
+    background: #1d567c;
+    display: grid;
+    grid-template-areas: "timewidget weatherwidget weatherwidget weatherwidget" "free free free free" "free free free free";
+    #weather-widget {
+        grid-area: weatherwidget;
+    }
+    #time-widget {
+        grid-area: timewidget;
+        .cleanslate {
+            height: 100%;
+            width: 100%;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+    .free {
+        grid-area: free;
+    }
+}
