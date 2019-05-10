@@ -1,0 +1,47 @@
+.rent-container {
+    display:flex;
+    flex-direction:column;
+    align-items:stretch;
+    justify-content: stretch;
+    .rent-header {
+        display:flex;
+        flex-direction: row;
+        align-items:Center;
+        justify-content: space-between;
+        padding:10px;
+        .rent-title {
+            display:flex;
+            align-items:center;
+            font-size:1.5rem;
+            mat-icon {
+                display:flex;
+            }
+        }
+        .rent-amount {
+            display:flex;
+            align-items:center;
+            font-size:1.5rem;
+        }
+    }
+
+    .rent-content {
+        display:flex;
+        flex-direction:row;
+        align-items:stretch;
+        justify-content: space-evenly;
+
+        highcharts-chart {
+            display:flex;
+            flex: 0 1 50%;
+            align-self:stretch;
+            align-items:center;
+            // margin:-20px;
+        }
+
+        table {
+            flex: 1 1 auto;
+            align-self:stretch;
+            justify-self: stretch;
+        }
+    }
+}

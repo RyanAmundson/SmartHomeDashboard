@@ -5,26 +5,111 @@ mat-tab-body {
 }
 
 .container {
-    height: 100%;
-    width: 100%;
+    display:flex;
+    flex: 1 1 100%;
     background: #1d567c;
     display: grid;
-    grid-template-areas: "timewidget weatherwidget weatherwidget weatherwidget" "free free free free" "free free free free";
+    grid-template-areas: 
+    "timewidget weatherwidget weatherwidget weatherwidget"
+     "rent rent chores chores" 
+     "rent rent tasks tasks" 
+     "utilities utilities notes notes" 
+     "wifi gate hfp f";
+     grid-template-rows: [start] auto [first] auto [second] auto [third] auto [fourth] auto [fifth] auto [sixth] 
+     auto [seventh] auto [eigth] auto [ninth] auto [tenth] auto [eleventh] auto [end];
+    grid-template-columns: [start] 1fr [first] 1fr [second] 1fr [third] 1fr [end];
+
+    align-items:stretch;
+    justify-content: stretch;
     #weather-widget {
         grid-area: weatherwidget;
     }
     #time-widget {
         grid-area: timewidget;
-        .cleanslate {
-            height: 100%;
-            width: 100%;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content: center;
+        margin:25px;
+        #time {
+            font-size:30px;
+            font-family: monospace;
+            color:white;
+        }
+        #date{
+            font-size:18px;
+            font-family: monospace;
+            color:white;
         }
     }
+
+    #rent-card {
+        grid-area:rent;
+    }
+    #chores-card {
+        grid-area:chores;
+        mat-card-header {
+            display:flex;
+            justify-content: space-between;
+        }
+    }
+
+    #utilities-card {
+        grid-area:utilities;
+        mat-card-header {
+            display:flex;
+            justify-content: space-between;
+        }
+    }
+
+    #notes-card {
+        grid-area:notes;
+        mat-card-header {
+            display:flex;
+            justify-content: space-between;
+        }
+    }
+
+    #tasks-card {
+        grid-area:tasks;
+        mat-card-header {
+            display:flex;
+            justify-content: space-between;
+        }
+    }
+
+    
+    #house-fund-pool {
+        align-self:stretch;
+        grid-area:hfp;
+        mat-card-header {
+            display:flex;
+            justify-content: space-between;
+        }
+    }
+    #wifi-card {
+        grid-area:wifi;
+        mat-card-header {
+            display:flex;
+            justify-content: space-between;
+        }
+    }
+
+    #gate-code-card {
+        grid-area:gate;
+        mat-card-header {
+            display:flex;
+            justify-content: space-between;
+        }
+    }
+
     .free {
         grid-area: free;
     }
+
+    .dashboard-card {
+        margin:25px;
+    }
+
+    
 }
