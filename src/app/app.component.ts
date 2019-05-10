@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, HostListener } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import { Observable, timer } from 'rxjs';
 
@@ -26,8 +26,21 @@ export class AppComponent {
   title = 'SmartHomeDashboard';
   date = Date.now();
   timeObs = timer(1000, 1000);
-
+  activeTab = 0;
+  key;
   @ViewChild("highchart") hiChart;
+
+  @HostListener('window:keyup', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent) { 
+    this.key = event.key;
+    console.log(event.key)
+    if(event.key == "ArrowLeft"){
+      this.activeTab--;
+    } else if( event.key == "ArrowRight"){
+      this.activeTab++;
+    }
+
+  }
 
   constructor() {
 
@@ -36,7 +49,14 @@ export class AppComponent {
   ngAfterViewInit() {
     console.log(this.hiChart)
   }
-
+  onKeydown(event) {
+    console.log(event.key)
+    if (event.key == "39") {
+      // this.activeTab++;
+    } else if( event.key == "37"){
+      // this.activeTab--;
+    }
+  }
 
   Highcharts = Highcharts; // required
   chartConstructor = 'chart'; // optional string, defaults to 'chart'

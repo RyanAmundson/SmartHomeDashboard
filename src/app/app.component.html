@@ -2,7 +2,9 @@
 
 </router-outlet> -->
 
-<mat-tab-group mat-stretch-tabs [selectedIndex]="0" [backgroundColor]="'#1d567c'" [color]="'white'" [dynamicHeight]="false" [headerPosition]="'below'">
+
+
+<mat-tab-group mat-stretch-tabs [selectedIndex]="activeTab" [backgroundColor]="'#1d567c'" [color]="'white'" [dynamicHeight]="false" [headerPosition]="'below'">
     <mat-tab label="Home">
         <div class="container">
             <div id="time-widget">
@@ -14,9 +16,7 @@
                 </div>
             </div>
             <div id="weather-widget">
-                <a class="weatherwidget-io" href="https://forecast7.com/en/47d67n122d12/redmond/?unit=us"
-                    data-label_1="REDMOND" data-label_2="WEATHER" data-font="Roboto Slab"
-                    data-icons="Climacons Animated" data-theme="original">REDMOND WEATHER</a>
+                <a class="weatherwidget-io" href="https://forecast7.com/en/47d67n122d12/redmond/?unit=us" data-label_1="REDMOND" data-label_2="WEATHER" data-font="Roboto Slab" data-icons="Climacons Animated" data-theme="original">REDMOND WEATHER</a>
             </div>
             <div id="tasks-card" class="dashboard-card">
                 <mat-card>
@@ -44,8 +44,7 @@
                         <mat-icon>signal_wifi_4_bar</mat-icon>
                     </mat-card-header>
                     Network Name:
-                    <br>
-                    Access Code:
+                    <br> Access Code:
                 </mat-card>
             </div>
 
