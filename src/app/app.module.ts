@@ -18,6 +18,9 @@ import { environment } from 'src/environments/environment.prod';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/database'
+import { SuppliesComponent } from './supplies/supplies.component';
+import { WifiWidget } from './widgets/wifi.component';
+import { GateCodeWidget } from './widgets/gate.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { AngularFireDatabaseModule } from '@angular/fire/database'
     ChoresComponent,
     RentComponent,
     NotesComponent,
-    UtilitiesComponent
+    UtilitiesComponent,
+    SuppliesComponent,
+    WifiWidget,
+    GateCodeWidget
   ],
   imports: [
     BrowserModule,

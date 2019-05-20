@@ -1,3 +1,21 @@
-<p>
-  chores works!
-</p>
+<div id="chore-container">
+    <table mat-table [dataSource]="chores.breakdown" style="width:100%;">
+        <ng-container matColumnDef="This Week">
+            <th mat-header-cell *matHeaderCellDef> This Week </th>
+            <td mat-cell *matCellDef="let chore"> {{chore.this_week}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Next Week">
+            <th mat-header-cell *matHeaderCellDef> Next Week </th>
+            <td mat-cell *matCellDef="let chore"> {{chore.next_week}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Who">
+            <th mat-header-cell *matHeaderCellDef> Who </th>
+            <td mat-cell *matCellDef="let chore"> {{chore.who}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>

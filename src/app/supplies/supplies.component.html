@@ -1,0 +1,21 @@
+<div id="supplies-container">
+    <table mat-table [dataSource]="supplies" style="width:100%;">
+        <ng-container matColumnDef="Item">
+            <th mat-header-cell *matHeaderCellDef> Item </th>
+            <td mat-cell *matCellDef="let supply"> {{supply.item}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Cost">
+            <th mat-header-cell *matHeaderCellDef> Cost </th>
+            <td mat-cell *matCellDef="let supply"> {{supply.cost | currency}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Bought By">
+            <th mat-header-cell *matHeaderCellDef> Bought By </th>
+            <td mat-cell *matCellDef="let supply"> {{supply.bought_by}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>

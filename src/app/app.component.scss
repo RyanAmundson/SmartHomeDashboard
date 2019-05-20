@@ -1,115 +1,96 @@
-mat-tab-group,
-mat-tab-body {
-    height: 100%;
-    width: 100%;
-}
+// mat-tab-group, mat-tab, .mat-tab-body-wrapper, mat-tab-body, * {
+//     box-sizing:border-box;
+// }
 
 .container {
-    display:flex;
-    flex: 1 1 100%;
-    background: #1d567c;
-    display: grid;
-    grid-template-areas: 
-    "timewidget weatherwidget weatherwidget weatherwidget"
-     "rent rent chores chores" 
-     "rent rent tasks tasks" 
-     "utilities utilities notes notes" 
-     "wifi gate hfp f";
-     grid-template-rows: [start] auto [first] auto [second] auto [third] auto [fourth] auto [fifth] auto [sixth] 
-     auto [seventh] auto [eigth] auto [ninth] auto [tenth] auto [eleventh] auto [end];
-    grid-template-columns: [start] 1fr [first] 1fr [second] 1fr [third] 1fr [end];
+  box-sizing: border-box;
+  max-height: 100%;
+  overflow: auto;
+  height: 100%;
+  width: 100%;
+  background: #1d567c;
+  display: grid;
+  grid-template-areas:
+    "a a a a"
+    "b b b b"
+    "b b b b";
+  grid-template-rows: 10% 70% 20%;
+  grid-template-columns: 25% 25% 25% 25%;
+  //   align-items:flex-start;
+  //   align-content:flex-start;
+  //   justify-content: flex-start;
+  //   justify-items: flex-start;
 
-    align-items:stretch;
-    justify-content: stretch;
-    #weather-widget {
-        grid-area: weatherwidget;
-    }
-    #time-widget {
-        grid-area: timewidget;
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-        justify-content: center;
-        margin:25px;
-        #time {
-            font-size:30px;
-            font-family: monospace;
-            color:white;
-        }
-        #date{
-            font-size:18px;
-            font-family: monospace;
-            color:white;
-        }
-    }
+  #header {
+    grid-area: a;
+    display: flex;
+    box-sizing: border-box;
 
-    #rent-card {
-        grid-area:rent;
-    }
-    #chores-card {
-        grid-area:chores;
-        mat-card-header {
-            display:flex;
-            justify-content: space-between;
-        }
+    #header-card-1 {
+      flex: 1 1 25%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      #time {
+        font-size: 30px;
+        font-family: monospace;
+        color: white;
+      }
+      #date {
+        font-size: 18px;
+        font-family: monospace;
+        color: white;
+      }
     }
 
-    #utilities-card {
-        grid-area:utilities;
-        mat-card-header {
-            display:flex;
-            justify-content: space-between;
-        }
+    #header-card-2 {
+      flex: 0 0 75%;
+      display: flex;
+      flex-direction: row;
+      align-content: stretch;
+      justify-content: stretch;
+      .weatherwidget-io {
+        width: 100%;
+      }
     }
+  }
 
-    #notes-card {
-        grid-area:notes;
-        mat-card-header {
-            display:flex;
-            justify-content: space-between;
-        }
-    }
+  #middle {
+    box-sizing: border-box;
+    max-height: calc(0.7 * 100vh);
+    grid-area: b;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-wrap: wrap;
+    justify-items: flex-start;
+    align-content: stretch;
 
-    #tasks-card {
-        grid-area:tasks;
-        mat-card-header {
-            display:flex;
-            justify-content: space-between;
-        }
+    & > * {
+          margin: 5px;
+      flex: 1 1 auto;
+      display: flex;
+      justify-content: stretch;
+      align-items: stretch;
+      flex-wrap: wrap;
+      &  * {
+        flex: 1 1 auto;
+        display: flex;
+        justify-content: stretch;
+        align-items: stretch;
+        flex-wrap: wrap;
+      }
     }
+  }
 
-    
-    #house-fund-pool {
-        align-self:stretch;
-        grid-area:hfp;
-        mat-card-header {
-            display:flex;
-            justify-content: space-between;
-        }
-    }
-    #wifi-card {
-        grid-area:wifi;
-        mat-card-header {
-            display:flex;
-            justify-content: space-between;
-        }
-    }
+  #footer {
+    // box-sizing: border-box;
+    // grid-area: e;
+    // display: flex;
+  }
+  .dashboard-card {
 
-    #gate-code-card {
-        grid-area:gate;
-        mat-card-header {
-            display:flex;
-            justify-content: space-between;
-        }
-    }
-
-    .free {
-        grid-area: free;
-    }
-
-    .dashboard-card {
-        margin:25px;
-    }
-
-    
+  }
 }

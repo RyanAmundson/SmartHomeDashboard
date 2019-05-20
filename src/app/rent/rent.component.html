@@ -1,17 +1,16 @@
 <div class="rent-container">
-  <div class="rent-header">
+  <!-- <div class="rent-header">
     <div class="rent-title">
       <mat-icon>attach_money</mat-icon>
       Rent
     </div>
     <div class="rent-amount">{{'4500' | currency}}</div>
-  </div>
+  </div> -->
   <div class="rent-content">
-    <highcharts-chart #highchart id="rent-hichart" [Highcharts]="Highcharts" [constructorType]="chartConstructor"
-      [options]="chartOptions" [callbackFunction]="chartCallback" [(update)]="updateFlag" [oneToOne]="oneToOneFlag"
-      [runOutsideAngular]="runOutsideAngularFlag">
+    <highcharts-chart *ngIf="chartOptions" #highchart id="rent-hichart" [Highcharts]="Highcharts" [constructorType]="chartConstructor"
+      [options]="chartOptions" [callbackFunction]="chartCallback" [(update)]="updateFlag" [oneToOne]="oneToOneFlag">
     </highcharts-chart>
-    <table mat-table #matTable [dataSource]="dataSource">
+    <table mat-table #matTable [dataSource]="rent.breakdown">
 
       <ng-container matColumnDef="who">
         <th mat-header-cell *matHeaderCellDef> Who </th>
