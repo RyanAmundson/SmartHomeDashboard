@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ChangeDetectorRef } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import { Observable, timer } from 'rxjs';
 import { AngularFireDatabase } from '@angular/fire/database';
@@ -51,11 +51,13 @@ Highcharts.setOptions({
 export class RentComponent {
   displayedColumns: string[] = ['who', 'amount_due', 'status'];
   Highcharts = Highcharts; // required
+  dataSource;
   rent = {
     total: 0,
     breakdown: [
     ]
   };
+
   chartOptions = {
     series: [
     ]
@@ -63,19 +65,14 @@ export class RentComponent {
   updateFlag = false;
   oneToOneFlag = true;
 
-
-  @ViewChild("highchart") hiChart;
-  @ViewChild("matTable") table;
-
-  constructor(private firebase: AngularFireDatabase) {
+  constructor(private firebase: AngularFireDatabase, private ref: ChangeDetectorRef) {
     firebase.database.ref('rent').on('value', res => {
       let newData = [];
       Object.entries(res.val().amount).forEach(([k, v]: any) => {
-        console.log(k, v)
         this.rent.breakdown.push({ who: k, amount_due: v.amount, status: v.amount <= v.paid ? "Paid" : "Unpaid" });
       })
 
-      this.table.renderRows();
+      
       this.rent.total = res.val().total;
       console.log(this.rent.breakdown.filter((t) => t.who.toLowerCase() == "rachael")[0].amount_due);
       this.chartOptions.series = [
@@ -111,12 +108,14 @@ export class RentComponent {
           },
       ];
       this.updateFlag = true;
+      this.dataSource = this.rent.breakdown;
+      console.log(this.rent.breakdown)
+      this.ref.detectChanges();
     });
   }
 
 
   ngAfterViewInit() {
-    console.log(this.hiChart)
   }
 
 

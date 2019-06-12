@@ -1,6 +1,5 @@
+
 .rent-container {
-    min-width:800px;
-    min-height:400px;
     height:100%;
     flex:1 1 100%;
     display:flex;
@@ -36,18 +35,21 @@
         flex-direction:row;
         align-items:stretch;
         justify-content: stretch;
+        flex-wrap:wrap;
 
         highcharts-chart {
-            flex: 1 1 40%;
+            min-width:150px;
+            flex: 5 1 100%;
             display:flex;
             align-self:center;
             align-items:center;
             justify-content: stretch;
+            flex-wrap:wrap;
 
         }
 
         table {
-            flex: 1 1 60%;
+            flex: 1 5 100%;
             align-self:center;
             justify-self: center;
             justify-content: center;

@@ -4,6 +4,41 @@ import { Observable, timer } from 'rxjs';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { ReturnStatement } from '@angular/compiler';
 
+Highcharts.setOptions({
+  plotOptions: {
+    pie: {
+      dataLabels: {
+        enabled: true,
+        distance: 5,
+        style: {
+          fontWeight: 'bold',
+          color: 'black'
+        }
+      },
+      startAngle: 0,
+      endAngle: 0,
+    }
+  },
+  chart: {
+    height: '100%',
+  },
+  title: {
+    text: '',
+    style: {
+      display: 'none'
+    }
+  },
+  subtitle: {
+    text: '',
+    style: {
+      display: 'none'
+    }
+  },
+  yAxis: [{
+    max: 200000,
+  }],
+}); 
+
 @Component({
   selector: 'app-utilities',
   templateUrl: './utilities.component.html',

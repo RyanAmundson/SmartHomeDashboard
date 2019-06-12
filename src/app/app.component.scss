@@ -14,7 +14,7 @@
     "a a a a"
     "b b b b"
     "b b b b";
-  grid-template-rows: 10% 70% 20%;
+  grid-template-rows: 114px 70% 20%;
   grid-template-columns: 25% 25% 25% 25%;
   //   align-items:flex-start;
   //   align-content:flex-start;
@@ -69,19 +69,12 @@
     align-content: stretch;
 
     & > * {
-          margin: 5px;
+      margin: 5px;
       flex: 1 1 auto;
       display: flex;
       justify-content: stretch;
       align-items: stretch;
       flex-wrap: wrap;
-      &  * {
-        flex: 1 1 auto;
-        display: flex;
-        justify-content: stretch;
-        align-items: stretch;
-        flex-wrap: wrap;
-      }
     }
   }
 
@@ -91,6 +84,27 @@
     // display: flex;
   }
   .dashboard-card {
-
   }
+}
+
+@media only screen and (max-width: 1000px) {
+  #header-card-2 {
+    display: none!important;
+  }
+}
+
+.large-card {
+  flex: 1 1 45%;
+  display:flex;
+
+}
+
+.medium-card {
+  flex: 1 1 20%;
+  display:flex;
+}
+
+.small-card {
+  flex: 1 1 33%;
+  display:flex;
 }

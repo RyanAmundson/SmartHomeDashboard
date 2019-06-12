@@ -1,34 +1,3 @@
-<div class="rent-container">
-  <!-- <div class="rent-header">
-    <div class="rent-title">
-      <mat-icon>attach_money</mat-icon>
-      Rent
-    </div>
-    <div class="rent-amount">{{'4500' | currency}}</div>
-  </div> -->
-  <div class="rent-content">
-    <highcharts-chart *ngIf="chartOptions" #highchart id="rent-hichart" [Highcharts]="Highcharts" [constructorType]="chartConstructor"
-      [options]="chartOptions" [callbackFunction]="chartCallback" [(update)]="updateFlag" [oneToOne]="oneToOneFlag">
-    </highcharts-chart>
-    <table mat-table #matTable [dataSource]="rent.breakdown">
-
-      <ng-container matColumnDef="who">
-        <th mat-header-cell *matHeaderCellDef> Who </th>
-        <td mat-cell *matCellDef="let data"> {{data.who}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="amount_due">
-        <th mat-header-cell *matHeaderCellDef> Amount Due </th>
-        <td mat-cell *matCellDef="let data"> {{data.amount_due | currency}} </td>
-      </ng-container>
-
-      <ng-container matColumnDef="status">
-        <th mat-header-cell *matHeaderCellDef> Status </th>
-        <td mat-cell *matCellDef="let data"> {{data.status}} </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
-  </div>
-</div>
+<pie-and-table [displayedColumns]="displayedColumns" [dataSource]="dataSource" [chartOptions]="chartOptions">
+  
+</pie-and-table>

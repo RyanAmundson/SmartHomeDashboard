@@ -21,6 +21,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/database'
 import { SuppliesComponent } from './supplies/supplies.component';
 import { WifiWidget } from './widgets/wifi.component';
 import { GateCodeWidget } from './widgets/gate.component';
+import { PieAndTableComponent } from './_shared/pie-and-table/pie-and-table.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { GateCodeWidget } from './widgets/gate.component';
     UtilitiesComponent,
     SuppliesComponent,
     WifiWidget,
-    GateCodeWidget
+    GateCodeWidget,
+    PieAndTableComponent
   ],
   imports: [
     BrowserModule,
