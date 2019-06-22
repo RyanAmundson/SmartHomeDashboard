@@ -1,7 +1,7 @@
 <div class="container">
   <div class="content">
 
-    <highcharts-chart *ngIf="chartOptions" #highchart id="rent-hichart" [Highcharts]="Highcharts" [constructorType]="chartConstructor"
+    <highcharts-chart *ngIf="chartOptions && dataSource?.length > 0" #highchart id="rent-hichart" [Highcharts]="Highcharts" [constructorType]="chartConstructor"
       [options]="chartOptions" [callbackFunction]="chartCallback" [(update)]="updateFlag" [oneToOne]="oneToOneFlag">
     </highcharts-chart>
 

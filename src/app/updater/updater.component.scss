@@ -1,0 +1,20 @@
+.updater-container {
+    padding:10px;
+    display:flex;
+    flex-direction:column;
+    justify-content: flex-start;
+    align-items:stretch;
+}
+
+.update-button {
+    position:Fixed;
+    bottom:0;
+    left:0;
+    right:0;
+    width:100%;
+}
+
+mat-form-field, input {
+    width:100%;
+
+}

@@ -1,0 +1,75 @@
+<div class="updater-container">
+
+
+  <button class="update-button" mat-raised-button color="primary" (click)="update()">Update</button>
+
+  <mat-tab-group mat-stretch-tabs [selectedIndex]="0" [backgroundColor]="'#1d567c'" [color]="'white'"
+    [dynamicHeight]="false" [headerPosition]="'above'">
+
+    <mat-tab label="Utilities" *ngIf="utilities && utilities.breakdown">
+      <mat-form-field>
+        <input matInput placeholder="Water" name="water" [ngModel]="utilities?.breakdown[1]?.amount_due | currency"
+          (ngModelChange)="utilities.breakdown[1].amount_due = parseFloat($event)">
+      </mat-form-field>
+      <mat-form-field *ngIf="utilities && utilities?.breakdown">
+        <input matInput placeholder="Sewer" name="sewer" [ngModel]="utilities.breakdown[2].amount_due | currency"
+          (ngModelChange)="utilities.breakdown[2].amount_due = parseFloat($event)">
+      </mat-form-field>
+      <mat-form-field *ngIf="utilities && utilities?.breakdown">
+        <input matInput placeholder="Garbage" name="garbage" [ngModel]="utilities.breakdown[3].amount_due | currency"
+          (ngModelChange)="utilities.breakdown[3].amount_due = parseFloat($event)">
+      </mat-form-field>
+      <mat-form-field *ngIf="utilities && utilities?.breakdown">
+        <input matInput placeholder="Electricity" name="electric"
+          [ngModel]="utilities.breakdown[0].amount_due | currency"
+          (ngModelChange)="utilities.breakdown[0].amount_due = parseFloat($event)">
+      </mat-form-field>
+      <mat-form-field *ngIf="utilities && utilities?.breakdown">
+        <input matInput placeholder="Internet" name="internet" [ngModel]="utilities.breakdown[4].amount_due | currency"
+          (ngModelChange)="utilities.breakdown[4].amount_due = $event">
+      </mat-form-field>
+    </mat-tab>
+
+    <mat-tab label="Wifi" *ngIf="wifi">
+      <mat-form-field>
+        <input matInput placeholder="Name">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Password">
+      </mat-form-field>
+    </mat-tab>
+
+    <mat-tab label="Notes" *ngIf="notes">
+        <mat-form-field>
+            <input matInput placeholder="New Note" [(ngModel)]="newNote">
+          </mat-form-field>
+      <mat-form-field *ngFor="let note of notes">
+        <input matInput placeholder="Note" [(ngModel)]="note">
+      </mat-form-field>
+    </mat-tab>
+
+    <mat-tab label="House Expenses" *ngIf="supplies">
+      <mat-form-field style="width:33%">
+        <input matInput placeholder="New Item" [ngModel]="newSupplyItem.item" (ngModelChange)="newSupplyItem.item = $event">
+      </mat-form-field>
+      <mat-form-field style="width:33%">
+        <input matInput placeholder="Cost" [ngModel]="newSupplyItem.cost | currency" (ngModelChange)="newSupplyItem.cost = parseFloat($event)">
+      </mat-form-field>
+      <mat-form-field style="width:33%">
+        <input matInput placeholder="Bought By" [ngModel]="newSupplyItem.bought_by" (ngModelChange)="newSupplyItem.bought_by = $event">
+      </mat-form-field>
+      <div *ngFor="let supply of supplies">
+          <mat-form-field style="width:33%">
+              <input matInput placeholder="Item" [ngModel]="supply.item" (ngModelChange)="supply.item = $event">
+            </mat-form-field>
+            <mat-form-field style="width:33%">
+              <input matInput placeholder="Cost" [ngModel]="supply.cost | currency" (ngModelChange)="supply.cost = parseFloat($event)">
+            </mat-form-field>
+            <mat-form-field style="width:33%">
+              <input matInput placeholder="Bought By" [ngModel]="supply.bought_by" (ngModelChange)="supply.bought_by = $event">
+            </mat-form-field>
+          </div>
+    </mat-tab>
+
+  </mat-tab-group>
+</div>

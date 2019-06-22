@@ -2,21 +2,6 @@ import { Component, ViewChild, HostListener } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import { Observable, timer } from 'rxjs';
 
-const ELEMENT_DATA: any[] = [
-  { thisweek: 1, nextweek: 'Hydrogen' },
-  { thisweek: 2, nextweek: 'Helium' },
-  { thisweek: 3, nextweek: 'Lithium' },
-  { thisweek: 4, nextweek: 'Beryllium' },
-];
-
-Highcharts.setOptions({
-  title: {
-    style: {
-      display: 'none'
-    }
-  }
-});
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -28,22 +13,37 @@ export class AppComponent {
   timeObs = timer(1000, 1000);
   activeTab = 0;
   key;
+
+  updater = false;
   @ViewChild("highchart") hiChart;
 
   @HostListener('window:keyup', ['$event'])
-  handleKeyboardEvent(event: KeyboardEvent) { 
+  handleKeyboardEvent(event: KeyboardEvent) {
     this.key = event.key;
     console.log(event.key)
-    if(event.key == "ArrowLeft"){
+    if (event.key == "ArrowLeft") {
       this.activeTab--;
-    } else if( event.key == "ArrowRight"){
+    } else if (event.key == "ArrowRight") {
       this.activeTab++;
     }
 
   }
 
-  constructor() {
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    if(window.innerWidth < 800) {
+      this.updater = true;
+    } else {
+      this.updater = false;
+    }
+  }
 
+  constructor() {
+    if(window.innerWidth < 800) {
+      this.updater = true;
+    } else {
+      this.updater = false;
+    }
   }
 
   ngAfterViewInit() {
@@ -53,56 +53,8 @@ export class AppComponent {
     console.log(event.key)
     if (event.key == "39") {
       // this.activeTab++;
-    } else if( event.key == "37"){
+    } else if (event.key == "37") {
       // this.activeTab--;
     }
   }
-
-  Highcharts = Highcharts; // required
-  chartConstructor = 'chart'; // optional string, defaults to 'chart'
-  chartOptions = {
-    title: {
-      style: "display:none"
-    },
-    series: [{
-      minPointSize: 1,
-      innerSize: '75%',
-      zMin: 0,
-      name: 'Rent',
-      data: [
-        {
-          name: 'Ryan',
-          y: 1250,
-          Internet:10,
-          Electricity: 10,
-          Water: 1000,
-        },
-        {
-          name: 'Elizabeth',
-          y: 1075,
-        },
-        {
-          name: 'Gary',
-          y: 1075,
-        },
-        {
-          name: 'Rachael',
-          y: 1075,
-        },
-      ],
-      type: 'pie',
-    }]
-  };
-  chartCallback = function (chart) { } // optional function, defaults to null
-  updateFlag = false; // optional boolean
-  oneToOneFlag = true; // optional boolean, defaults to false
-  runOutsideAngular = false; // optional boolean, defaults to false
-
-  displayedColumns: string[] = ['who','this week', 'next week'];
-  dataSource = [
-    { who: "Ryan", thisweek: "Dishes", nextweek: "Dishes" },
-    { who: "Rachael", thisweek: "Dishes", nextweek: "Dishes" },
-    { who: "Elizabeth", thisweek: "Dishes", nextweek: "Dishes" },
-    { who: "Gary", thisweek: "Dishes", nextweek: "Dishes" },
-  ];
 }

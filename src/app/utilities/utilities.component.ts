@@ -45,33 +45,40 @@ Highcharts.setOptions({
   styleUrls: ['./utilities.component.scss']
 })
 export class UtilitiesComponent {
-  displayedColumns: string[] = ['Utility', "Amount Due", "Amount Paid",  "Paid By", "Due",];
+  displayedColumns: string[] = ['utility', "amount_due", "amount_paid",  "paid_by", "due",];
   Highcharts = Highcharts; // required
+
   utility = {
     total: 0,
     breakdown: [
     ]
   };
+
   chartOptions = {
     series: [
     ]
   }
+  
   updateFlag = false;
   oneToOneFlag = true;
-
+  dataSource;
 
   @ViewChild("highchart") hiChart;
   @ViewChild("matTable") table;
 
   constructor(private firebase: AngularFireDatabase) {
     firebase.database.ref('utilities').on('value', res => {
-      this.utility = res.val();
+      // this.utility = res.val();
       console.log(this.utility)
-      this.table.renderRows();
+      Object.entries(res.val().breakdown).forEach(([k, v]: any) => {
+        this.utility.breakdown.push({ amount_due: v.amount_due, amount_paid:v.amount_paid, paid_by:v.paid_by, due: v.due, utility: v.utility });
+      })
+
+      // this.table.renderRows();
       this.chartOptions.series = [
           {
             innerSize: '90%',
-            name: 'Rent',
+            name: '',
             data: this.utility.breakdown.map((entry) => {
               return { 
                 name:entry.utility,
@@ -84,6 +91,7 @@ export class UtilitiesComponent {
           },
       ];
       this.updateFlag = true;
+      this.dataSource = this.utility.breakdown;
     });
   }
 

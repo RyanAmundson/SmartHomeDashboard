@@ -22,6 +22,11 @@ import { SuppliesComponent } from './supplies/supplies.component';
 import { WifiWidget } from './widgets/wifi.component';
 import { GateCodeWidget } from './widgets/gate.component';
 import { PieAndTableComponent } from './_shared/pie-and-table/pie-and-table.component';
+import { UpdaterComponent } from './updater/updater.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -33,7 +38,8 @@ import { PieAndTableComponent } from './_shared/pie-and-table/pie-and-table.comp
     SuppliesComponent,
     WifiWidget,
     GateCodeWidget,
-    PieAndTableComponent
+    PieAndTableComponent,
+    UpdaterComponent
   ],
   imports: [
     BrowserModule,
@@ -47,9 +53,14 @@ import { PieAndTableComponent } from './_shared/pie-and-table/pie-and-table.comp
     MatTableModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    FormsModule
 
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [UpdaterComponent]
 })
 export class AppModule { }

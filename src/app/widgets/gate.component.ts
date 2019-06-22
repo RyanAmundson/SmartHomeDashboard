@@ -16,7 +16,7 @@ import { Observable, timer } from 'rxjs';
 </mat-card>`,
     styles: [`
     #footer-card-2 {
-        width:100%;
+        flex:1 1 100%;
     }
     `]
 })

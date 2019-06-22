@@ -66,7 +66,7 @@ export class PieAndTableComponent {
   ngOnChanges() {
     console.log(this.dataSource)
     if(this.table.renderRows && this.dataSource){
-      this.table.renderRows();
+      // this.table.renderRows();
     }
 
   }
