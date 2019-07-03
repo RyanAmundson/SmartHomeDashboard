@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 
 export class UpdaterComponent implements OnInit {
-
+  objectEntries = Object.entries;
   chores;
   notes;
   rent;
@@ -25,15 +25,45 @@ export class UpdaterComponent implements OnInit {
 
   newNote = "";
 
-  constructor(private firebase:AngularFireDatabase, private change:ChangeDetectorRef) {
+  data = {
+    chores: {
+      breakdown: [
+        {who:""},
+        {who:""},
+        {who:""},
+        {who:""},
+      ],
+      order: [
+        "",
+        "",
+        "",
+        "",
+      ]
+    },
+    notes:[],
+    rent: {
+      breakdown: {
 
-    // firebase.database.ref('utilities').on('value', (res) => {
-    //   this.utilities = res.val();
-    //   console.log(this.utilities)
-    //   console.log(this.utilities.breakdown[1].amount_due);
-    //   change.detectChanges();
-    // });
+      },
+      due: "",
+      total:""
+    },
+    supplies: [
+      {bought_by:"", cost:"", item:""}
+    ],
+    utilities:{
+      breakdown:{},
+
+      total:"",
+    }
+  }
+
+
+  entries = [];
+  keys = [];
+  constructor(private firebase:AngularFireDatabase, private change:ChangeDetectorRef) {
     this.init();
+    // this.generate('utilities/breakdown','list',['utility'])
   }
 
    async init() {
@@ -50,6 +80,7 @@ export class UpdaterComponent implements OnInit {
   }
 
   update(){
+    console.log(this.utilities);
     this.firebase.database.ref('supplies').set(this.supplies);
     if(this.newSupplyItem.item != "") this.firebase.list('supplies').push(this.newSupplyItem);
     this.firebase.object('utilities').update(this.utilities);
@@ -66,8 +97,20 @@ export class UpdaterComponent implements OnInit {
 
   parseFloat(val) {
     if(val) {
-      return Number.parseFloat(val);
+      return Number.parseFloat(val.replace(/[$,]/g, ""));
+    } else {
+      return 0;
     }
+  }
+
+
+  generate(fbPath, listOrObj,[...ids]) {
+    this.firebase.database.ref(fbPath).once('value').then((res) => {
+      let data = res.val();
+      console.log(res,res.val(),typeof(res.val()), typeof(res.val()[0]));
+      this.entries = res.val();
+      this.keys = ids;
+    });
   }
 
 }
