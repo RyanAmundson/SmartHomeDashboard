@@ -52,9 +52,9 @@ export class AppComponent {
   onKeydown(event) {
     console.log(event.key)
     if (event.key == "39") {
-      // this.activeTab++;
+      this.activeTab++;
     } else if (event.key == "37") {
-      // this.activeTab--;
+      this.activeTab--;
     }
   }
 }

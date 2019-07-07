@@ -1,4 +1,30 @@
 #chore-container {
     width:100%;
     height:100%;
+    font-size:24px;
+    display:flex;
+    flex-direction:row;
+    flex: 1 1 100%;
+    align-items:stretch;
+    justify-content: space-evenly;
+    .chore {
+        flex: 1 1 100%;
+        display:flex;
+        flex-direction:column;
+        align-items: center;
+        justify-content: space-evenly;
+        .who {
+            flex:0 0 auto;
+            display:flex;
+            align-items:center;
+            justify-content: center;
+        }
+        
+        .icon {
+            flex:0 0 auto;
+            display:flex;
+            align-items:center;
+            justify-content: center;
+        }
+    }
 }

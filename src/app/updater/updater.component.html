@@ -14,9 +14,8 @@
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput placeholder="Amount Paid" name="water2"
-          [ngModel]="utilities?.breakdown[1]?.amount_paid | currency" [ngModelOptions]="{updateOn:'blur'}"
-          (ngModelChange)="utilities.breakdown[1].amount_paid = parseFloat($event)">
+        <input matInput placeholder="Period" name="water2" [ngModel]="utilities?.breakdown[1]?.period"
+          [ngModelOptions]="{updateOn:'blur'}" (ngModelChange)="utilities.breakdown[1].period = $event">
       </mat-form-field>
 
       <mat-form-field>
@@ -31,10 +30,9 @@
         <input matInput placeholder="Amount Due" name="sewer1" [ngModel]="utilities.breakdown[2].amount_due | currency"
           [ngModelOptions]="{updateOn:'blur'}" (ngModelChange)="utilities.breakdown[2].amount_due = parseFloat($event)">
       </mat-form-field>
-      <mat-form-field *ngIf="utilities && utilities?.breakdown">
-        <input matInput placeholder="Amount Paid" name="sewer2"
-          [ngModel]="utilities.breakdown[2].amount_paid | currency" [ngModelOptions]="{updateOn:'blur'}"
-          (ngModelChange)="utilities.breakdown[2].amount_paid = parseFloat($event)">
+      <mat-form-field>
+        <input matInput placeholder="Period" name="water2" [ngModel]="utilities?.breakdown[2]?.period"
+          [ngModelOptions]="{updateOn:'blur'}" (ngModelChange)="utilities.breakdown[2].period = $event">
       </mat-form-field>
       <mat-form-field *ngIf="utilities && utilities?.breakdown">
         <input matInput placeholder="Who Paid?" name="sewer3" [ngModel]="utilities.breakdown[2].paid_by"
@@ -49,10 +47,9 @@
           [ngModel]="utilities.breakdown[3].amount_due | currency" [ngModelOptions]="{updateOn:'blur'}"
           (ngModelChange)="utilities.breakdown[3].amount_due = parseFloat($event)">
       </mat-form-field>
-      <mat-form-field *ngIf="utilities && utilities?.breakdown">
-        <input matInput placeholder="Amount Paid" name="garbage2"
-          [ngModel]="utilities.breakdown[3].amount_paid | currency" [ngModelOptions]="{updateOn:'blur'}"
-          (ngModelChange)="utilities.breakdown[3].amount_paid = parseFloat($event)">
+      <mat-form-field>
+        <input matInput placeholder="Period" name="water2" [ngModel]="utilities?.breakdown[3]?.period"
+          [ngModelOptions]="{updateOn:'blur'}" (ngModelChange)="utilities.breakdown[3].period = $event">
       </mat-form-field>
       <mat-form-field *ngIf="utilities && utilities?.breakdown">
         <input matInput placeholder="Who Paid?" name="garbage3" [ngModel]="utilities.breakdown[3].paid_by"
@@ -67,10 +64,9 @@
           [ngModel]="utilities.breakdown[0].amount_due | currency" [ngModelOptions]="{updateOn:'blur'}"
           (ngModelChange)="utilities.breakdown[0].amount_due = parseFloat($event)">
       </mat-form-field>
-      <mat-form-field *ngIf="utilities && utilities?.breakdown">
-        <input matInput placeholder="Amount Paid" name="electric2"
-          [ngModel]="utilities.breakdown[0].amount_paid | currency" [ngModelOptions]="{updateOn:'blur'}"
-          (ngModelChange)="utilities.breakdown[0].amount_paid = parseFloat($event)">
+      <mat-form-field>
+        <input matInput placeholder="Period" name="water2" [ngModel]="utilities?.breakdown[0]?.period"
+          [ngModelOptions]="{updateOn:'blur'}" (ngModelChange)="utilities.breakdown[0].period = $event">
       </mat-form-field>
       <mat-form-field *ngIf="utilities && utilities?.breakdown">
         <input matInput placeholder="Who Paid?" name="electric3" [ngModel]="utilities.breakdown[0].paid_by"
@@ -83,12 +79,11 @@
       <mat-form-field *ngIf="utilities && utilities?.breakdown">
         <input matInput placeholder="Amount Due" name="internet1"
           [ngModel]="utilities.breakdown[4].amount_due | currency" [ngModelOptions]="{updateOn:'blur'}"
-          (ngModelChange)="utilities.breakdown[4].amount_due = $event">
+          (ngModelChange)="utilities.breakdown[4].amount_due =parseFloat($event)">
       </mat-form-field>
-      <mat-form-field *ngIf="utilities && utilities?.breakdown">
-        <input matInput placeholder="Amount Paid" name="internet2"
-          [ngModel]="utilities.breakdown[4].amount_paid | currency" [ngModelOptions]="{updateOn:'blur'}"
-          (ngModelChange)="utilities.breakdown[4].amount_paid = $event">
+      <mat-form-field>
+        <input matInput placeholder="Period" name="water2" [ngModel]="utilities?.breakdown[4]?.period"
+          [ngModelOptions]="{updateOn:'blur'}" (ngModelChange)="utilities.breakdown[4].period = $event">
       </mat-form-field>
       <mat-form-field *ngIf="utilities && utilities?.breakdown">
         <input matInput placeholder="Who Paid?" name="internet3" [ngModel]="utilities.breakdown[4].paid_by"
@@ -110,10 +105,10 @@
 
     <mat-tab label="Notes" *ngIf="notes">
       <mat-form-field>
-        <input matInput placeholder="New Note" [(ngModel)]="newNote">
+        <input matInput placeholder="New Note" [(ngModel)]="newNote.value">
       </mat-form-field>
       <mat-form-field *ngFor="let note of notes">
-        <input matInput placeholder="Note" [(ngModel)]="note">
+        <input matInput placeholder="Note" [(ngModel)]="note.value">
       </mat-form-field>
     </mat-tab>
 

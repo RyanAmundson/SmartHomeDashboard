@@ -45,13 +45,11 @@
                     <div class="md-tile-2 tile">
                         <mat-card class="dashboard-card">
                             <app-notes></app-notes>
-
                         </mat-card>
                     </div>
 
                     <div class="sm-tile-1 tile">
-                        <mat-card class="dashboard-card">
-                        </mat-card>
+                        <gate-code-widget></gate-code-widget>
                     </div>
 
                     <div class="sm-tile-2 tile">
@@ -59,43 +57,21 @@
                     </div>
 
                     <div class="sm-tile-3 tile">
-                        <gate-code-widget></gate-code-widget>
+                        <mat-card class="dashboard-card">
+                        </mat-card>
+                    </div>
+
+                    <div class="sm-tile-4 tile">
+                        <mat-card class="dashboard-card">
+                        </mat-card>
+                    </div>
+
+                    <div class="sm-tile-5 tile">
+                        <mat-card class="dashboard-card">
+                        </mat-card>
                     </div>
 
                 </div>
-
-
-                <!-- <div id="footer"> -->
-                <!-- 
-                    <mat-card id="footer-card-1" class="dashboard-card">
-                        <mat-card-header>
-                            <mat-card-title>WiFi</mat-card-title>
-                            <mat-icon>signal_wifi_4_bar</mat-icon>
-                        </mat-card-header>
-                        <mat-card-content>
-                            Network Name:
-                            <br> Access Code:
-                        </mat-card-content>
-                    </mat-card>
-                    
-                    <mat-card id="foter-card-2" class="dashboard-card">
-                    <mat-card-header>
-                        <mat-card-title>Gate</mat-card-title>
-                        <mat-icon>drive_eta</mat-icon>
-                    </mat-card-header>
-                </mat-card>
-                
-                <mat-card id="footer-card-3" class="dashboard-card">
-                    <mat-card-header>
-                        <mat-card-title>House Fund Pool</mat-card-title>
-                        <mat-icon>attach_money</mat-icon>
-                    </mat-card-header>
-                    <mat-card-content>
-                        {{ "100" | currency}}
-                    </mat-card-content>
-                </mat-card> -->
-
-                <!-- </div> -->
             </div>
         </mat-tab>
 
@@ -107,9 +83,27 @@
             <app-rent></app-rent>
         </mat-tab>
 
+        <mat-tab label="Supplies">
+            <app-supplies></app-supplies>
+        </mat-tab>
+
         <mat-tab label="Utilities">
             <app-utilities></app-utilities>
         </mat-tab>
+
+        <mat-tab label="Notes">
+            <app-notes></app-notes>
+        </mat-tab>
+
+
+        <mat-tab label="Wifi">
+            <wifi-widget></wifi-widget>
+        </mat-tab>
+
+        <mat-tab label="Gate">
+            <gate-code-widget></gate-code-widget>
+        </mat-tab>
+
 
     </mat-tab-group>
 </ng-container>

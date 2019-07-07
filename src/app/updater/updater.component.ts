@@ -23,7 +23,10 @@ export class UpdaterComponent implements OnInit {
     bought_by:""
   };
 
-  newNote = "";
+  newNote = {
+    date: Date.now(),
+    value: ""
+  };
 
   data = {
     chores: {
@@ -90,8 +93,8 @@ export class UpdaterComponent implements OnInit {
       bought_by:""
     };
 
-    if(this.newNote != "") this.firebase.list("notes").push(this.newNote);
-    this.newNote = "";
+    if(this.newNote.value != "") this.firebase.list("notes").push(this.newNote);
+    this.newNote.value = "";
 
   }
 

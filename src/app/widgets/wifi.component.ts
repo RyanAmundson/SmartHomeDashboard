@@ -11,8 +11,8 @@ import { Observable, timer } from 'rxjs';
       <mat-icon>signal_wifi_4_bar</mat-icon>
   </mat-card-header>
   <mat-card-content>
-      Network Name:
-      <br> Access Code:
+      <div style="display:inline-block">Network: ########### </div>
+      <div style="display:inline-block">Access: ############</div>
   </mat-card-content>
 </mat-card>`,
     styles: [

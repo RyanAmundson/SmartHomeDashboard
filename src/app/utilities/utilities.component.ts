@@ -45,7 +45,7 @@ Highcharts.setOptions({
   styleUrls: ['./utilities.component.scss']
 })
 export class UtilitiesComponent {
-  displayedColumns: string[] = ['utility', "amount_due", "amount_paid",  "paid_by", "due",];
+  displayedColumns: string[] = ['utility', "amount_due", "period", "paid_by", "due"];
   Highcharts = Highcharts; // required
 
   utility = {
@@ -68,10 +68,8 @@ export class UtilitiesComponent {
 
   constructor(private firebase: AngularFireDatabase) {
     firebase.database.ref('utilities').on('value', res => {
-      // this.utility = res.val();
-      console.log(this.utility)
       Object.entries(res.val().breakdown).forEach(([k, v]: any) => {
-        this.utility.breakdown.push({ amount_due: v.amount_due, amount_paid:v.amount_paid, paid_by:v.paid_by, due: v.due, utility: v.utility });
+        this.utility.breakdown.push({ amount_due: v.amount_due, period: v.period, paid_by:v.paid_by, due: v.due, utility: v.utility });
       })
 
       // this.table.renderRows();

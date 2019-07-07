@@ -1,2 +1,2 @@
-<pie-and-table [displayedColumns]="displayedColumns" [dataSource]="dataSource" [chartOptions]="chartOptions">
+<pie-and-table *ngIf="displayedColumns && dataSource" [displayedColumns]="displayedColumns" [dataSource]="dataSource" [chartOptions]="chartOptions">
 </pie-and-table>

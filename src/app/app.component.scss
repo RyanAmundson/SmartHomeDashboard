@@ -29,12 +29,12 @@
       align-items: center;
       justify-content: center;
       #time {
-        font-size: 30px;
+        font-size: 48px;
         font-family: monospace;
         color: white;
       }
       #date {
-        font-size: 18px;
+        font-size: 32px;
         font-family: monospace;
         color: white;
       }
@@ -59,7 +59,7 @@
       "c c c c c c d d d d"
       "e e e e f f f f f f"
       "g g h h i i j j k k";
-    grid-template-rows: 40% 40% 20%;
+    grid-template-rows: 45% 45% 10%;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 
 
@@ -105,9 +105,11 @@
       // background:white;
       // outline:solid 1px black;
       padding:5px;
+      overflow:hidden;
+      max-height:100%;
 
       & > * {
-        flex: 1 100%;
+        flex: 1 1 auto;
       }
     }
   }

@@ -13,7 +13,7 @@ export class SuppliesComponent implements OnInit {
 
   constructor(private firebase: AngularFireDatabase) {
     firebase.database.ref('supplies').on('value', res => {
-      this.supplies = res.val();
+      this.supplies = res.val().splice(0,5);
     });
 
   }

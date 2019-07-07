@@ -6,6 +6,7 @@
     flex-direction:column;
     align-items:stretch;
     justify-content: stretch;
+    font-size:24px;
 
     .header {
         flex: 1 9 auto;
@@ -55,6 +56,11 @@
             justify-self: center;
             justify-content: center;
             align-items:center;
+            font-size:24px;
+
+            .mat-cell, .mat-header-cell {
+                font-size:1.5rem;
+            }
         }
     }
 }
