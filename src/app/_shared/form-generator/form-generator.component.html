@@ -1,0 +1,18 @@
+<div class="container" (keyup.enter)="update()">
+    <div *ngIf="shape">
+        <mat-form-field style="width:50%">
+            <input #newSectionInput matInput [placeholder]="'New Section'" [name]="newSection">
+        </mat-form-field>
+        <button mat-button (click)="addSection(newSectionInput.value); newSectionInput.value = null">Add Section</button>
+    </div>
+    <ng-container *ngFor="let entry of entries | keyvalue; let i = $index">
+        <h3>{{entry.key  | uppercase}}</h3>
+        <ng-container *ngFor="let item of entry.value | keyvalue">
+            <mat-form-field>
+                <input matInput [placeholder]="item.key | uppercase" [name]="item.key + i" [ngModel]="entries[entry.key][item.key]"
+                    [ngModelOptions]="{updateOn:'blur'}" (ngModelChange)="entries[entry.key][item.key] = $event">
+            </mat-form-field>
+        </ng-container>
+    </ng-container>
+    <button class="update-button" mat-raised-button color="primary" (click)="update()">Update</button>
+</div>

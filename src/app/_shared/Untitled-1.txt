@@ -1,0 +1,141 @@
+            <div id="middle">
+
+
+                <div>
+                    <div>
+                        <mat-card class="dashboard-card">
+                            <div style="min-height:300px;min-width:600px; height: 500px; width:600px"></div>
+                        </mat-card>
+                    </div>
+                    <mat-card class="dashboard-card">
+                        <!-- <div style="min-height:400px;min-width:300px;height: 500px; width:600px"></div> -->
+                        <app-rent></app-rent>
+                    </mat-card>
+                </div>
+
+                <div>
+                    <div>
+                        <div>
+                            <mat-card class="dashboard-card">
+                                <div style="min-height:100px;min-width:100px;height: 500px; width:600px"></div>
+                            </mat-card>
+                        </div>
+                        <mat-card class="dashboard-card">
+                            <div style="min-height:200px;min-width:300px;height: 500px; width:600px"></div>
+
+                        </mat-card>
+                    </div>
+                    <mat-card class="dashboard-card">
+                        <div style="min-height:300px;min-width:300px;height: 500px; width:600px"></div>
+                        <!-- <app-rent></app-rent> -->
+                    </mat-card>
+                </div>
+
+                <div>
+                    <div>
+                        <div>
+                            <div>
+                                <mat-card class="dashboard-card">
+                                    <div style="min-height:100px;min-width:100px;"></div>
+
+                                </mat-card>
+                            </div>
+                            <mat-card class="dashboard-card">
+                                <div style="min-height:100px;min-width:100px;"></div>
+
+                            </mat-card>
+                        </div>
+                        <mat-card class="dashboard-card">
+                            <div style="min-height:100px;min-width:100px;"></div>
+
+                        </mat-card>
+                    </div>
+                    <mat-card class="dashboard-card">
+                        <div style="min-height:100px;min-width:100px;"></div>
+                        <!-- <app-rent></app-rent> -->
+                    </mat-card>
+                </div>
+            </div>
+
+
+
+
+            .container {
+  box-sizing: border-box;
+  max-height: 100%;
+  overflow: auto;
+  height: 100%;
+  width: 100%;
+  background: #1d567c;
+  display: grid;
+  grid-template-areas:
+    "a a a a"
+    "b b b b"
+    "e e e e";
+
+  grid-template-rows: 10% 70% 20%;
+  grid-template-columns: 25% 25% 25% 25%;
+
+  #header {
+    grid-area: a;
+    display: flex;
+    box-sizing: border-box;
+
+    #header-card-1 {
+      flex: 1 1 25%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      #time {
+        font-size: 30px;
+        font-family: monospace;
+        color: white;
+      }
+      #date {
+        font-size: 18px;
+        font-family: monospace;
+        color: white;
+      }
+    }
+
+    #header-card-2 {
+      flex: 0 0 75%;
+      display: flex;
+      flex-direction: row;
+      align-content: stretch;
+      justify-content: stretch;
+      .weatherwidget-io {
+        width: 100%;
+      }
+    }
+  }
+
+  #middle {
+    max-height:100%;
+    grid-area: b;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: baseline;
+    flex-wrap:wrap;
+
+    & * {
+        flex: 1 1 auto;
+        display: flex;
+        justify-content: flex-start;
+        align-items: stretch;
+        flex-wrap:wrap;
+
+    }
+  }
+
+  #footer {
+    box-sizing: border-box;
+    grid-area: e;
+    display: flex;
+  }
+  .dashboard-card {
+    margin: 10px;
+  }
+}

@@ -28,6 +28,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { SpotifyComponent } from './spotify/spotify.component';
+import { FormGeneration } from './_shared/form-generator/form-generation.service';
+import { FormGenerator } from './_shared/form-generator/form-generator.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import { SpotifyComponent } from './spotify/spotify.component';
     GateCodeWidget,
     PieAndTableComponent,
     UpdaterComponent,
-    SpotifyComponent
+    SpotifyComponent,
+    FormGenerator
   ],
   imports: [
     BrowserModule,
@@ -61,7 +64,7 @@ import { SpotifyComponent } from './spotify/spotify.component';
     FormsModule
 
   ],
-  providers: [],
+  providers: [FormGeneration],
   bootstrap: [AppComponent],
   exports: [UpdaterComponent]
 })

@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Observable } from 'rxjs';
+import { FormGeneration } from '../_shared/form-generator/form-generation.service';
 
 @Component({
   selector: 'updater',
@@ -61,10 +62,9 @@ export class UpdaterComponent implements OnInit {
     }
   }
 
-
   entries = [];
   keys = [];
-  constructor(private firebase:AngularFireDatabase, private change:ChangeDetectorRef) {
+  constructor(private firebase:AngularFireDatabase, private change:ChangeDetectorRef, formGenerator:FormGeneration) {
     this.init();
     // this.generate('utilities/breakdown','list',['utility'])
   }
@@ -107,12 +107,12 @@ export class UpdaterComponent implements OnInit {
   }
 
 
-  generate(fbPath, listOrObj,[...ids]) {
+  generate(fbPath = "utilities/breakdown", listOrObj = 0,[...sectionHeaders]) {
     this.firebase.database.ref(fbPath).once('value').then((res) => {
       let data = res.val();
-      console.log(res,res.val(),typeof(res.val()), typeof(res.val()[0]));
+      console.log(res.val());
       this.entries = res.val();
-      this.keys = ids;
+      this.keys = sectionHeaders;
     });
   }
 

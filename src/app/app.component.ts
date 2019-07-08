@@ -20,7 +20,6 @@ export class AppComponent {
   @HostListener('window:keyup', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
     this.key = event.key;
-    console.log(event.key)
     if (event.key == "ArrowLeft") {
       this.activeTab--;
     } else if (event.key == "ArrowRight") {
