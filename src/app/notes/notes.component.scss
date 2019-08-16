@@ -1,4 +1,30 @@
+.notes-container {
+  height:100%;
+  overflow:hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  max-height: -webkit-fill-available;
+  mat-card {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    font-size: 2rem;
+    border-left: 5px solid lightgreen;
 
-    * {
-        font-size:2rem;
+    .timestamp {
+      display: flex;
+      align-self: flex-end;
+      justify-content: flex-end;
+      justify-self: flex-end;
+      font-size: 1rem;
     }
+  }
+}
+.notes {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+}

@@ -1,0 +1,49 @@
+
+.tile-container {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: stretch;
+  justify-content: stretch;
+  border: 5px solid transparent;
+
+  &.disabled {
+    border: 5px solid lightgray;
+  }
+
+  .disabled-overlay {
+    position: absolute;
+    background: white;
+    opacity: 0.7;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    margin: auto;
+
+    &:hover {
+      cursor: not-allowed;
+    }
+  }
+}
+
+
+
+
+.alert {
+  animation: strobe 1s infinite;
+}
+
+@keyframes strobe {
+  0% {
+    border: 5px solid transparent;
+  }
+  50% {
+    border-color: red;
+    box-shadow: 0px 0px 5px red;
+  }
+  100% {
+    // outline: 5px solid transparent;
+    border: 5px solid transparent;
+  }
+}

@@ -1,4 +1,4 @@
-<div id="supplies-container">
+<div id="supplies-container" *ngIf="!updating">
     <table mat-table [dataSource]="supplies" style="width:100%;">
         <ng-container matColumnDef="Item">
             <th mat-header-cell *matHeaderCellDef> Item </th>
@@ -19,3 +19,5 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 </div>
+
+<form-generator *ngIf="updating" #fG [firebasePath]="'supplies'" [listOrObj]="0"></form-generator>

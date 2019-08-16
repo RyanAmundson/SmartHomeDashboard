@@ -40,9 +40,6 @@ Highcharts.setOptions({
   }],
 });
 
-
-
-
 @Component({
   selector: 'app-rent',
   templateUrl: './rent.component.html',
@@ -72,7 +69,7 @@ export class RentComponent {
         this.rent.breakdown.push({ who: k, amount_due: v.amount, status: v.amount <= v.paid ? "Paid" : "Unpaid" });
       })
 
-      
+
       this.rent.total = res.val().total;
       console.log(this.rent.breakdown.filter((t) => t.who.toLowerCase() == "rachael")[0].amount_due);
       this.chartOptions.series = [

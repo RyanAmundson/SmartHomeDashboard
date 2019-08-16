@@ -1,33 +1,17 @@
-<div id="chore-container">
-    <!-- <table mat-table [dataSource]="chores.breakdown" style="width:100%;">
-        <ng-container matColumnDef="This Week">
-            <th mat-header-cell *matHeaderCellDef> This Week </th>
-            <td mat-cell *matCellDef="let chore"> {{chore.this_week}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="Next Week">
-            <th mat-header-cell *matHeaderCellDef> Next Week </th>
-            <td mat-cell *matCellDef="let chore"> {{chore.next_week}} </td>
-        </ng-container>
-
-        <ng-container matColumnDef="Who">
-            <th mat-header-cell *matHeaderCellDef> Who </th>
-            <td mat-cell *matCellDef="let chore"> {{chore.who}} </td>
-        </ng-container>
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table> -->
-
-    <div class="chore" *ngFor="let chore of chores.breakdown">
-        <div class="who">
-           {{chore.who}}
-        </div>
-        <div class="icon">
-                <i class="fas fa-{{chore.this_week}} fa-8x" title="Edit"></i>
-        </div>
-        <div class="text">
-            {{ chore.thisWeekText }}
+<ng-container *ngIf="!updating">
+  <div id="chore-container" *ngIf="choreBreakdown | async as chores">
+    <div class="chore" *ngFor="let person of people | async; index as i;">
+      <div class="who" [@fade]>
+        {{person}}
+      </div>
+      <div class="icon" [ngStyle]="{'color': chores[(i + rI) % 4].needs_attention ? 'darkred' : 'darkgreen'}">
+        <i [@fadeHorizontal]="rI" class="fas fa-{{chores[(i + rI) % 4].icon}} fa-8x" title="Edit"></i>
+      </div>
+      <div class="text" [@fade]>
+        {{ chores[(i + rI) % 4].text }}
+      </div>
     </div>
-    </div>  
-</div>
+  </div>
+</ng-container>
+<button *ngIf="updating" class="rotate-button" mat-mini-fab color="primary" (click)="rotateChores()"><i class="fas fa-sync"></i></button>
+<form-generator *ngIf="updating" #fG [firebasePath]="'chores/breakdown'" [listOrObj]="1"></form-generator>

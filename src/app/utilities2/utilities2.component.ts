@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -6,9 +6,9 @@ import { GeneratedStyles } from '../../assets/animate';
 import { trigger, transition, animate } from '@angular/animations';
 
 @Component({
-  selector: 'app-chores',
-  templateUrl: './chores.component.html',
-  styleUrls: ['./chores.component.scss'],
+  selector: 'app-utilities2',
+  templateUrl: './utilities2.component.html',
+  styleUrls: ['./utilities2.component.scss'],
   animations: [
     trigger('fade', [
       transition(`:leave`, [
@@ -42,20 +42,13 @@ import { trigger, transition, animate } from '@angular/animations';
     ])
   ]
 })
-export class ChoresComponent implements OnInit {
+export class Utilities2Component {
   updating = false;
   displayedColumns: string[] = ['Who', 'This Week', 'Next Week'];
 
-  chores = this.firebase.object('chores').snapshotChanges();
-  rI = 0;
-
-  people = this.firebase.list('chores/people').snapshotChanges().pipe(map(changes => changes.map(c => c.payload.key)));
-  rotationIndex = this.firebase.object('chores/rotationIndex').valueChanges();
-  choreBreakdown = this.firebase.list('chores/breakdown').snapshotChanges()
+  utilities = this.firebase.list('utilities/breakdown').snapshotChanges()
     .pipe(map(changes => changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))));
 
-
-  @Output() loadingComplete: EventEmitter<void> = new EventEmitter();
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     if (window.innerWidth < 800) {
@@ -71,18 +64,5 @@ export class ChoresComponent implements OnInit {
     } else {
       this.updating = false;
     }
-
-    this.rotationIndex.subscribe((r: number) => (this.rI = r));
-  }
-
-  ngOnInit() {
-  }
-
-  ngAfterViewInit() {
-    this.loadingComplete.emit();
-  }
-
-  rotateChores() {
-    this.firebase.object('chores/rotationIndex').set((this.rI + 1) % 4);
   }
 }

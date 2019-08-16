@@ -1,0 +1,21 @@
+<ng-container *ngIf="!updating">
+  <div id="chore-container">
+    <div class="chore" *ngFor="let utility of utilities | async; index as i;">
+      <div class="who" [@fade]>
+        {{ utility.amount_due | currency}}
+      </div>
+      <div class="icon" [ngStyle]="{'color':utility.paid ? 'darkgreen' : 'darkred'}">
+        <i [@fade] class="fas fa-{{utility.icon}} fa-8x" title="Edit"></i>
+      </div>
+      <div class="text" [@fade]>
+        {{ utility.key}}
+      </div>
+      <div class="sub-text" [@fade]>
+        Paid by: {{ utility.paid_by}}<br>
+        for: {{utility.period}}
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<form-generator *ngIf="updating" #fG [firebasePath]="'utilities/breakdown'" [listOrObj]="1"></form-generator>

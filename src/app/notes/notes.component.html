@@ -1,3 +1,18 @@
-<div>
-  <div *ngFor="let note of notes.reverse() | slice:0:15">[{{note.date | date}}] {{note.value}}</div>
+<ng-container *ngIf="!updating">
+  <div class="notes-container">
+    <mat-card *ngFor="let note of notes.reverse() | slice:0:5">
+      {{note.value}}<br>
+      <div class="timestamp">{{note.date | date}}</div>
+    </mat-card>
+  </div>
+</ng-container>
+<div *ngIf="updating" class="notes">
+  <mat-form-field>
+    <input matInput placeholder="New Note" [(ngModel)]="newNote.value">
+  </mat-form-field>
+  <mat-form-field *ngFor="let note of notes.reverse()">
+    <input matInput placeholder="Note" [(ngModel)]="note.value">
+  </mat-form-field>
 </div>
+<button *ngIf="updating" class="update-button" mat-raised-button color="primary" (click)="update()">Update</button>
+<!-- <form-generator *ngIf="updating" #fG [firebasePath]="'notes'" [listOrObj]="0"></form-generator> -->

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 
 @Component({
@@ -8,12 +8,27 @@ import { AngularFireDatabase } from '@angular/fire/database';
 })
 export class SuppliesComponent implements OnInit {
   displayedColumns: string[] = ['Item', 'Cost', 'Bought By'];
-
+  updating = false;
   supplies = [];
 
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    if (window.innerWidth < 800) {
+      this.updating = true;
+    } else {
+      this.updating = false;
+    }
+  }
+
   constructor(private firebase: AngularFireDatabase) {
-    firebase.database.ref('supplies').on('value', res => {
-      this.supplies = res.val().splice(0,5);
+    if (window.innerWidth < 800) {
+      this.updating = true;
+    } else {
+      this.updating = false;
+    }
+    firebase.list('supplies').valueChanges().subscribe((res) => {
+      this.supplies = res.splice(0, 5);
     });
 
   }

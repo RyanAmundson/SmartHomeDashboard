@@ -1,0 +1,4 @@
+<mat-card [@fade] class="tile-container" [ngClass]="{'disabled':disabled}">
+  <ng-content></ng-content>
+  <div class="disabled-overlay" *ngIf="disabled"></div>
+</mat-card>

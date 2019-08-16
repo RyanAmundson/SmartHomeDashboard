@@ -1,7 +1,7 @@
 <div class="container" (keyup.enter)="update()">
     <div *ngIf="shape">
         <mat-form-field style="width:50%">
-            <input #newSectionInput matInput [placeholder]="'New Section'" [name]="newSection">
+            <input #newSectionInput matInput [placeholder]="'New Section'" [name]="newSection" [readonly]="listOrObj == 0">
         </mat-form-field>
         <button mat-button (click)="addSection(newSectionInput.value); newSectionInput.value = null">Add Section</button>
     </div>
