@@ -4,11 +4,14 @@
   overflow: hidden;
   max-height: -webkit-fill-available;
   width: 100%;
-  background: #1d567c;
+  background: #292929;
   display: grid;
   grid-template-areas:
-    "a"
-    "b";
+    "a1 a2 a3 a4 a5 a6 a7 a8 a9 a10 a11 a12",
+    "b1 b2 b3 b4 b5 b6 b7 b8 b9 b10 b11 b12",
+    "c1 c2 c3 c4 c5 c6 c7 c8 c9 c10 c11 c12",
+    "d1 d2 d3 d4 d5 d6 d7 d8 d9 d10 d11 d12",
+    "e1 e2 e3 e4 e5 e6 e7 e8 e9 e10 e11 e12";
   grid-template-rows: 114px auto;
   grid-template-columns: 1fr;
     // align-items:flex-start;
@@ -19,18 +22,21 @@
   // align-items:center;
 
   #header {
-    grid-area: a;
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 1;
+    grid-row-end: 12;
     display: flex;
     box-sizing: border-box;
 
     #header-card-1 {
-      flex: 1 1 25%;
+      flex: 1 1 35%;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       #time {
-        font-size: 48px;
+        font-size: 38px;
         font-family: monospace;
         color: white;
       }
@@ -42,7 +48,7 @@
     }
 
     #header-card-2 {
-      flex: 0 0 75%;
+      flex: 0 0 65%;
       display: flex;
       flex-direction: row;
       align-content: stretch;
@@ -51,74 +57,6 @@
         width: 100%;
       }
     }
-  }
-
-  #middle {
-    grid-area:b;
-    display: inline-grid;
-    grid-template-areas:
-      "c c c c c c d d d d"
-      "e e e e f f f f f f"
-      "g g h h i i j j k k";
-    grid-template-rows: 45% 45% 10%;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-
-
-    .lg-tile-1 {
-      grid-area: c;
-    }
-
-    .lg-tile-2 {
-      grid-area: f;
-    }
-
-    .md-tile-1 {
-      grid-area: d;
-    }
-
-    .md-tile-2 {
-      grid-area: e;
-    }
-
-    .sm-tile-1 {
-      grid-area: g;
-    }
-
-    .sm-tile-2 {
-      grid-area: h;
-    }
-
-    .sm-tile-3 {
-      grid-area: i;
-    }
-
-    .sm-tile-4 {
-      grid-area: j;
-    }
-
-    .sm-tile-5 {
-      grid-area: k;
-    }
-    .tile {
-      display:flex;
-      align-items:stretch;
-      justify-content: stretch;
-      // background:white;
-      // outline:solid 1px black;
-      padding:5px;
-      overflow:hidden;
-      max-height:100%;
-
-      & > * {
-        flex: 1 1 auto;
-      }
-    }
-  }
-
-  #footer {
-    // box-sizing: border-box;
-    // grid-area: e;
-    // display: flex;
   }
 }
 

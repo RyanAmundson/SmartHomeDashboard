@@ -1,66 +1,43 @@
 <div class="container">
-    <div id="header">
-        <div id="header-card-1">
-            <div id="time">
-                {{date + (timeObs | async) * 1000 | date:'mediumTime'}}
-            </div>
-            <div id="date">
-                {{date + (timeObs | async) * 1000 | date:'fullDate'}}
-            </div>
-        </div>
-
-        <div id="header-card-2">
-            <a class="weatherwidget-io" href="https://forecast7.com/en/47d67n122d12/redmond/?unit=us"
-                data-label_1="REDMOND" data-label_2="WEATHER" data-font="Roboto Slab"
-                data-icons="Climacons Animated" data-theme="original">REDMOND WEATHER</a>
-
-        </div>
+  <div id="header">
+    <div id="header-card-1">
+      <div id="time">
+        {{date + (timeObs | async) * 1000 | date:'mediumTime'}}
+      </div>
+      <div id="date">
+        {{date + (timeObs | async) * 1000 | date:'fullDate'}}
+      </div>
     </div>
 
-    <div id="middle">
-        <div class="lg-tile-1 tile">
-            <mat-card class="dashboard-card">
-                <app-utilities2></app-utilities2>
-            </mat-card>
-        </div>
-        <div class="md-tile-1 tile">
-            <mat-card class="dashboard-card">
-                <app-supplies></app-supplies>
-            </mat-card>
-        </div>
-        <div class="lg-tile-2 tile">
-            <app-tile class="dashboard-card large-card lg-tile-2">
-                <app-chores (loadingComplete)="loadingComplete()"></app-chores>
-            </app-tile>
-        </div>
-        <div class="md-tile-2 tile">
-            <mat-card class="dashboard-card">
-                <app-notes></app-notes>
-            </mat-card>
-        </div>
-
-        <div class="sm-tile-1 tile">
-            <gate-code-widget></gate-code-widget>
-        </div>
-
-        <div class="sm-tile-2 tile">
-            <wifi-widget></wifi-widget>
-        </div>
-
-        <div class="sm-tile-3 tile">
-            <mat-card class="dashboard-card">
-            </mat-card>
-        </div>
-
-        <div class="sm-tile-4 tile">
-            <mat-card class="dashboard-card">
-            </mat-card>
-        </div>
-
-        <div class="sm-tile-5 tile">
-            <mat-card class="dashboard-card">
-            </mat-card>
-        </div>
+    <div id="header-card-2">
+      <a class="weatherwidget-io" href="https://forecast7.com/en/47d67n122d12/redmond/?unit=us" data-label_1="REDMOND"
+        data-label_2="WEATHER" data-font="Roboto Slab" data-icons="Climacons Animated" data-theme="dark">REDMOND
+        WEATHER</a>
 
     </div>
+  </div>
+
+  <app-tile class="dashboard-card">
+    <app-utilities2></app-utilities2>
+  </app-tile>
+
+  <app-tile class="dashboard-card">
+    <app-supplies></app-supplies>
+  </app-tile>
+
+  <app-tile class="dashboard-card large-card lg-tile-2">
+    <app-chores (loadingComplete)="loadingComplete()"></app-chores>
+  </app-tile>
+
+  <app-tile class="dashboard-card">
+    <app-notes></app-notes>
+  </app-tile>
+
+  <app-tile>
+    <gate-code-widget></gate-code-widget>
+  </app-tile>
+
+  <app-tile>
+    <wifi-widget></wifi-widget>
+  </app-tile>
 </div>

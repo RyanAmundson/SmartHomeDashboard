@@ -1,7 +1,8 @@
-import { Component, OnInit, HostListener, ViewChild } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild, ContentChildren, QueryList, ViewChildren } from '@angular/core';
 import { SwPush } from '@angular/service-worker';
 import { PushNotificationService, PushNotificationOptions } from 'ngx-push-notifications';
 import { timer } from 'rxjs';
+import { TileComponent } from '../tile/tile.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,6 +17,8 @@ export class DashboardComponent implements OnInit {
   key;
 
   updater = false;
+
+  @ViewChildren(TileComponent) tiles: QueryList<TileComponent>;
 
   @HostListener('window:keyup', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
@@ -37,6 +40,8 @@ export class DashboardComponent implements OnInit {
     }
   }
 
+
+
   constructor() {
     if (window.innerWidth < 800) {
       this.updater = true;
@@ -49,9 +54,16 @@ export class DashboardComponent implements OnInit {
 
   }
 
+  ngAfterViewInit() {
+    console.log(this.tiles)
+  }
+
   loadingComplete() {
     console.log("loading done")
   }
+
+  
+
 
   onKeydown(event) {
     console.log(event.key)
