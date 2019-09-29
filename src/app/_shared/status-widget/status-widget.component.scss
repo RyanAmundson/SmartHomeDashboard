@@ -1,0 +1,36 @@
+
+app-status-widget:host {
+    width:100%;
+    display:flex;
+    align-items:stretch;
+    justify-content: center;
+    flex-direction:column;
+    // padding:5px;
+    h1 {
+        display:flex;
+        align-self:center;
+        color:white;
+    }
+    .button-list {
+        display:flex;
+        flex-direction:row;
+        align-items:center;
+        justify-content: center;
+        flex-wrap:wrap;
+        align-content:space-evenly;
+        .button-container {
+            margin:auto;
+            align-self:center;
+            flex: 0 0 auto;
+            display:flex;
+            align-items:stretch;
+            justify-content: stretch;
+            font-size:24px;
+            margin:15px;
+            button {
+                width:90px;
+                height:90px;
+            }
+        }
+    }
+}

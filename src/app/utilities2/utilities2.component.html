@@ -4,7 +4,7 @@
       <div class="who" [@fade]>
         {{ utility.amount_due | currency}}
       </div>
-      <div class="icon" [ngStyle]="{'color':utility.paid ? 'darkgreen' : 'darkred'}">
+      <div class="icon" [ngStyle]="{'color':utility.status}">
         <i [@fade] class="fas fa-{{utility.icon}} fa-8x" title="Edit"></i>
       </div>
       <div class="text" [@fade]>

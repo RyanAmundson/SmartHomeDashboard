@@ -1,8 +1,8 @@
 <ng-container *ngIf="!updating">
   <div class="notes-container">
-    <mat-card *ngFor="let note of notes.reverse() | slice:0:5">
-      {{note.value}}<br>
-      <div class="timestamp">{{note.date | date}}</div>
+    <mat-card *ngFor="let note of notes?.reverse() | slice:0:3">
+      <span>{{note?.value}}</span><br>
+      <div class="timestamp">{{note?.date | date}}</div>
     </mat-card>
   </div>
 </ng-container>

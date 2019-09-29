@@ -1,0 +1,11 @@
+<mat-card *ngFor="let person of people | async" [ngStyle]="{display: person?.location?.name != 'unknown' ? 'flex' : 'none'}">
+    <div class="name">
+      {{ person.key }}
+    </div>
+    <div class="location">
+      {{ person.location.name }}
+    </div>
+    <div class="last-updated">
+      Last updated: <b>{{ person.location.lastUpdated }}</b>
+    </div>
+</mat-card>

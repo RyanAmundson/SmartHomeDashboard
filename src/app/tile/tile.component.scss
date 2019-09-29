@@ -1,28 +1,34 @@
 
-.tile-container {
+app-tile:host {
   flex: 1 1 auto;
   display: flex;
   align-items: stretch;
   justify-content: stretch;
-  border: 5px solid transparent;
-
-  &.disabled {
-    border: 5px solid lightgray;
-  }
-
-  .disabled-overlay {
-    position: absolute;
-    background: white;
-    opacity: 0.7;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 10;
-    margin: auto;
-
-    &:hover {
-      cursor: not-allowed;
+  .tile-container {
+    flex: 1 1 auto;
+    display: flex;
+    align-items: stretch;
+    justify-content: stretch;
+    border: 5px solid transparent;
+    
+    &.disabled {
+      border: 5px solid lightgray;
+    }
+    
+    .disabled-overlay {
+      position: absolute;
+      background: white;
+      opacity: 0.7;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 10;
+      margin: auto;
+      
+      &:hover {
+        cursor: not-allowed;
+      }
     }
   }
 }

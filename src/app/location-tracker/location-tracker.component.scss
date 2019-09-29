@@ -1,0 +1,43 @@
+app-location-tracker:host {
+  font-family: monospace;
+  flex: 1 1 auto;
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  justify-items: space-evenly;
+
+  mat-card {
+    box-sizing:border-box;
+    min-width: 30%;
+    display: flex;
+    flex-flow: column wrap;
+    // align-items: flex-start;
+    // justify-content: stretch;
+    margin: 4px;
+    max-height: 120px;
+
+    .name {
+      display: flex;
+      flex: 0 0 auto;
+      font-size: 1.5rem;
+    }
+
+    .location {
+      display: flex;
+      flex: 1 1 auto;
+      font-size: 2rem;
+    }
+
+    .last-updated {
+      display: flex;
+      flex: 1 1 auto;
+      font-size: 1rem;
+      display: flex;
+      align-self: flex-end;
+      justify-self: flex-end;
+      align-items: flex-end;
+      justify-content: flex-end;
+    }
+  }
+}

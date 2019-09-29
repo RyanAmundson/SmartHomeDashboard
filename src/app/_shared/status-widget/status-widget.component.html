@@ -1,0 +1,11 @@
+
+<h1>
+  {{title}}
+</h1>
+<div class="button-list">
+  <div class="button-container" *ngFor="let item of items">
+    <button mat-icon-button  (click)="updateStatus(item)" [ngStyle]="{'background-color':item.status}">
+      <i class="fas fa-{{item.icon}}"></i>
+    </button>
+  </div>
+<div>

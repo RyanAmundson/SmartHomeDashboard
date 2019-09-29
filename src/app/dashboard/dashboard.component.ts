@@ -3,6 +3,7 @@ import { SwPush } from '@angular/service-worker';
 import { PushNotificationService, PushNotificationOptions } from 'ngx-push-notifications';
 import { timer } from 'rxjs';
 import { TileComponent } from '../tile/tile.component';
+import { AppRoutingModule } from '../app-routing.module';
 
 @Component({
   selector: 'app-dashboard',
@@ -10,12 +11,15 @@ import { TileComponent } from '../tile/tile.component';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+  @ViewChildren(AppRoutingModule) appTiles: QueryList<any>;
   title = 'SmartHomeDashboard';
   date = Date.now();
   timeObs = timer(1000, 1000);
   activeTab = 0;
   key;
 
+  choreList = [];
+  utilitiesList = ["water","electricity","garbage", 'internet', 'sewer'];
   updater = false;
 
   @ViewChildren(TileComponent) tiles: QueryList<TileComponent>;
@@ -55,7 +59,8 @@ export class DashboardComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    console.log(this.tiles)
+    console.log(this.tiles);
+    this.resizeAllGridItems();
   }
 
   loadingComplete() {
@@ -73,4 +78,17 @@ export class DashboardComponent implements OnInit {
       this.activeTab--;
     }
   }
+
+  resizeAllGridItems() {
+    console.log(this.appTiles)
+    this.appTiles.forEach((item) => {
+      this.resizeGridItem(item);
+    });
+  }
+
+  resizeGridItem(item) {
+
+  }
+
+
 }

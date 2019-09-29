@@ -5,6 +5,7 @@ import { Observable, timer } from 'rxjs';
 @Component({
   selector: 'wifi-widget',
   template: `
+  <app-tile>
 <mat-card id="footer-card-1" class="dashboard-card">
   <mat-card-content>
       <div class="icon">

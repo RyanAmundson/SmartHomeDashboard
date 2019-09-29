@@ -2,42 +2,67 @@
   <div id="header">
     <div id="header-card-1">
       <div id="time">
-        {{date + (timeObs | async) * 1000 | date:'mediumTime'}}
+        {{ date + (timeObs | async) * 1000 | date: "mediumTime" }}
       </div>
       <div id="date">
-        {{date + (timeObs | async) * 1000 | date:'fullDate'}}
+        {{ date + (timeObs | async) * 1000 | date: "fullDate" }}
       </div>
     </div>
 
     <div id="header-card-2">
-      <a class="weatherwidget-io" href="https://forecast7.com/en/47d67n122d12/redmond/?unit=us" data-label_1="REDMOND"
-        data-label_2="WEATHER" data-font="Roboto Slab" data-icons="Climacons Animated" data-theme="dark">REDMOND
-        WEATHER</a>
-
+      <a
+        class="weatherwidget-io"
+        href="https://forecast7.com/en/47d67n122d12/redmond/?unit=us"
+        data-label_1="REDMOND"
+        data-label_2="WEATHER"
+        data-font="Roboto Slab"
+        data-icons="Climacons Animated"
+        data-theme="dark"
+        >REDMOND WEATHER</a
+      >
     </div>
   </div>
+  <!-- ================================================================= -->
+  <div class="body" *ngIf="!updater">
+    <app-tile>
+      <app-utilities2></app-utilities2>
+    </app-tile>
 
-  <app-tile class="dashboard-card">
-    <app-utilities2></app-utilities2>
-  </app-tile>
+    <app-tile>
+      <app-chores (loadingComplete)="loadingComplete()"></app-chores>
+    </app-tile>
 
-  <app-tile class="dashboard-card">
-    <app-supplies></app-supplies>
-  </app-tile>
+    <app-tile>
+      <app-notes></app-notes>
+    </app-tile>
 
-  <app-tile class="dashboard-card large-card lg-tile-2">
-    <app-chores (loadingComplete)="loadingComplete()"></app-chores>
-  </app-tile>
+    <app-tile>
+      <app-supplies></app-supplies>
+    </app-tile>
 
-  <app-tile class="dashboard-card">
-    <app-notes></app-notes>
-  </app-tile>
+    <app-tile [noContainer]="true" [noFlow]="true" [ngStyle]="{flex: '0 0 auto'}">
+      <app-location-tracker></app-location-tracker>
+    </app-tile>
 
-  <app-tile>
-    <gate-code-widget></gate-code-widget>
-  </app-tile>
+    <!-- <app-tile>
+      <gate-code-widget></gate-code-widget>
+    </app-tile>
 
-  <app-tile>
-    <wifi-widget></wifi-widget>
-  </app-tile>
+    <app-tile>
+      <wifi-widget></wifi-widget>
+    </app-tile> -->
+  </div>
+  <!-- ========================================================= -->
+  <div class="status-widgets" *ngIf="updater">
+    <app-status-widget
+      [fbRef]="'/chores/breakdown'"
+      [title]="'Chores'"
+      [items]="choreList"
+    ></app-status-widget>
+    <app-status-widget
+      [fbRef]="'/utilities/breakdown'"
+      [title]="'Utilities'"
+      [items]="utilitiesList"
+    ></app-status-widget>
+  </div>
 </div>

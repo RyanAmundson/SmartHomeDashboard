@@ -8,7 +8,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
 })
 export class NotesComponent {
   updating = false;
-  notes = [];
+  notes;
   newNote = {
     value: '',
     date: null

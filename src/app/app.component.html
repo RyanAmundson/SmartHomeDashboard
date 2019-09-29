@@ -1,36 +1,33 @@
-    <mat-tab-group mat-stretch-tabs [selectedIndex]="activeTab" [backgroundColor]="'#1d567c'" [color]="'white'"
-        [dynamicHeight]="false" [headerPosition]="'below'">
-        <mat-tab label="Home">
-            <app-dashboard></app-dashboard>
-        </mat-tab>
+<mat-tab-group
+  mat-stretch-tabs
+  [selectedIndex]="activeTab"
+  [backgroundColor]="'#1d567c'"
+  [color]="'white'"
+  [dynamicHeight]="false"
+  [headerPosition]="'below'"
+>
+  <mat-tab label="Home">
+    <app-dashboard></app-dashboard>
+  </mat-tab>
 
-        <mat-tab label="Chores">
-            <app-chores></app-chores>
-        </mat-tab>
+  <mat-tab label="Chores">
+    <app-chores></app-chores>
+  </mat-tab>
 
-        <mat-tab label="Supplies">
-          <app-supplies></app-supplies>
-        </mat-tab>
+  <mat-tab label="Supplies">
+    <app-supplies></app-supplies>
+  </mat-tab>
 
-        <mat-tab label="Utilities">
-          <app-utilities2></app-utilities2>
-        </mat-tab>
+  <mat-tab label="Utilities">
+    <app-utilities2></app-utilities2>
+  </mat-tab>
 
-        <mat-tab label="Notes">
-          <app-notes></app-notes>
-        </mat-tab>
+  <mat-tab label="Notes">
+    <app-notes></app-notes>
+  </mat-tab>
 
-        <!-- <mat-tab label="Rent">
-            <app-rent></app-rent>
-        </mat-tab> -->
+  <mat-tab label="Location">
+    <app-location-tracker></app-location-tracker>
+  </mat-tab>
 
-        <!-- <mat-tab label="Wifi">
-            <wifi-widget></wifi-widget>
-        </mat-tab>
-
-        <mat-tab label="Gate">
-            <gate-code-widget></gate-code-widget>
-        </mat-tab> -->
-
-
-    </mat-tab-group>
+</mat-tab-group>

@@ -36,6 +36,8 @@ import { PushNotificationService } from 'ngx-push-notifications';
 import { TileComponent } from './tile/tile.component';
 import { TileDirective } from './directives/tile.directive';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { StatusWidgetComponent } from './_shared/status-widget/status-widget.component';
+import { LocationTrackerComponent } from './location-tracker/location-tracker.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     FormGenerator,
     TileComponent,
     TileDirective,
-    DashboardComponent
+    DashboardComponent,
+    StatusWidgetComponent,
+    LocationTrackerComponent
   ],
   imports: [
     BrowserModule,

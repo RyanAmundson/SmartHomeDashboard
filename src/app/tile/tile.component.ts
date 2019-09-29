@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { trigger, transition,animate } from '@angular/animations';
 import { GeneratedStyles } from 'src/assets/animate';
 
@@ -41,7 +41,8 @@ import { GeneratedStyles } from 'src/assets/animate';
 })
 
 export class TileComponent implements OnInit {
-
+  @Input() noContainer = false;
+  @Input() noFlow = false;
   disabled = false;
 
   constructor() { }

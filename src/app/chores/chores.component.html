@@ -4,7 +4,7 @@
       <div class="who" [@fade]>
         {{person}}
       </div>
-      <div class="icon" [ngStyle]="{'color': chores[(i + rI) % 4].needs_attention ? 'darkred' : 'darkgreen'}">
+      <div class="icon" [ngStyle]="{'color': chores[(i + rI) % 4].status}">
         <i [@fadeHorizontal]="rI" class="fas fa-{{chores[(i + rI) % 4].icon}} fa-8x" title="Edit"></i>
       </div>
       <div class="text" [@fade]>
