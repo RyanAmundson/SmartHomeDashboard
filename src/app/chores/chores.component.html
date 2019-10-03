@@ -1,19 +1,18 @@
-<button *ngIf="updating" class="rotate-button" mat-mini-fab color="primary" (click)="rotateChores()"><i class="fas fa-sync"></i></button>
 <ng-container *ngIf="!updating">
-  <div id="chore-container" *ngIf="choreBreakdown | async as chores">
+  <div id="chore-container" *ngIf="chores">
     <div class="chore" *ngFor="let person of people | async; index as i;">
       <div class="who" [@fade]>
         {{person}}
       </div>
-      <div class="icon" [ngStyle]="{'color': chores[(i + rI) % 4].status}">
-        <i [@fadeHorizontal]="rI" class="fas fa-{{chores[(i + rI) % 4].icon}} fa-8x" title="Edit"></i>
+      <div class="icon" [ngStyle]="{'color': chores[(i + rI) % chores.length].status}">
+        <i [@fadeHorizontal]="rI" class="fas fa-{{chores[(i + rI) % chores.length].icon}} fa-8x" title="Edit"></i>
       </div>
       <div class="text" [@fade]>
-        {{ chores[(i + rI) % 4].text }}
+        {{ chores[(i + rI) % chores.length].text }}
       </div>
     </div>
   </div>
 </ng-container>
-<div class="update-form">
-  <form-generator *ngIf="updating" #fG [firebasePath]="'chores/breakdown'" [listOrObj]="1"></form-generator>
+<div class="update-form" *ngIf="updating">
+  <form-generator #fG [firebasePath]="'chores/breakdown'" [listOrObj]="1"></form-generator>
 </div>

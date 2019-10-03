@@ -3,7 +3,7 @@ app-status-widget:host {
     width:100%;
     display:flex;
     align-items:stretch;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction:column;
     // padding:5px;
     h1 {
@@ -25,11 +25,12 @@ app-status-widget:host {
             display:flex;
             align-items:stretch;
             justify-content: stretch;
-            font-size:24px;
+            font-size:30px;
             margin:15px;
             button {
-                width:90px;
-                height:90px;
+                font-size:24px;
+                width:75px;
+                height:75px;
             }
         }
     }

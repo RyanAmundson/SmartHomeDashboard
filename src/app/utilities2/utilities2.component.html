@@ -17,7 +17,7 @@
     </div>
   </div>
 </ng-container>
-<div class="update-form">
-  <form-generator *ngIf="updating" #fG [firebasePath]="'utilities/breakdown'" [listOrObj]="1"></form-generator>
+<div class="update-form" *ngIf="updating">
+  <form-generator  #fG [firebasePath]="'utilities/breakdown'" [listOrObj]="1"></form-generator>
 </div>
 

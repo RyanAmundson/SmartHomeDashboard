@@ -4,6 +4,7 @@ import { PushNotificationService, PushNotificationOptions } from 'ngx-push-notif
 import { timer } from 'rxjs';
 import { TileComponent } from '../tile/tile.component';
 import { AppRoutingModule } from '../app-routing.module';
+import { AngularFireDatabase } from '@angular/fire/database';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,10 +18,13 @@ export class DashboardComponent implements OnInit {
   timeObs = timer(1000, 1000);
   activeTab = 0;
   key;
+  disableCycleButton = false;
 
   choreList = [];
   utilitiesList = ["water","electricity","garbage", 'internet', 'sewer'];
   updater = false;
+  rI;
+  rotationIndex = this.firebase.object('chores/rotationIndex').valueChanges();
 
   @ViewChildren(TileComponent) tiles: QueryList<TileComponent>;
 
@@ -46,7 +50,7 @@ export class DashboardComponent implements OnInit {
 
 
 
-  constructor() {
+  constructor(private firebase: AngularFireDatabase) {
     if (window.innerWidth < 800) {
       this.updater = true;
     } else {
@@ -55,7 +59,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.rotationIndex.subscribe((r: number) => (this.rI = r));
   }
 
   ngAfterViewInit() {
@@ -67,7 +71,12 @@ export class DashboardComponent implements OnInit {
     console.log("loading done")
   }
 
-  
+  rotateChores() {
+    this.disableCycleButton =true;
+    this.firebase.object('chores/rotationIndex').set((this.rI + 1) % 4).then((res) => {
+
+    });
+  }
 
 
   onKeydown(event) {

@@ -19,7 +19,7 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
 </div>
-<div class="update-form">
-    <form-generator *ngIf="updating" #fG [firebasePath]="'supplies'" [listOrObj]="0"></form-generator>
+<div class="update-form" *ngIf="updating">
+    <form-generator #fG [firebasePath]="'supplies'" [listOrObj]="0"></form-generator>
 </div>
 

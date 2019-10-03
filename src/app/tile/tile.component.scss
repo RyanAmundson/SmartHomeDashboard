@@ -4,12 +4,12 @@ app-tile:host {
   display: flex;
   align-items: stretch;
   justify-content: stretch;
+  border: 5px solid transparent;
   .tile-container {
     flex: 1 1 auto;
     display: flex;
     align-items: stretch;
     justify-content: stretch;
-    border: 5px solid transparent;
     
     &.disabled {
       border: 5px solid lightgray;

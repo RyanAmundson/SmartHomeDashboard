@@ -87,7 +87,7 @@
 
 
     app-tile {
-      margin:5px;
+      // border: 5px solid transparent;
     }
 
 
@@ -119,20 +119,33 @@
 }
 
 @media only screen and (max-width: 1000px) {
+  #header {
+    display:none!important;
+    #header-card-1 {
+      display:none;
+    }
+    #header-card-2 {
+      display:none;
+    }
+  }
+  .body {
+    display:none;
+  }
+
+  .container {
+    display:flex;
+  }
+
   .status-widgets {
     overflow-y:auto;
     flex-wrap:nowrap;
-    grid-area:b;
     font-family: monospace;
     width: 100%;
-    height: calc(100% - 100px);
+    height: 100%;
     box-sizing: border-box;
     // margin:-5px;
     display:flex;
     flex-direction:column;
-  }
-  #header {
-    display: none !important;
   }
 }
 

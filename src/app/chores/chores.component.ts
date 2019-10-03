@@ -46,13 +46,16 @@ export class ChoresComponent implements OnInit {
   updating = false;
   displayedColumns: string[] = ['Who', 'This Week', 'Next Week'];
 
-  chores = this.firebase.object('chores').snapshotChanges();
+  chores;
   rI = 0;
 
   people = this.firebase.list('chores/people').snapshotChanges().pipe(map(changes => changes.map(c => c.payload.key)));
   rotationIndex = this.firebase.object('chores/rotationIndex').valueChanges();
   choreBreakdown = this.firebase.list('chores/breakdown').snapshotChanges()
-    .pipe(map(changes => changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))));
+    .pipe(map(changes => changes.map(c => ({ key: c.payload.key, ...c.payload.val() })))).subscribe((chores) => {
+      this.chores = chores.sort((a:any,b:any) => { return a.order - b.order});
+
+    })
 
 
   @Output() loadingComplete: EventEmitter<void> = new EventEmitter();

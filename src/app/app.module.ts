@@ -38,6 +38,9 @@ import { TileDirective } from './directives/tile.directive';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { StatusWidgetComponent } from './_shared/status-widget/status-widget.component';
 import { LocationTrackerComponent } from './location-tracker/location-tracker.component';
+import { MessagingService } from './_shared/messaging.service';
+import { AngularFireMessagingModule } from '@angular/fire/messaging';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [
@@ -72,14 +75,16 @@ import { LocationTrackerComponent } from './location-tracker/location-tracker.co
     MatTableModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    AngularFireMessagingModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
     FormsModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('firebase-messaging-sw.js', { enabled: true })
 
   ],
-  providers: [FormGeneration, PushNotificationService],
+  providers: [FormGeneration, PushNotificationService,MessagingService],
   bootstrap: [AppComponent],
   exports: [UpdaterComponent]
 })

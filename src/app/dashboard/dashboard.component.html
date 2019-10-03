@@ -28,7 +28,11 @@
       <app-utilities2></app-utilities2>
     </app-tile>
 
-    <app-tile>
+    <app-tile
+      [noContainer]="true"
+      [noFlow]="true"
+      [ngStyle]="{ flex: '0 0 auto' }"
+    >
       <app-chores (loadingComplete)="loadingComplete()"></app-chores>
     </app-tile>
 
@@ -40,7 +44,11 @@
       <app-supplies></app-supplies>
     </app-tile>
 
-    <app-tile [noContainer]="true" [noFlow]="true" [ngStyle]="{flex: '0 0 auto'}">
+    <app-tile
+      [noContainer]="true"
+      [noFlow]="true"
+      [ngStyle]="{ flex: '0 0 auto' }"
+    >
       <app-location-tracker></app-location-tracker>
     </app-tile>
 
@@ -54,14 +62,28 @@
   </div>
   <!-- ========================================================= -->
   <div class="status-widgets" *ngIf="updater">
+    <span style="color:white;align-self:center;">
+      Cycle Chores:
+    </span>
+    <br />
+    <button
+      [disabled]="disableCycleButton"
+      class="rotate-button"
+      mat-mini-fab
+      color="primary"
+      (click)="rotateChores()"
+      style="width:75px;height:75px;align-self:center;"
+    >
+      <i class="fas fa-sync"></i>
+    </button>
     <app-status-widget
       [fbRef]="'/chores/breakdown'"
-      [title]="'Chores'"
+      [title]=""
       [items]="choreList"
     ></app-status-widget>
     <app-status-widget
       [fbRef]="'/utilities/breakdown'"
-      [title]="'Utilities'"
+      [title]=""
       [items]="utilitiesList"
     ></app-status-widget>
   </div>
