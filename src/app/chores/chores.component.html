@@ -1,18 +1,43 @@
-<ng-container *ngIf="!updating">
-  <div id="chore-container" *ngIf="chores">
-    <div class="chore" *ngFor="let person of people | async; index as i;">
-      <div class="who" [@fade]>
-        {{person}}
-      </div>
-      <div class="icon" [ngStyle]="{'color': chores[(i + rI) % chores.length].status}">
-        <i [@fadeHorizontal]="rI" class="fas fa-{{chores[(i + rI) % chores.length].icon}} fa-8x" title="Edit"></i>
-      </div>
-      <div class="text" [@fade]>
-        {{ chores[(i + rI) % chores.length].text }}
-      </div>
-    </div>
+<ng-container>
+  <div id="chore-container" *ngIf="choreStream">
+    <ng-container
+      *ngFor="let chore of choreStream | async | orderBy: 'person'; index as i"
+    >
+      <ng-container
+        *ngIf="!showCritical || (showCritical && chore?.isCritical)"
+      >
+        <div
+          class="chore animated flip faster"
+          [ngClass]="{
+            'critical pulse': chore?.status == 'darkred',
+            warning: chore?.status == 'yellow',
+            good: chore?.status == 'darkgreen'
+          }"
+          (click)="choreService.updateStatus(chore, '/chores/breakdown')"
+        >
+          <div class="who" [@fade] *ngIf="!iconsOnly">
+            <span *ngIf="!showCritical">
+                {{ chore?.person }}
+            </span>
+            <span *ngIf="showCritical">
+                {{ chore?.criticalPerson }}
+            </span>
+          </div>
+          <div class="icon" [ngStyle]="{ color: chore?.status }">
+            <i
+              [@fadeHorizontal]="rI"
+              class="fas fa-{{ chore?.icon }} fa-8x"
+              [ngClass]="{
+                'animated pulse infinite': chore?.status == 'darkred'
+              }"
+              title="Edit"
+            ></i>
+          </div>
+          <div class="text" [@fade] *ngIf="!iconsOnly">
+            {{ chore?.text }}
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
   </div>
 </ng-container>
-<div class="update-form" *ngIf="updating">
-  <form-generator #fG [firebasePath]="'chores/breakdown'" [listOrObj]="1"></form-generator>
-</div>

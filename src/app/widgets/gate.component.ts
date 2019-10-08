@@ -18,9 +18,17 @@ import { Observable, timer } from 'rxjs';
   styles: [`
     #footer-card-2 {
         flex:1 1 100%;
+        align-self:center;
+        margin:3px;
+        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: black;
+        // color:white;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        background-color:rgba(255, 255, 255, 0.5);
     }
 
-    mat-card-content {
+    .mat-card-content {
+
       display:flex;
       flex-direction:row;
       justify-content:space-around;

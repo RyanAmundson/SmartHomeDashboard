@@ -1,0 +1,6 @@
+<ng-container *ngIf="!updating">
+    <pie-and-table [displayedColumns]="displayedColumns" [dataSource]="dataSource" [chartOptions]="chartOptions">
+    </pie-and-table>
+</ng-container>
+
+<form-generator *ngIf="updating" #fG [firebasePath]="'utilities/breakdown'" [listOrObj]="0"></form-generator>

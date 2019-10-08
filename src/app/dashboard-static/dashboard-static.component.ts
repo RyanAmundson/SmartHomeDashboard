@@ -4,13 +4,15 @@ import { PushNotificationService, PushNotificationOptions } from 'ngx-push-notif
 import { timer } from 'rxjs';
 import { TileComponent } from '../tile/tile.component';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { ChoresComponent } from '../chores/chores.component';
+import { ChoreService } from '../chores/_services/chore.service';
 
 @Component({
   selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  templateUrl: './dashboard-static.component.html',
+  styleUrls: ['./dashboard-static.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardStaticComponent implements OnInit {
   // @ViewChildren(TileComponent) appTiles: QueryList<any>;
   title = 'SmartHomeDashboard';
   date = Date.now();
@@ -26,6 +28,9 @@ export class DashboardComponent implements OnInit {
   rotationIndex = this.firebase.object('chores/rotationIndex').valueChanges();
 
   @ViewChildren(TileComponent) tiles: QueryList<TileComponent>;
+  @ViewChild(ChoresComponent) choreComp: ChoresComponent;
+  
+  criticalChores = false;
 
   @HostListener('window:keyup', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent) {
@@ -49,7 +54,7 @@ export class DashboardComponent implements OnInit {
 
 
 
-  constructor(private firebase: AngularFireDatabase) {
+  constructor(private firebase: AngularFireDatabase, public choreService:ChoreService) {
     if (window.innerWidth < 800) {
       this.updater = true;
     } else {
@@ -59,6 +64,9 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.rotationIndex.subscribe((r: number) => (this.rI = r));
+    this.choreService.hasCriticalChore.subscribe((has) => {
+      this.criticalChores = has;
+    });
   }
 
   ngAfterViewInit() {
@@ -70,11 +78,8 @@ export class DashboardComponent implements OnInit {
     console.log("loading done")
   }
 
-  rotateChores() {
-    this.disableCycleButton =true;
-    this.firebase.object('chores/rotationIndex').set((this.rI + 1) % 4).then((res) => {
-
-    });
+  criticalChoreUpdate(val) {
+    console.log(val)
   }
 
 

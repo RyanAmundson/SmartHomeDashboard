@@ -1,3 +1,4 @@
+
 <div class="container">
   <div id="header">
     <div id="header-card-1">
@@ -18,21 +19,22 @@
         data-font="Roboto Slab"
         data-icons="Climacons Animated"
         data-theme="original"
+        data-basecolor="rgba(255, 255, 255, 0.0)"
         >REDMOND WEATHER</a
       >
     </div>
   </div>
   <!-- ================================================================= -->
-  <div class="body" *ngIf="!updater">
-    <app-tile
+  <!-- <div class="body" *ngIf="!updater"> -->
+    <app-tile id="utilities"
       [noContainer]="true"
       [noFlow]="true"
       [ngStyle]="{ flex: '0 0 auto' }"
     >
-      <app-utilities></app-utilities>
+      <app-utilities [iconsOnly]="true" [showCostRight]="true"></app-utilities>
     </app-tile>
 
-    <app-tile
+    <app-tile id="chores"
       [noContainer]="true"
       [noFlow]="true"
       [ngStyle]="{ flex: '0 0 auto' }"
@@ -40,11 +42,11 @@
       <app-chores (loadingComplete)="loadingComplete()"></app-chores>
     </app-tile>
 
-    <app-tile>
+    <app-tile id="notes">
       <app-notes></app-notes>
     </app-tile>
 
-    <app-tile>
+    <app-tile id="supplies">
       <app-supplies></app-supplies>
     </app-tile>
 
@@ -56,7 +58,7 @@
       <!-- <app-location-tracker></app-location-tracker> -->
     <!-- </app-tile> -->
     
-    <app-tile
+    <app-tile id="widgets"
       [noContainer]="true"
       [noFlow]="true"
       [ngStyle]="{ flex: '0 0 auto' }"
@@ -64,32 +66,10 @@
       <gate-code-widget></gate-code-widget>
       <wifi-widget></wifi-widget>
     </app-tile>
-  </div>
-  <!-- ========================================================= -->
-  <div class="status-widgets" *ngIf="updater">
-    <span style="color:white;align-self:center;">
-      Cycle Chores:
-    </span>
-    <br />
-    <button
-      [disabled]="disableCycleButton"
-      class="rotate-button"
-      mat-mini-fab
-      color="primary"
-      (click)="rotateChores(4)"
-      style="width:75px;height:75px;align-self:center;"
-    >
-      <i class="fas fa-sync"></i>
-    </button>
-    <app-status-widget
-      [fbRef]="'/chores/breakdown'"
-      [title]=""
-      [items]="choreList"
-    ></app-status-widget>
-    <app-status-widget
-      [fbRef]="'/utilities/breakdown'"
-      [title]=""
-      [items]="utilitiesList"
-    ></app-status-widget>
+</div>
+<div class="big-modal" [ngStyle]="{'display': criticalChores ? 'block':'none'}">
+  <div class="modal-content">
+    {{criticalChores}}
+    <app-chores (loadingComplete)="loadingComplete()" [showCritical]="true"></app-chores>
   </div>
 </div>

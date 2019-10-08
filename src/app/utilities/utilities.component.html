@@ -1,6 +1,57 @@
 <ng-container *ngIf="!updating">
-    <pie-and-table [displayedColumns]="displayedColumns" [dataSource]="dataSource" [chartOptions]="chartOptions">
-    </pie-and-table>
+  <div id="chore-container">
+    <ng-container *ngIf="!showCostRight">
+      <div
+        class="chore animated flip faster"
+        *ngFor="let utility of utilities | async; index as i"
+        (click)="utilitiesService.updateStatus(utility, 'utilities/breakdown')"
+      >
+        <div class="who" [@fade] *ngIf="!iconsOnly">
+          {{ utility.amount_due | currency }}
+        </div>
+        <div class="icon" [ngStyle]="{ color: utility.status }">
+          <i [@fade] class="fas fa-{{ utility.icon }}" title="Edit"></i>
+        </div>
+        <div class="text" [@fade] *ngIf="!iconsOnly">
+          {{ utility.key }}
+        </div>
+        <div class="sub-text" [@fade] *ngIf="!iconsOnly">
+          Paid by: {{ utility.paid_by }}<br />
+          for: {{ utility.period }}
+        </div>
+        <div class="cost-right" [@fade] *ngIf="iconsOnly && showCostRight">
+          {{ utility.amount_due | currency }}
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="showCostRight">
+      <div
+        class="chore-cost-right animated flip faster"
+        *ngFor="let utility of utilities | async; index as i"
+        (click)="utilitiesService.updateStatus(utility, 'utilities/breakdown')"
+      >
+        <div class="icon" [ngStyle]="{ color: utility.status }">
+          <i [@fade] class="fas fa-{{ utility.icon }}" title="Edit"></i>
+        </div>
+        <div class="text-container">
+          <div class="super-text" [@fade]>
+            {{ utility.period }}
+          </div>
+          <div class="text" [@fade] *ngIf="iconsOnly && showCostRight">
+            {{ utility.amount_due | currency }}
+          </div>
+          <div class="sub-text" [@fade]>
+            Paid by: {{ utility.paid_by }}<br />
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
 </ng-container>
-
-<form-generator *ngIf="updating" #fG [firebasePath]="'utilities/breakdown'" [listOrObj]="0"></form-generator>
+<div class="update-form" *ngIf="updating">
+  <form-generator
+    #fG
+    [firebasePath]="'utilities/breakdown'"
+    [listOrObj]="1"
+  ></form-generator>
+</div>

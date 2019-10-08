@@ -1,5 +1,5 @@
 
-app-status-widget:host {
+:host {
     width:100%;
     display:flex;
     align-items:stretch;
@@ -29,8 +29,8 @@ app-status-widget:host {
             margin:15px;
             button {
                 font-size:24px;
-                width:75px;
-                height:75px;
+                width:55px;
+                height:55px;
             }
         }
     }

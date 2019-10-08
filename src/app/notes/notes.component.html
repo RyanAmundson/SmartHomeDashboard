@@ -1,6 +1,7 @@
+<button *ngIf="updating" class="update-button" mat-raised-button color="primary" (click)="update()"><i class="fa fa-check"></i></button>
 <ng-container *ngIf="!updating">
   <div class="notes-container">
-    <mat-card *ngFor="let note of notes?.reverse() | slice:0:3">
+    <mat-card *ngFor="let note of notes?.reverse() | slice:0:5">
       <span>{{note?.value}}</span><br>
       <div class="timestamp">{{note?.date | date}}</div>
     </mat-card>
@@ -14,7 +15,6 @@
     <input matInput placeholder="Note" [(ngModel)]="note.value">
   </mat-form-field>
 </div>
-<button *ngIf="updating" class="update-button" mat-raised-button color="primary" (click)="update()">Update</button>
 <!-- <div class="update-form"> -->
   <!-- <form-generator *ngIf="updating" #fG [firebasePath]="'notes'" [listOrObj]="0"></form-generator> -->
 <!-- </div> -->

@@ -3,3 +3,19 @@ export enum CssColorStrings {
   red = "darkred",
   yellow = "yellow"
 }
+
+
+export type Chore = {
+  key:string;
+  id:string;
+  icon:string;
+  person:string;
+  status:ChoreStatus;
+  text:string;
+}
+
+export enum ChoreStatus {
+  good ="green",
+  warning = "yellow",
+  critical = "red"
+}

@@ -1,0 +1,58 @@
+<!-- <mat-toolbar>
+  <span>Quick Actions</span>
+</mat-toolbar> -->
+<!-- <div class="chore-section">
+  <button
+    [disabled]="disableCycleButton"
+    class="rotate-button"
+    mat-fab
+    color="primary"
+    (click)="chores.rotateChores(4)"
+    style="align-self:center;margin-right:10px;"
+  >
+    <i class="fas fa-sync"></i>
+  </button>
+  <app-chores [iconsOnly]="true"></app-chores>
+</div>
+<hr>
+<app-utilities [iconsOnly]="true"></app-utilities> -->
+
+<mat-toolbar>
+  <span>Chores</span>
+</mat-toolbar>
+<div class="chore-section">
+  <button
+    [disabled]="disableCycleButton"
+    class="rotate-button"
+    mat-fab
+    color="primary"
+    (click)="chores.rotateChores(4)"
+    style="align-self:center;margin-right:10px;"
+  >
+    <i class="fas fa-sync"></i>
+  </button>
+  <app-chores [iconsOnly]="true"></app-chores>
+</div>
+<mat-toolbar>
+    <mat-toolbar-row>
+        <span>Utilities</span>
+      </mat-toolbar-row>
+    
+      <mat-toolbar-row>
+          <app-utilities [iconsOnly]="true"></app-utilities>
+      </mat-toolbar-row>
+</mat-toolbar>
+
+<app-tile>
+  <form-generator
+    #fG
+    [firebasePath]="'utilities/breakdown'"
+    [listOrObj]="1"
+  ></form-generator>
+</app-tile>
+<mat-toolbar>
+  <span>Notes</span>
+</mat-toolbar>
+<app-tile>
+  <app-notes></app-notes>
+</app-tile>

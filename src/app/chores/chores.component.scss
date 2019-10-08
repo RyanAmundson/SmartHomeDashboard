@@ -22,8 +22,11 @@ app-chores:host {
       margin-right: 0;
     }
     .chore {
+      -webkit-text-stroke-width: 1px;
+      -webkit-text-stroke-color: black;
+      // color:white;
       box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-      background-color: white;
+      background-color:rgba(255, 255, 255, 0.5);
       margin: 5px;
       padding: 5px;
       border-radius: 5px;
@@ -41,6 +44,8 @@ app-chores:host {
       }
 
       .icon {
+        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: black;
         flex: 0 0 auto;
         display: flex;
         align-items: center;
@@ -72,4 +77,21 @@ app-chores:host {
   justify-content: center;
   align-self: center;
   margin: 10px;
+}
+
+.good {
+  box-shadow: 0 3px 6px rgba(254, 0, 0, 0.16), 0 3px 6px rgba(254, 0, 0, 0.23)!important;
+  text-shadow: 1px 1px 2px green, 0 0 1em green, 0 0 0.2em green;
+}
+
+.warning {
+  border: 2px solid yellow;
+  box-shadow: 0 3px 6px rgba(254, 0, 0, 0.16), 0 3px 6px rgba(254, 0, 0, 0.23)!important;
+  text-shadow: 1px 1px 2px yellow, 0 0 1em yellow, 0 0 0.2em yellow;
+}
+
+.critical {
+  border: 2px solid red;
+  box-shadow: 0 3px 6px rgba(254, 0, 0, 0.16), 0 3px 6px rgba(254, 0, 0, 0.23)!important;
+  text-shadow: 1px 1px 2px red, 0 0 1em red, 0 0 0.2em red;
 }

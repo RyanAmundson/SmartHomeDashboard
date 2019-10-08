@@ -7,6 +7,9 @@ import {
   PushNotificationOptions
 } from "ngx-push-notifications";
 import { MessagingService } from "./_shared/messaging.service";
+import { AngularFireDatabase } from '@angular/fire/database';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UtilityService } from './_services/utility.service';
 
 @Component({
   selector: "app-root",
@@ -37,36 +40,59 @@ export class AppComponent {
 
   @HostListener("window:resize", ["$event"])
   onResize(event) {
-    if (window.innerWidth < 800) {
-      this.updater = true;
+    if(this.utility.isMobileDevice()) {
+      this.router.navigate([{ outlets: { home: ['mobile'] } }]);
     } else {
-      this.updater = false;
+      this.router.navigate([{ outlets: { home: ['dashboard'] } }]);
     }
   }
 
   constructor(
     private pushNotificationService: PushNotificationService,
-    private messagingService: MessagingService
+    private messagingService: MessagingService,
+    private firebase: AngularFireDatabase,
+    private router: Router,
+    private utility: UtilityService
   ) {
-    if (window.innerWidth < 800) {
-      this.updater = true;
+    if(this.utility.isMobileDevice()) {
+      this.router.navigate([{ outlets: { home: ['mobile'] } }]);
     } else {
-      this.updater = false;
+      this.router.navigate([{ outlets: { home: ['dashboard'] } }]);
     }
   }
 
   ngOnInit() {
+    Notification.requestPermission().then((permission) => {
+      if (permission === 'granted') {
+        console.log('Notification permission granted.');
+        // TODO(developer): Retrieve an Instance ID token for use with FCM.
+        // ...
+      } else {
+        console.log('Unable to get permission to notify.');
+      }
+    });
     this.pushNotificationService.requestPermission();
-    const isGranted = this.pushNotificationService.isPermissionGranted;
+    const isGranted = this.pushNotificationService.isPermissionGranted("granted");
+    console.log(this.pushNotificationService.isPermissionGranted, isGranted)
     if(isGranted){
       // this.creatNotif();
     } else {
       console.error("notifications arent allowed@@");
     }
-    const userId = "user001";
+    const userId = this.checkIdentity();
     this.messagingService.requestPermission(userId);
     this.messagingService.receiveMessage();
     this.message = this.messagingService.currentMessage;
+  }
+
+  checkIdentity(){
+    let id = localStorage.getItem('smarthomedashboardID');
+    if(!id) {
+      let key = this.firebase.database.ref("identities").push({}).key;
+      localStorage.setItem('smarthomedashboardID', key);
+      id = localStorage.getItem('smarthomedashboardID');
+    }
+    return id;
   }
 
   loadingComplete() {

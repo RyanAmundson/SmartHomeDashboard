@@ -1,9 +1,12 @@
-import { Component, OnInit, HostListener, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, HostListener, Output, EventEmitter, Input, ChangeDetectorRef } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { GeneratedStyles } from '../../assets/animate';
 import { trigger, transition, animate } from '@angular/animations';
+import { UtilityService } from '../_services/utility.service';
+import { ChoreService } from './_services/chore.service';
+import { Chore } from '../_models/models';
 
 @Component({
   selector: 'app-chores',
@@ -43,39 +46,17 @@ import { trigger, transition, animate } from '@angular/animations';
   ]
 })
 export class ChoresComponent implements OnInit {
-  updating = false;
-  displayedColumns: string[] = ['Who', 'This Week', 'Next Week'];
-
-  chores;
-  rI = 0;
-
-  people = this.firebase.list('chores/people').snapshotChanges().pipe(map(changes => changes.map(c => c.payload.key)));
-  rotationIndex = this.firebase.object('chores/rotationIndex').valueChanges();
-  choreBreakdown = this.firebase.list('chores/breakdown').snapshotChanges()
-    .pipe(map(changes => changes.map(c => ({ key: c.payload.key, ...c.payload.val() })))).subscribe((chores) => {
-      this.chores = chores.sort((a:any,b:any) => { return a.order - b.order});
-
-    })
-
-
+  @Input() iconsOnly = false;
+  @Input() showCritical = false;
   @Output() loadingComplete: EventEmitter<void> = new EventEmitter();
-  @HostListener('window:resize', ['$event'])
-  onResize(event) {
-    if (window.innerWidth < 800) {
-      this.updating = true;
-    } else {
-      this.updating = false;
-    }
-  }
 
-  constructor(private firebase: AngularFireDatabase) {
-    if (window.innerWidth < 800) {
-      this.updating = true;
-    } else {
-      this.updating = false;
-    }
+  choreStream:Observable<any>;
 
-    this.rotationIndex.subscribe((r: number) => (this.rI = r));
+  constructor(private utility: UtilityService, private choreService:ChoreService, private changeDetectorRef:ChangeDetectorRef) {
+    this.choreStream = this.choreService.getCurrentChores();
+    this.choreService.hasCriticalChore.subscribe((has) => {
+      console.log(has);
+    });
   }
 
   ngOnInit() {
@@ -83,9 +64,5 @@ export class ChoresComponent implements OnInit {
 
   ngAfterViewInit() {
     this.loadingComplete.emit();
-  }
-
-  rotateChores() {
-    this.firebase.object('chores/rotationIndex').set((this.rI + 1) % 4);
   }
 }

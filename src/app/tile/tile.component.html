@@ -3,7 +3,7 @@
   <div class="disabled-overlay" *ngIf="disabled"></div>
 </mat-card>
 <!-- noContainer set to true -->
-<div [@fade] class="tile-container" *ngIf="noContainer" [ngClass]="{'disabled':disabled}">
+<div [@fade] class="tile-container" *ngIf="noContainer" [ngClass]="{'disabled':disabled}" style="background-color: transparent">
     <ng-container *ngTemplateOutlet="content"></ng-container>
     <div class="disabled-overlay" *ngIf="disabled"></div>
 </div>

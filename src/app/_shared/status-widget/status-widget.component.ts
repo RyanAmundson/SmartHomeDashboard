@@ -1,8 +1,12 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { AngularFireDatabase } from "@angular/fire/database";
 import { map } from "rxjs/operators";
-import { PushNotificationOptions, PushNotificationService } from 'ngx-push-notifications';
-import { CssColorStrings } from 'src/app/_models/models';
+import {
+  PushNotificationOptions,
+  PushNotificationService
+} from "ngx-push-notifications";
+import { CssColorStrings } from "src/app/_models/models";
+import { MessagingService } from "../messaging.service";
 
 @Component({
   selector: "app-status-widget",
@@ -17,7 +21,11 @@ export class StatusWidgetComponent implements OnInit {
 
   list;
 
-  constructor(private firebase: AngularFireDatabase, private pushNotificationService: PushNotificationService) {}
+  constructor(
+    private firebase: AngularFireDatabase,
+    private pushNotificationService: PushNotificationService,
+    private messagingService: MessagingService
+  ) {}
 
   ngOnInit() {
     this.firebase
@@ -37,44 +45,50 @@ export class StatusWidgetComponent implements OnInit {
 
   updateStatus(item) {
     let newStatus = item.status;
-    if(item.status == CssColorStrings.green){
+    if (item.status == CssColorStrings.green) {
       newStatus = CssColorStrings.yellow;
-    } else if(item.status == CssColorStrings.yellow) {
+    } else if (item.status == CssColorStrings.yellow) {
       newStatus = CssColorStrings.red;
-    } else if(item.status == CssColorStrings.red) {
+    } else if (item.status == CssColorStrings.red) {
       newStatus = CssColorStrings.green;
     }
-
-    this.firebase.object(this.fbRef+'/'+item.key+'/status').set(newStatus).then((res) => {
-      console.log(res, "status udpdated for: " + item.key);
-      
-    })
+    this.firebase
+      .object(this.fbRef + "/" + item.key + "/status")
+      .set(newStatus)
+      .then(res => {
+        console.log(res, "status udpdated for: " + item.key);
+      })
+      .then(() => {
+        this.messagingService.sendMessageToAZ(
+          item.key + " status changed to " + newStatus
+        );
+      });
   }
 
   ngOnDestroy() {
-    const title = 'Hello';
+    const title = "Hello";
     const options = new PushNotificationOptions();
-    options.body = 'Native Push Notification';
+    options.body = "Native Push Notification";
 
-    this.pushNotificationService.create(title, options).subscribe((notif) => {
-      if (notif.event.type === 'show') {
-        console.log('onshow');
-        setTimeout(() => {
+    this.pushNotificationService.create(title, options).subscribe(
+      notif => {
+        if (notif.event.type === "show") {
+          console.log("onshow");
+          setTimeout(() => {
+            notif.notification.close();
+          }, 3000);
+        }
+        if (notif.event.type === "click") {
+          console.log("click");
           notif.notification.close();
-        }, 3000);
+        }
+        if (notif.event.type === "close") {
+          console.log("close");
+        }
+      },
+      err => {
+        console.log(err);
       }
-      if (notif.event.type === 'click') {
-        console.log('click');
-        notif.notification.close();
-      }
-      if (notif.event.type === 'close') {
-        console.log('close');
-      }
-    },
-    (err) => {
-         console.log(err);
-    });
+    );
   }
-
-
 }
