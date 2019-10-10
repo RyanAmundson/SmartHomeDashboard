@@ -5,6 +5,7 @@ import { Chore, CssColorStrings } from "src/app/_models/models";
 import { Observable, Subject } from "rxjs";
 import { forkJoin } from "rxjs";
 import { UtilityService } from "src/app/_services/utility.service";
+import { MessagingService } from 'src/app/_shared/messaging.service';
 
 @Injectable()
 export class ChoreService {
@@ -24,7 +25,8 @@ export class ChoreService {
 
   constructor(
     private AFD: AngularFireDatabase,
-    private utility: UtilityService
+    private utility: UtilityService,
+    private messageService:MessagingService
   ) {
     this.getChores().then(chores => {
       Object.keys(chores.val()).forEach(choreKey => {
@@ -32,13 +34,11 @@ export class ChoreService {
         this.AFD.object("chores/breakdown" + "/" + choreKey + "/isCritical")
           .valueChanges()
           .subscribe(val => {
-            console.log(val);
             if (val) {
               this.criticalChores.set(choreKey, true);
             } else {
               this.criticalChores.delete(choreKey);
             }
-            console.log(this.criticalChores.size);
             if (this.criticalChores.size > 0) {
               this.hasCriticalChore.next(true);
             } else {
@@ -65,11 +65,9 @@ export class ChoreService {
           .pipe(map(v => this.utility.fbObjSquash(v)));
       }),
       flatMap(schedule => {
-        console.log(schedule);
         return this.choreBreakdownStream.pipe(
           map((chores: Array<Chore>) => {
             chores.forEach(chore => {
-              console.log(schedule,chores);
               chore.person = schedule.filter(s => s.key == chore.id)[0].value;
             });
             this.chores = chores;
@@ -89,6 +87,8 @@ export class ChoreService {
           newIndex = 0;
         }
         return newIndex;
+      }).then(() => {
+        this.messageService.sendMessageToAZ("Chores have been rotated!");
       });
     });
   }
@@ -99,6 +99,7 @@ export class ChoreService {
     chores.forEach(chore => {
       if (chore.status == CssColorStrings.red) {
         promises.push(this.setCritical(chore, "chores/breakdown", true));
+        this.messageService.sendMessageToAZ(chore.key + " needs to be done before chores can rotate");
       } else {
         promises.push(this.setCritical(chore, "chores/breakdown", false));
       }
@@ -125,7 +126,8 @@ export class ChoreService {
     this.AFD.object(fbRef + "/" + chore.key + "/status")
       .set(newStatus)
       .then(res => {
-        console.log(res, "status udpdated for: " + chore.key);
+        console.log(res, "status updated for: " + chore.key);
+        this.messageService.sendMessageToAZ("status updated for: " + chore.key + " to " + newStatus);
       })
       .then(() => {
         this.setCritical(chore, fbRef, false);

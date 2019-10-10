@@ -22,8 +22,7 @@
       >
     </div>
   </div>
-  <!-- ================================================================= -->
-  <div class="body" *ngIf="!updater">
+  <div class="body">
     <app-tile
       [noContainer]="true"
       [noFlow]="true"
@@ -64,32 +63,5 @@
       <gate-code-widget></gate-code-widget>
       <wifi-widget></wifi-widget>
     </app-tile>
-  </div>
-  <!-- ========================================================= -->
-  <div class="status-widgets" *ngIf="updater">
-    <span style="color:white;align-self:center;">
-      Cycle Chores:
-    </span>
-    <br />
-    <button
-      [disabled]="disableCycleButton"
-      class="rotate-button"
-      mat-mini-fab
-      color="primary"
-      (click)="rotateChores(4)"
-      style="width:75px;height:75px;align-self:center;"
-    >
-      <i class="fas fa-sync"></i>
-    </button>
-    <app-status-widget
-      [fbRef]="'/chores/breakdown'"
-      [title]=""
-      [items]="choreList"
-    ></app-status-widget>
-    <app-status-widget
-      [fbRef]="'/utilities/breakdown'"
-      [title]=""
-      [items]="utilitiesList"
-    ></app-status-widget>
   </div>
 </div>

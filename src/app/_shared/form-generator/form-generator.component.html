@@ -1,18 +1,51 @@
 <div class="container" (keyup.enter)="update()">
-    <div *ngIf="shape">
+    <!-- <div *ngIf="shape">
         <mat-form-field style="width:50%">
             <input #newSectionInput matInput [placeholder]="'New Section'" [name]="newSection" [readonly]="listOrObj == 0">
         </mat-form-field>
         <button mat-button (click)="addSection(newSectionInput.value); newSectionInput.value = null">Add Section</button>
+    </div> -->
+    <div class="header">
+        <i class="fas fa-{{ obj?.icon }}" style="color:purple;font-size:1.5em;" *ngIf="obj" title="Edit"></i>
+        {{obj?.text}}
+        <button mat-mini-fab (click)="editing = !editing">
+            <mat-icon *ngIf="!editing">edit</mat-icon>
+            <mat-icon *ngIf="editing" (click)="updateObj(copyObj)">done_outline</mat-icon>
+        </button>
     </div>
-    <ng-container *ngFor="let entry of entries | keyvalue; let i = $index">
-        <h3>{{entry.key  | uppercase}}</h3>
-        <ng-container *ngFor="let item of entry.value | keyvalue">
-            <mat-form-field>
-                <input matInput [placeholder]="item.key | uppercase" [name]="item.key + i" [ngModel]="entries[entry.key][item.key]"
+    <br>
+    <br>
+    <ng-container *ngIf="entries">
+        <ng-container *ngFor="let entry of entries | keyvalue; let i = $index">
+            <h3>{{entry.key  | uppercase}}</h3>
+            <ng-container *ngFor="let item of entry.value | keyvalue">
+                <mat-form-field>
+                    <input matInput [placeholder]="item.key | uppercase" [name]="item.key + i" [ngModel]="entries[entry.key][item.key]"
                     [ngModelOptions]="{updateOn:'blur'}" (ngModelChange)="entries[entry.key][item.key] = $event">
-            </mat-form-field>
+                </mat-form-field>
+            </ng-container>
         </ng-container>
     </ng-container>
-    <button class="update-button" mat-raised-button color="primary" (click)="update()">Update</button>
+    <ng-container *ngIf="copyObj">
+        <ng-container *ngFor="let item of copyObj | keyvalue">
+            <div class="entry">
+                <div class="text" *ngIf="!editing">
+                    <span>
+                        {{item.key}}:
+                    </span>
+                    <span style="font-weight:bold;">
+                        {{item.value}}
+                    </span>
+                </div>
+                <mat-form-field *ngIf="editing" ><!--appearance="outline"-->
+                    <input matInput [placeholder]="item?.key | uppercase" [name]="item?.key + i" [ngModel]="copyObj[item.key]"
+                    [ngModelOptions]="{updateOn:'blur'}" (ngModelChange)="copyObj[item.key] = $event">
+                </mat-form-field>
+ 
+                <!-- <button mat-mini-fab>
+                        <mat-icon>delete</mat-icon>
+                </button> -->
+            </div>
+        </ng-container>
+    </ng-container>
 </div>

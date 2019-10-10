@@ -43,23 +43,7 @@ export class DashboardStaticComponent implements OnInit {
 
   }
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event) {
-    if (window.innerWidth < 800) {
-      this.updater = true;
-    } else {
-      this.updater = false;
-    }
-  }
-
-
-
   constructor(private firebase: AngularFireDatabase, public choreService:ChoreService) {
-    if (window.innerWidth < 800) {
-      this.updater = true;
-    } else {
-      this.updater = false;
-    }
   }
 
   ngOnInit() {
@@ -77,11 +61,6 @@ export class DashboardStaticComponent implements OnInit {
   loadingComplete() {
     console.log("loading done")
   }
-
-  criticalChoreUpdate(val) {
-    console.log(val)
-  }
-
 
   onKeydown(event) {
     console.log(event.key)

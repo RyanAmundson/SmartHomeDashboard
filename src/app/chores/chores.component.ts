@@ -54,9 +54,6 @@ export class ChoresComponent implements OnInit {
 
   constructor(private utility: UtilityService, private choreService:ChoreService, private changeDetectorRef:ChangeDetectorRef) {
     this.choreStream = this.choreService.getCurrentChores();
-    this.choreService.hasCriticalChore.subscribe((has) => {
-      console.log(has);
-    });
   }
 
   ngOnInit() {

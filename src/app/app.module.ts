@@ -26,7 +26,6 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
 import { FormsModule } from "@angular/forms";
-import { SpotifyComponent } from "./spotify/spotify.component";
 import { FormGeneration } from "./_shared/form-generator/form-generation.service";
 import { FormGenerator } from "./_shared/form-generator/form-generator.component";
 import { UtilitiesComponent } from "./utilities/utilities.component";
@@ -48,6 +47,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { OrderModule } from 'ngx-order-pipe';
 import { UtilitiesService } from './utilities/_services/utilities.service';
 import { DashboardStaticComponent } from './dashboard-static/dashboard-static.component';
+import { ChoreUpdaterComponent } from './chores/chore-updater/chore-updater.component';
+import { OldUtilitiesComponent } from './utilities(unused)/utilities.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+// import * as SpotifyService from 'angular2-spotify';
 
 @NgModule({
   declarations: [
@@ -61,7 +64,6 @@ import { DashboardStaticComponent } from './dashboard-static/dashboard-static.co
     GateCodeWidget,
     PieAndTableComponent,
     UpdaterComponent,
-    SpotifyComponent,
     FormGenerator,
     TileComponent,
     TileDirective,
@@ -70,6 +72,8 @@ import { DashboardStaticComponent } from './dashboard-static/dashboard-static.co
     StatusWidgetComponent,
     LocationTrackerComponent,
     MobileHomeComponent,
+    ChoreUpdaterComponent,
+    OldUtilitiesComponent,
 
   ],
   imports: [

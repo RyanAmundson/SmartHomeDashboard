@@ -80,13 +80,13 @@ app-chores:host {
 }
 
 .good {
-  box-shadow: 0 3px 6px rgba(254, 0, 0, 0.16), 0 3px 6px rgba(254, 0, 0, 0.23)!important;
+  // box-shadow: 0 3px 6px rgba(0, 254, 0, 0.16), 0 3px 6px rgba(0, 254, 0, 0.23)!important;
   text-shadow: 1px 1px 2px green, 0 0 1em green, 0 0 0.2em green;
 }
 
 .warning {
   border: 2px solid yellow;
-  box-shadow: 0 3px 6px rgba(254, 0, 0, 0.16), 0 3px 6px rgba(254, 0, 0, 0.23)!important;
+  // box-shadow: 0 3px 6px rgba(254, 0, 0, 0.16), 0 3px 6px rgba(254, 0, 0, 0.23)!important;
   text-shadow: 1px 1px 2px yellow, 0 0 1em yellow, 0 0 0.2em yellow;
 }
 

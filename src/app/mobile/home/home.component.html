@@ -22,7 +22,6 @@
 </mat-toolbar>
 <div class="chore-section">
   <button
-    [disabled]="disableCycleButton"
     class="rotate-button"
     mat-fab
     color="primary"
@@ -33,26 +32,60 @@
   </button>
   <app-chores [iconsOnly]="true"></app-chores>
 </div>
+
 <mat-toolbar>
-    <mat-toolbar-row>
-        <span>Utilities</span>
-      </mat-toolbar-row>
-    
-      <mat-toolbar-row>
-          <app-utilities [iconsOnly]="true"></app-utilities>
-      </mat-toolbar-row>
+  <span>Notes</span>
 </mat-toolbar>
+<app-notes></app-notes>
+
+<mat-toolbar>
+  <mat-toolbar-row>
+    <span>Utilities</span>
+  </mat-toolbar-row>
+</mat-toolbar>
+<app-utilities [iconsOnly]="true"></app-utilities>
 
 <app-tile>
   <form-generator
     #fG
-    [firebasePath]="'utilities/breakdown'"
-    [listOrObj]="1"
+    [firebasePath]="'utilities/breakdown/Garbage'"
+    [listOrObj]="'obj'"
+    [ignoreFields]="['icon', 'status']"
   ></form-generator>
 </app-tile>
-<mat-toolbar>
-  <span>Notes</span>
-</mat-toolbar>
+
 <app-tile>
-  <app-notes></app-notes>
+  <form-generator
+    #fG
+    [firebasePath]="'utilities/breakdown/Water'"
+    [listOrObj]="'obj'"
+    [ignoreFields]="['icon', 'status']"
+  ></form-generator>
+</app-tile>
+
+<app-tile>
+  <form-generator
+    #fG
+    [firebasePath]="'utilities/breakdown/Sewer'"
+    [listOrObj]="'obj'"
+    [ignoreFields]="['icon', 'status']"
+  ></form-generator>
+</app-tile>
+
+<app-tile>
+  <form-generator
+    #fG
+    [firebasePath]="'utilities/breakdown/Internet'"
+    [listOrObj]="'obj'"
+    [ignoreFields]="['icon', 'status']"
+  ></form-generator>
+</app-tile>
+
+<app-tile>
+  <form-generator
+    #fG
+    [firebasePath]="'utilities/breakdown/Electricity'"
+    [listOrObj]="'obj'"
+    [ignoreFields]="['icon', 'status']"
+  ></form-generator>
 </app-tile>

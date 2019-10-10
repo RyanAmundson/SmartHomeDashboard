@@ -22,8 +22,6 @@ export class DashboardComponent implements OnInit {
   choreList = [];
   utilitiesList = ["water","electricity","garbage", 'internet', 'sewer'];
   updater = false;
-  rI;
-  rotationIndex = this.firebase.object('chores/rotationIndex').valueChanges();
 
   @ViewChildren(TileComponent) tiles: QueryList<TileComponent>;
 
@@ -38,27 +36,11 @@ export class DashboardComponent implements OnInit {
 
   }
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event) {
-    if (window.innerWidth < 800) {
-      this.updater = true;
-    } else {
-      this.updater = false;
-    }
-  }
-
-
 
   constructor(private firebase: AngularFireDatabase) {
-    if (window.innerWidth < 800) {
-      this.updater = true;
-    } else {
-      this.updater = false;
-    }
   }
 
   ngOnInit() {
-    this.rotationIndex.subscribe((r: number) => (this.rI = r));
   }
 
   ngAfterViewInit() {
@@ -69,14 +51,6 @@ export class DashboardComponent implements OnInit {
   loadingComplete() {
     console.log("loading done")
   }
-
-  rotateChores() {
-    this.disableCycleButton =true;
-    this.firebase.object('chores/rotationIndex').set((this.rI + 1) % 4).then((res) => {
-
-    });
-  }
-
 
   onKeydown(event) {
     console.log(event.key)

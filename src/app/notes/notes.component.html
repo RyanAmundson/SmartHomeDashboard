@@ -1,20 +1,27 @@
-<button *ngIf="updating" class="update-button" mat-raised-button color="primary" (click)="update()"><i class="fa fa-check"></i></button>
-<ng-container *ngIf="!updating">
+<!-- <button *ngIf="updating" class="update-button" mat-raised-button color="primary" (click)="update()"><i class="fa fa-check"></i></button>
+ -->
+
+ <button class="edit-button" mat-mini-fab (click)="updating = !updating">
+    <mat-icon *ngIf="!updating">edit</mat-icon>
+    <mat-icon *ngIf="updating" (click)="update()">done_outline</mat-icon>
+</button>
+ <ng-container *ngIf="!updating">
   <div class="notes-container">
-    <mat-card *ngFor="let note of notes?.reverse() | slice:0:5">
-      <span>{{note?.value}}</span><br>
-      <div class="timestamp">{{note?.date | date}}</div>
+    <mat-card *ngFor="let note of notes?.reverse() | slice:0:5" (swiperight)="showDelete = note.key" [ngClass]="{'show-delete':showDelete == note.key}">
+      <div class="btns">
+        <button class="delete-button" mat-raised-button color="warn" *ngIf="showDelete == note.key" (click)="deleteNote(note);showDelete = null"><mat-icon>delete</mat-icon></button>
+        <button class="cancel-button" mat-raised-button color="basic" *ngIf="showDelete == note.key" (click)="showDelete = null"><mat-icon>cancel</mat-icon></button>
+      </div>
+      <span *ngIf="showDelete !== note.key">{{note?.value}}</span>
+      <div class="timestamp" *ngIf="showDelete !== note.key">{{note?.date | date}}</div>
     </mat-card>
   </div>
 </ng-container>
-<div *ngIf="updating" class="notes">
-  <mat-form-field>
+<div *ngIf="updating" div class="notes">
+  <mat-form-field appearance="outline">
     <input matInput placeholder="New Note" [(ngModel)]="newNote.value">
   </mat-form-field>
   <mat-form-field *ngFor="let note of notes.reverse()">
     <input matInput placeholder="Note" [(ngModel)]="note.value">
   </mat-form-field>
 </div>
-<!-- <div class="update-form"> -->
-  <!-- <form-generator *ngIf="updating" #fG [firebasePath]="'notes'" [listOrObj]="0"></form-generator> -->
-<!-- </div> -->

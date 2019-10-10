@@ -1,54 +1,55 @@
-import { Component, OnInit, HostListener } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/database';
+import { Component, OnInit, HostListener } from "@angular/core";
+import { AngularFireDatabase } from "@angular/fire/database";
+import { UtilitiesService } from "../utilities/_services/utilities.service";
+import { UtilityService } from "../_services/utility.service";
 
 @Component({
-  selector: 'app-notes',
-  templateUrl: './notes.component.html',
-  styleUrls: ['./notes.component.scss']
+  selector: "app-notes",
+  templateUrl: "./notes.component.html",
+  styleUrls: ["./notes.component.scss"]
 })
 export class NotesComponent {
   updating = false;
   notes = [];
   newNote = {
-    value: '',
+    key: null,
+    value: "",
     date: null
   };
+  showDelete: number;
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event) {
-    if (window.innerWidth < 800) {
-      this.updating = true;
-    } else {
-      this.updating = false;
-    }
-  }
-  constructor(private firebase: AngularFireDatabase) {
-    if (window.innerWidth < 800) {
-      this.updating = true;
-    } else {
-      this.updating = false;
-    }
-    firebase.database.ref('notes').on('value', (res) => {
-      this.notes = Object.values(res.val());
-      console.log(this.notes);
-    });
+  constructor(
+    private firebase: AngularFireDatabase,
+    private utility: UtilityService
+  ) {
+    firebase
+      .list("notes")
+      .snapshotChanges()
+      .subscribe(res => {
+        this.notes = this.utility.fbObjSquash(res);
+      });
   }
 
-
-  add() {
-    if (this.newNote.value !== '') {
-      this.newNote.date = Date.now;
-      this.notes.push(this.newNote);
-      this.newNote.value = '';
-    }
+  deleteNote(note) {
+    console.log(note);
+    this.firebase
+      .object(`notes/${note.key}`)
+      .remove()
+      .then(() => {
+        // this.showDelete = null;
+      });
   }
 
   update() {
-    if (this.newNote.value !== '') {
+    this.notes.forEach((note) => {
+      this.firebase.list("notes").set(note.key,note);
+    });
+    if (this.newNote.value != "") {
       this.newNote.date = Date.now();
-      this.notes.push(this.newNote);
+      this.firebase.list("notes").push(this.newNote);
+      this.newNote.value = "";
+      this.newNote.date = null;
+      this.newNote.key = null;
     }
-    this.firebase.object('notes').set(this.notes);
-    this.newNote.value = '';
   }
 }

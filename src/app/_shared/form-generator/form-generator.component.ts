@@ -9,10 +9,15 @@ import { AngularFireDatabase } from '@angular/fire/database';
 export class FormGenerator {
 
   @Input() firebasePath;
-  @Input() listOrObj: 0 | 1;
+  @Input() listOrObj: 0 | 1 | 'obj' | 'list';
+  @Input() ignoreFields: any[] = [];
 
+
+  editing = false;
   entries = [];
   keys = [];
+  obj;
+  copyObj;
 
   shape = {};
 
@@ -21,10 +26,14 @@ export class FormGenerator {
   }
 
   ngAfterViewInit() {
-    this.fetch(this.firebasePath);
+    if(this.listOrObj == 'obj' || '1') {
+      this.fetchObj(this.firebasePath);
+    } else {
+      this.fetchList(this.firebasePath);
+    }
   }
 
-  fetch(fbPath: string) {
+  fetchList(fbPath: string) {
     this.firebase.database.ref(fbPath).on('value', (res) => {
       console.log("fetched")
       let data = res.val();
@@ -38,6 +47,28 @@ export class FormGenerator {
         });
       }
     });
+  }
+
+  fetchObj(fbPath) {
+    this.firebase.object(fbPath).valueChanges().subscribe((val) => {
+      this.obj = val;
+      this.copyObj = this.copy(this.obj);
+      this.ignoreFields.forEach((field) => {
+        delete this.copyObj[field];
+      });
+      console.log(this.obj)
+      if (this.obj) {
+        this.shape = this.copy(this.obj);
+        Object.keys(this.shape).forEach((key) => {
+          this.shape[key] = 0;
+        });
+        console.log(this.shape)
+      }
+    });
+  }
+
+  copy(toBeCopied) {
+    return JSON.parse(JSON.stringify(toBeCopied));
   }
 
   addSection(header) {
@@ -61,6 +92,13 @@ export class FormGenerator {
     });
   }
 
+  updateObj(obj?) {
+    if(obj) {
+      this.firebase.object(this.firebasePath).update(obj);
+    } else {
+      this.firebase.object(this.firebasePath).update(this.copyObj);
+    }
+  }
   update() {
     console.log(this.firebasePath, this.entries)
     Object.entries(this.entries).forEach((entry) => {

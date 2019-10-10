@@ -11,7 +11,7 @@ import { ChoreService } from 'src/app/chores/_services/chore.service';
 export class MobileHomeComponent {
 
 
-  constructor(private firebase: AngularFireDatabase, private chores:ChoreService) {
+  constructor(private firebase: AngularFireDatabase, public chores:ChoreService) {
   }
 
 
