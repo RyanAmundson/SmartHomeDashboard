@@ -14,8 +14,8 @@
   grid-template-areas:
     "header header header header header"
     "utilities utilities utilities utilities utilities"
-    "supplies supplies notes notes notes"
-    "widgets widgets notes notes notes"
+    "openIssues openIssues notes notes notes"
+    "openIssues openIssues notes notes notes"
     "chores chores chores chores chores";
   grid-template-rows: 95px 10% 1fr 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
@@ -71,6 +71,10 @@
   }
   #notes {
     grid-area: notes;
+  }
+
+  #open-issues {
+    grid-area: openIssues;
   }
   #supplies {
     grid-area: supplies;

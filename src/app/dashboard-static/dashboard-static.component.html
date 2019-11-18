@@ -1,4 +1,3 @@
-
 <div class="container">
   <div id="header">
     <div id="header-card-1">
@@ -26,50 +25,63 @@
   </div>
   <!-- ================================================================= -->
   <!-- <div class="body" *ngIf="!updater"> -->
-    <app-tile id="utilities"
-      [noContainer]="true"
-      [noFlow]="true"
-      [ngStyle]="{ flex: '0 0 auto' }"
-    >
-      <app-utilities [iconsOnly]="true" [showCostRight]="true"></app-utilities>
-    </app-tile>
+  <app-tile
+    id="utilities"
+    [noContainer]="true"
+    [noFlow]="true"
+    [ngStyle]="{ flex: '0 0 auto' }"
+  >
+    <app-utilities [iconsOnly]="true" [showCostRight]="true"></app-utilities>
+  </app-tile>
 
-    <app-tile id="chores"
-      [noContainer]="true"
-      [noFlow]="true"
-      [ngStyle]="{ flex: '0 0 auto' }"
-    >
-      <app-chores (loadingComplete)="loadingComplete()"></app-chores>
-    </app-tile>
+  <app-tile
+    id="chores"
+    [noContainer]="true"
+    [noFlow]="true"
+    [ngStyle]="{ flex: '0 0 auto' }"
+  >
+    <app-chores (loadingComplete)="loadingComplete()"></app-chores>
+  </app-tile>
 
-    <app-tile id="notes">
-      <app-notes></app-notes>
-    </app-tile>
+  <app-tile id="notes">
+    <app-notes></app-notes>
+  </app-tile>
 
-    <app-tile id="supplies">
+  <app-tile id="open-issues">
+    <shd-open-issues></shd-open-issues>
+  </app-tile>
+
+  <!-- <app-tile id="supplies">
       <app-supplies></app-supplies>
-    </app-tile>
+    </app-tile> -->
 
-    <!-- <app-tile
+  <!-- <app-tile
       [noContainer]="true"
       [noFlow]="true"
       [ngStyle]="{ flex: '0 0 auto' }"
     > -->
-      <!-- <app-location-tracker></app-location-tracker> -->
-    <!-- </app-tile> -->
-    
-    <app-tile id="widgets"
-      [noContainer]="true"
-      [noFlow]="true"
-      [ngStyle]="{ flex: '0 0 auto' }"
-    >
-      <gate-code-widget></gate-code-widget>
-      <wifi-widget></wifi-widget>
-    </app-tile>
+  <!-- <app-location-tracker></app-location-tracker> -->
+  <!-- </app-tile> -->
+
+  <app-tile
+    id="widgets"
+    [noContainer]="true"
+    [noFlow]="true"
+    [ngStyle]="{ flex: '0 0 auto' }"
+  >
+    <!-- <gate-code-widget></gate-code-widget>
+      <wifi-widget></wifi-widget> -->
+  </app-tile>
 </div>
-<div class="big-modal" [ngStyle]="{'display': criticalChores ? 'block':'none'}">
+<div
+  class="big-modal"
+  [ngStyle]="{ display: criticalChores ? 'block' : 'none' }"
+>
   <div class="modal-content">
-    {{criticalChores}}
-    <app-chores (loadingComplete)="loadingComplete()" [showCritical]="true"></app-chores>
+    {{ criticalChores }}
+    <app-chores
+      (loadingComplete)="loadingComplete()"
+      [showCritical]="true"
+    ></app-chores>
   </div>
 </div>

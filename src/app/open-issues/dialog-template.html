@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>
+  Identify Current Issue
+  <h1>
+    <div class="dialog" mat-dialog-content>
+      <mat-form-field  class="full-width">
+        <mat-label>Issue</mat-label>
+        <mat-select #select>
+          <mat-option *ngFor="let issueTemplate of issueTemplates" [value]="issueTemplate">
+            {{issueTemplate}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <textarea
+          #textArea
+          class="generic-text-area"
+          matInput
+          placeholder="Describe in detail"
+        ></textarea>
+      </mat-form-field>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-button (click)="onNoClick()">Cancel</button>
+      <button mat-button (click)="onOkClick(select.value, textArea.value)" cdkFocusInitial>
+        Ok
+      </button>
+    </div>
+  </h1>
+</h1>

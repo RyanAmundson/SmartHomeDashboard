@@ -6,7 +6,7 @@ import { GeneratedStyles } from '../../assets/animate';
 import { trigger, transition, animate } from '@angular/animations';
 import { UtilityService } from '../_services/utility.service';
 import { ChoreService } from './_services/chore.service';
-import { Chore } from '../_models/models';
+import { Chore, ChoreStatus } from '../_models/models';
 
 @Component({
   selector: 'app-chores',
@@ -46,6 +46,7 @@ import { Chore } from '../_models/models';
   ]
 })
 export class ChoresComponent implements OnInit {
+  ChoreStatus = ChoreStatus;
   @Input() iconsOnly = false;
   @Input() showCritical = false;
   @Output() loadingComplete: EventEmitter<void> = new EventEmitter();

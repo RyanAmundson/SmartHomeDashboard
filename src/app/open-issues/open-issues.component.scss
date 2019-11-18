@@ -1,0 +1,18 @@
+:host {
+    font-size:14px;
+    width:100%;
+    mat-card {
+        background-color:rgba(255, 255, 255, 0.3);
+        margin:5px;
+    }
+
+    .create-issue-button {
+        position:fixed;
+        bottom:80px;
+        right:30px;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        font-size:24px;
+    }
+}

@@ -20,7 +20,7 @@ export class NotesComponent {
 
   constructor(
     private firebase: AngularFireDatabase,
-    private utility: UtilityService
+    public utility: UtilityService
   ) {
     firebase
       .list("notes")

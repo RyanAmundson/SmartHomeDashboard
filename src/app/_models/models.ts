@@ -15,7 +15,8 @@ export type Chore = {
 }
 
 export enum ChoreStatus {
-  good ="green",
-  warning = "yellow",
-  critical = "red"
+  good  ='good',
+  warning = 'warning',
+  critical = 'critical'
 }
+

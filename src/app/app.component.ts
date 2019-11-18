@@ -41,9 +41,9 @@ export class AppComponent {
   @HostListener("window:resize", ["$event"])
   onResize(event) {
     if(this.utility.isMobileDevice()) {
-      this.router.navigate([{ outlets: { home: ['mobile'] } }]);
+      this.router.navigate([{ outlets: { home: ['mobile'], utilities: ['mobile'], openIssues: ['mobile'] } }]);
     } else {
-      this.router.navigate([{ outlets: { home: ['dashboard'] } }]);
+      this.router.navigate([{ outlets: { home: ['dashboard'], utilities: ['dashboard'],  openIssues: ['dashboard'] } }]);
     }
   }
 
@@ -55,9 +55,9 @@ export class AppComponent {
     private utility: UtilityService
   ) {
     if(this.utility.isMobileDevice()) {
-      this.router.navigate([{ outlets: { home: ['mobile'] } }]);
+      this.router.navigate([{ outlets: { home: ['mobile'], utilities: ['mobile'], openIssues: ['mobile'] }}]);
     } else {
-      this.router.navigate([{ outlets: { home: ['dashboard'] } }]);
+      this.router.navigate([{ outlets: { home: ['dashboard'], utilities: ['dashboard'],  openIssues: ['dashboard'] } }]);
     }
   }
 

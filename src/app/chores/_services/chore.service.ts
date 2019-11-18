@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { AngularFireDatabase } from "@angular/fire/database";
 import { map, flatMap, mapTo } from "rxjs/operators";
-import { Chore, CssColorStrings } from "src/app/_models/models";
+import { Chore, CssColorStrings, ChoreStatus } from "src/app/_models/models";
 import { Observable, Subject } from "rxjs";
 import { forkJoin } from "rxjs";
 import { UtilityService } from "src/app/_services/utility.service";
@@ -88,7 +88,7 @@ export class ChoreService {
         }
         return newIndex;
       }).then(() => {
-        this.messageService.sendMessageToAZ("Chores have been rotated!");
+        // this.messageService.sendMessageToAZ("Chores have been rotated!");
       });
     });
   }
@@ -97,9 +97,9 @@ export class ChoreService {
     let promises = [];
     console.log("check critical");
     chores.forEach(chore => {
-      if (chore.status == CssColorStrings.red) {
+      if (chore.status == ChoreStatus.critical) {
         promises.push(this.setCritical(chore, "chores/breakdown", true));
-        this.messageService.sendMessageToAZ(chore.key + " needs to be done before chores can rotate");
+        // this.messageService.sendMessageToAZ(chore.key + " needs to be done before chores can rotate");
       } else {
         promises.push(this.setCritical(chore, "chores/breakdown", false));
       }
@@ -114,23 +114,15 @@ export class ChoreService {
     });
   }
 
-  updateStatus(chore, fbRef: string) {
-    let newStatus = chore.status;
-    if (chore.status == CssColorStrings.green) {
-      newStatus = CssColorStrings.yellow;
-    } else if (chore.status == CssColorStrings.yellow) {
-      newStatus = CssColorStrings.red;
-    } else if (chore.status == CssColorStrings.red) {
-      newStatus = CssColorStrings.green;
-    }
-    this.AFD.object(fbRef + "/" + chore.key + "/status")
-      .set(newStatus)
+  updateChore(chore, fbRef: string) {
+    this.AFD.object(fbRef + "/" + chore.key)
+      .update(chore)
       .then(res => {
-        console.log(res, "status updated for: " + chore.key);
-        this.messageService.sendMessageToAZ("status updated for: " + chore.key + " to " + newStatus);
+        console.log("chore updated for: " + chore.key);
+        // this.messageService.sendMessageToAZ("status updated for: " + chore.key + " to " + newStatus);
       })
       .then(() => {
-        this.setCritical(chore, fbRef, false);
+        // this.setCritical(chore, fbRef, false);
       });
   }
 }

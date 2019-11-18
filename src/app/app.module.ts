@@ -50,8 +50,13 @@ import { DashboardStaticComponent } from './dashboard-static/dashboard-static.co
 import { ChoreUpdaterComponent } from './chores/chore-updater/chore-updater.component';
 import { OldUtilitiesComponent } from './utilities(unused)/utilities.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { MobileUtilitiesComponent } from './mobile/utilities/utilities.component';
+import { ChoreSorterComponent } from './chores/chore-sorter/chore-sorter.component';
 // import * as SpotifyService from 'angular2-spotify';
-
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import { OpenIssuesComponent, DialogOverviewExampleDialog } from './open-issues/open-issues.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatSelectModule} from '@angular/material/select';
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,6 +79,10 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MobileHomeComponent,
     ChoreUpdaterComponent,
     OldUtilitiesComponent,
+    MobileUtilitiesComponent,
+    ChoreSorterComponent,
+    OpenIssuesComponent,
+    DialogOverviewExampleDialog
 
   ],
   imports: [
@@ -97,10 +106,14 @@ import {MatExpansionModule} from '@angular/material/expansion';
     OrderModule,
     FormsModule,
     HttpClientModule,
+    DragDropModule,
+    MatDialogModule,
+    MatSelectModule,
     ServiceWorkerModule.register("firebase-messaging-sw.js", { enabled: true })
   ],
   providers: [FormGeneration, PushNotificationService, MessagingService, UtilityService, ChoreService, UtilitiesService],
   bootstrap: [AppComponent],
-  exports: [UpdaterComponent]
+  exports: [UpdaterComponent],
+  entryComponents: [DialogOverviewExampleDialog]
 })
 export class AppModule {}

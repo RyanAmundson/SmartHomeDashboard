@@ -23,14 +23,15 @@
 <div class="chore-section">
   <button
     class="rotate-button"
-    mat-fab
+    mat-stroked-button
     color="primary"
     (click)="chores.rotateChores(4)"
     style="align-self:center;margin-right:10px;"
   >
-    <i class="fas fa-sync"></i>
+    <i class="fas fa-sync"></i> Rotate Chores
   </button>
-  <app-chores [iconsOnly]="true"></app-chores>
+  <!-- <app-chores [iconsOnly]="true"></app-chores> -->
+  <shd-chore-sorter></shd-chore-sorter>
 </div>
 
 <mat-toolbar>
@@ -45,47 +46,4 @@
 </mat-toolbar>
 <app-utilities [iconsOnly]="true"></app-utilities>
 
-<app-tile>
-  <form-generator
-    #fG
-    [firebasePath]="'utilities/breakdown/Garbage'"
-    [listOrObj]="'obj'"
-    [ignoreFields]="['icon', 'status']"
-  ></form-generator>
-</app-tile>
 
-<app-tile>
-  <form-generator
-    #fG
-    [firebasePath]="'utilities/breakdown/Water'"
-    [listOrObj]="'obj'"
-    [ignoreFields]="['icon', 'status']"
-  ></form-generator>
-</app-tile>
-
-<app-tile>
-  <form-generator
-    #fG
-    [firebasePath]="'utilities/breakdown/Sewer'"
-    [listOrObj]="'obj'"
-    [ignoreFields]="['icon', 'status']"
-  ></form-generator>
-</app-tile>
-
-<app-tile>
-  <form-generator
-    #fG
-    [firebasePath]="'utilities/breakdown/Internet'"
-    [listOrObj]="'obj'"
-    [ignoreFields]="['icon', 'status']"
-  ></form-generator>
-</app-tile>
-
-<app-tile>
-  <form-generator
-    #fG
-    [firebasePath]="'utilities/breakdown/Electricity'"
-    [listOrObj]="'obj'"
-    [ignoreFields]="['icon', 'status']"
-  ></form-generator>
-</app-tile>

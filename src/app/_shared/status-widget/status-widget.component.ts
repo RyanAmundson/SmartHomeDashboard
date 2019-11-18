@@ -59,9 +59,9 @@ export class StatusWidgetComponent implements OnInit {
         console.log(res, "status udpdated for: " + item.key);
       })
       .then(() => {
-        this.messagingService.sendMessageToAZ(
-          item.key + " status changed to " + newStatus
-        );
+        // this.messagingService.sendMessageToAZ(
+        //   item.key + " status changed to " + newStatus
+        // );
       });
   }
 

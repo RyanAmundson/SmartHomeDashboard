@@ -7,13 +7,12 @@
         *ngIf="!showCritical || (showCritical && chore?.isCritical)"
       >
         <div
-          class="chore animated fadeInRight fadeOutLeft faster"
+          class="chore animated fadeInRight faster"
           [ngClass]="{
-            'critical pulse': chore?.status == 'darkred',
-            warning: chore?.status == 'yellow',
-            good: chore?.status == 'darkgreen'
+            'critical pulse': chore?.status == ChoreStatus.critical,
+            warning: chore?.status == ChoreStatus.danger,
+            good: chore?.status == ChoreStatus.good
           }"
-          (click)="choreService.updateStatus(chore, '/chores/breakdown')"
         >
           <div class="who" [@fade] *ngIf="!iconsOnly">
             <span *ngIf="!showCritical">
@@ -23,12 +22,12 @@
                 {{ chore?.criticalPerson }}
             </span>
           </div>
-          <div class="icon" [ngStyle]="{ color: chore?.status }">
+          <div class="icon {{chore?.status}}">
             <i
               [@fadeHorizontal]="rI"
               class="fas fa-{{ chore?.icon }} fa-8x"
               [ngClass]="{
-                'animated pulse infinite': chore?.status == 'darkred'
+                'animated pulse infinite': chore?.status == ChoreStatus.critical
               }"
               title="Edit"
             ></i>

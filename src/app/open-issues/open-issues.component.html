@@ -1,0 +1,15 @@
+<mat-card *ngFor="let issue of openIssues">
+  <mat-card-title>
+    {{issue.type}}
+  </mat-card-title>
+  <mat-card-subtitle>
+      {{issue.location}}
+  </mat-card-subtitle>
+  <mat-card-content>
+    {{issue.description}}
+  </mat-card-content>
+</mat-card>
+
+
+
+<button *ngIf="utility.isMobileDevice()" class="create-issue-button" mat-fab color="primary" (click)="createIssue()">+</button>
