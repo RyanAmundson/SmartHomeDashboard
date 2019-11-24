@@ -6,7 +6,15 @@
         <mat-label>Issue</mat-label>
         <mat-select #select>
           <mat-option *ngFor="let issueTemplate of issueTemplates" [value]="issueTemplate">
-            {{issueTemplate}}
+            {{issueTemplate.description}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field  class="full-width">
+        <mat-label>Location</mat-label>
+        <mat-select #select2>
+          <mat-option *ngFor="let location of locations" [value]="location">
+            {{location}}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -21,7 +29,7 @@
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="onNoClick()">Cancel</button>
-      <button mat-button (click)="onOkClick(select.value, textArea.value)" cdkFocusInitial>
+      <button mat-button (click)="onOkClick(select.value, textArea.value, select2.value)" cdkFocusInitial>
         Ok
       </button>
     </div>

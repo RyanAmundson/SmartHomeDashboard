@@ -1,6 +1,6 @@
 <mat-card *ngFor="let issue of openIssues">
   <mat-card-title>
-    {{issue.type}}
+    {{issue.type}} | {{ countdowns.get(issue.id) | async }}
   </mat-card-title>
   <mat-card-subtitle>
       {{issue.location}}
@@ -8,6 +8,10 @@
   <mat-card-content>
     {{issue.description}}
   </mat-card-content>
+  <mat-card-actions>
+    <button mat-stroked-button (click)="claim()" cdkFocusInitial>I claim this</button>
+    <button mat-stroked-button (click)="completed()" cdkFocusInitial>I completed this</button>
+  </mat-card-actions>
 </mat-card>
 
 

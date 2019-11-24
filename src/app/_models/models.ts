@@ -20,3 +20,23 @@ export enum ChoreStatus {
   critical = 'critical'
 }
 
+export enum IssueType {
+  Mess,
+  Chore,
+  QOL
+}
+
+export class Issue {
+  id: string;
+  type:IssueType;
+  description:string;
+  additionalDescription:string;
+  location:string;
+  timeToResolve:number;
+  expirationTime:number;
+  penaltyAmount:number;
+  completed: boolean = false;
+  timeCreated: number;
+  timeCompleted: number = null;
+
+}

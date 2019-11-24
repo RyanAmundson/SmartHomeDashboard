@@ -11,6 +11,8 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UtilityService } from './_services/utility.service';
 
+import {MDCTopAppBar} from '@material/top-app-bar';
+
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
@@ -24,9 +26,13 @@ export class AppComponent {
   key;
   message;
 
+  navLocation = 'above';
   updater = false;
   
   @ViewChild("highchart") hiChart;
+  // @ViewChild(".mdc-top-app-bar") topAppBarElement;
+
+  // topAppBar
 
   @HostListener("window:keyup", ["$event"])
   handleKeyboardEvent(event: KeyboardEvent) {
@@ -43,6 +49,7 @@ export class AppComponent {
     if(this.utility.isMobileDevice()) {
       this.router.navigate([{ outlets: { home: ['mobile'], utilities: ['mobile'], openIssues: ['mobile'] } }]);
     } else {
+      this.navLocation = 'below';
       this.router.navigate([{ outlets: { home: ['dashboard'], utilities: ['dashboard'],  openIssues: ['dashboard'] } }]);
     }
   }
@@ -83,6 +90,10 @@ export class AppComponent {
     this.messagingService.requestPermission(userId);
     this.messagingService.receiveMessage();
     this.message = this.messagingService.currentMessage;
+  }
+
+  ngOnViewInit() {
+    // this.topAppBar = new MDCTopAppBar(this.topAppBarElement);
   }
 
   checkIdentity(){

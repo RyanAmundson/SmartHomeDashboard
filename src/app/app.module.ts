@@ -57,6 +57,13 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import { OpenIssuesComponent, DialogOverviewExampleDialog } from './open-issues/open-issues.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSelectModule} from '@angular/material/select';
+
+import {
+  MdcFabModule,
+  MdcIconModule,
+  MdcMenuModule
+} from '@angular-mdc/web';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -109,6 +116,9 @@ import {MatSelectModule} from '@angular/material/select';
     DragDropModule,
     MatDialogModule,
     MatSelectModule,
+    MdcFabModule,
+    MdcIconModule,
+    MdcMenuModule,
     ServiceWorkerModule.register("firebase-messaging-sw.js", { enabled: true })
   ],
   providers: [FormGeneration, PushNotificationService, MessagingService, UtilityService, ChoreService, UtilitiesService],

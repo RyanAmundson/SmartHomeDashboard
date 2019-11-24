@@ -1,0 +1,128 @@
+{
+    "10":{
+        "description": "Compost needs attention",
+        "id": 10,
+        "penaltyAmount": 1,
+        "timeToResolve": 86400000,
+        "type": "Chore"
+    },
+    "9":{
+        "description": "Garbage needs attention",
+        "id": 9,
+        "penaltyAmount": 1,
+        "timeToResolve": 86400000,
+        "type": "Chore"
+    },
+    "8":{
+        "description": "Recycle needs attention",
+        "id": 8,
+        "penaltyAmount": 1,
+        "timeToResolve": 86400000,
+        "type": "Chore"
+    },
+    "7":{
+        "description": "Dishwasher full",
+        "id": 7,
+        "penaltyAmount": 1,
+        "timeToResolve": 86400000,
+        "type": "Chore"
+    },
+    "6":{
+        "description": "Dishwasher empty",
+        "id": 6,
+        "penaltyAmount": 1,
+        "timeToResolve": 86400000,
+        "type": "Chore"
+    },
+    "5":{
+        "description": "Food spill",
+        "id": 5,
+        "penaltyAmount": 1,
+        "timeToResolve": 86400000,
+        "type": "Mess"
+    },
+    "4":{
+        "description": "Rotten food",
+        "id": 4,
+        "penaltyAmount": 1,
+        "timeToResolve": 86400000,
+        "type": "Mess"
+    },
+    "3":{
+        "description": "Personal belongings left too long",
+        "id": 3,
+        "penaltyAmount": 1,
+        "timeToResolve": 86400000,
+        "type": "Mess"
+    },
+    "2":{
+        "description": "Deep clean for kitchen",
+        "id": 2,
+        "penaltyAmount": 4,
+        "timeToResolve": 86400000,
+        "type": "Chore"
+    },
+    "1":{
+        "description": "Deep clean for bathroom",
+        "id": 1,
+        "penaltyAmount": 4,
+        "timeToResolve": 86400000,
+        "type": "Chore"
+    },
+    "11":{
+        "description": "Deep clean for floors",
+        "id": 11,
+        "penaltyAmount": 4,
+        "timeToResolve": 86400000,
+        "type": "Chore"
+    },
+    "12":{
+        "description": "Kitchen floors need attention",
+        "id": 12,
+        "penaltyAmount": 1,
+        "timeToResolve": 86400000,
+        "type": "Chore"
+    },
+    "13":{
+        "description": "TV room floors need attention",
+        "id": 13,
+        "penaltyAmount": 1,
+        "timeToResolve": 86400000,
+        "type": "Chore"
+    },
+    "14":{
+        "description": "TV room floors need attention",
+        "id": 14,
+        "penaltyAmount": 1,
+        "timeToResolve": 86400000,
+        "type": "Chore"
+    },
+    "15":{
+        "description": "Garage lights left on",
+        "id": 15,
+        "penaltyAmount": 1,
+        "timeToResolve": 86400000,
+        "type": "QOL"
+    },
+    "16":{
+        "description": "Kitchen lights left on",
+        "id": 16,
+        "penaltyAmount": 1,
+        "timeToResolve": 86400000,
+        "type": "QOL"
+    },
+    "17":{
+        "description": "TV room lights left on",
+        "id": 17,
+        "penaltyAmount": 1,
+        "timeToResolve": 86400000,
+        "type": "QOL"
+    },
+    "18":{
+        "description": "TV left on",
+        "id": 18,
+        "penaltyAmount": 1,
+        "timeToResolve": 86400000,
+        "type": "QOL"
+    }
+}
