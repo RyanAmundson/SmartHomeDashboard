@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { UtilitiesComponent } from './utilities.component';
 import { SharedModule } from '../_shared/shared.module';
 import { UtilitiesSorterComponent } from './utility-sorter/utility-sorter.component';
-import { UtilityService } from '../_services/utility.service';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';

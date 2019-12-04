@@ -3,6 +3,7 @@ import { Routes, RouterModule } from "@angular/router";
 import { AppComponent } from "./app.component";
 import { SignInComponent } from './sign-in/sign-in.component';
 import { SignedInGuard } from './_guards/signed-in.guard';
+import { MobileComponent } from './_mobile/mobile.component';
 
 
 
@@ -28,12 +29,12 @@ const routes: Routes = [
   {
     path: "",
     pathMatch: 'full',
-    redirectTo: 'sign-in'
+    redirectTo: 'mobile'
   },
   {
     path: "**",
     pathMatch: 'full',
-    redirectTo: 'sign-in'
+    redirectTo: 'mobile'
   }
 ];
 

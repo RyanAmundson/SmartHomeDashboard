@@ -51,7 +51,6 @@ import { SharedModule } from './_shared/shared.module';
 @NgModule({
   declarations: [
     AppComponent,
-    // RentComponent,
     SuppliesComponent,
     TileDirective,
     LocationTrackerComponent,
@@ -100,8 +99,6 @@ import { SharedModule } from './_shared/shared.module';
     // PushNotificationService,
     MessagingService,
     UtilityService,
-    ChoreService,
-    UtilitiesService,
     AuthService
   ],
   bootstrap: [AppComponent],

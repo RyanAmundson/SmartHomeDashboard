@@ -1,8 +1,8 @@
-<div class="splash-layer" *ngIf="!auth.user">
+<div class="splash-layer">
   <button mat-raised-button (click)="signInWithGoogle()">
     Sign In With Google
   </button>
-  <button mat-raised-button>
-    <a [routerLink]="['/dashboard']">Dashboard</a>
+  <button [routerLink]="['/dashboard']" mat-raised-button>
+    Dashboard
   </button>
 </div>

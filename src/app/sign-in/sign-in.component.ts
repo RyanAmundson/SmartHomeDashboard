@@ -15,16 +15,13 @@ export class SignInComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    if(this.auth.user) {
-      this.router.navigate(['mobile']).then((res) => {
-        console.log(res)
-      })
-    }
   }
 
   signInWithGoogle() {
     this.auth.signIn().then((res) => {
       this.router.navigate(['mobile']);
+    }, (err) => {
+      console.error("failed to sign in: ", err);
     })
   }
 

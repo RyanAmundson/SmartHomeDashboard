@@ -10,9 +10,9 @@
       </button>
     </mdc-top-app-bar-section>
     <mdc-top-app-bar-section align="end">
-      <button class="avatar-button" mat-button [matMenuTriggerFor]="menu">
+      <button class="avatar-button" mat-button >
 
-        <mdc-icon mdcTopAppBarActionItem 
+        <mdc-icon mdcTopAppBarActionItem [matMenuTriggerFor]="menu"
         ><img
         style="border-radius: 50%;"
         src="{{ (authService.userAsync | async)?.photoURL }}"

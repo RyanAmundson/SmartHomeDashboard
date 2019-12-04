@@ -13,6 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { OrderModule } from 'ngx-order-pipe';
+import { ChoreService } from './_services/chore.service';
 
 
 @NgModule({
@@ -39,6 +40,9 @@ import { OrderModule } from 'ngx-order-pipe';
     ChoreSorterComponent,
     ChoresComponent,
     ChoreUpdaterComponent
+  ],
+  providers: [ 
+    ChoreService
   ]
 })
 export class ChoresModule { }
