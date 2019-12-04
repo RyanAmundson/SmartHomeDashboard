@@ -9,7 +9,7 @@ import { ChoreService } from './_services/chore.service';
 import { Chore, ChoreStatus } from '../_models/models';
 
 @Component({
-  selector: 'app-chores',
+  selector: 'shd-chores',
   templateUrl: './chores.component.html',
   styleUrls: ['./chores.component.scss'],
   animations: [

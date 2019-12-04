@@ -4,7 +4,7 @@ import { UtilitiesService } from "../utilities/_services/utilities.service";
 import { UtilityService } from "../_services/utility.service";
 
 @Component({
-  selector: "app-notes",
+  selector: "shd-notes",
   templateUrl: "./notes.component.html",
   styleUrls: ["./notes.component.scss"]
 })

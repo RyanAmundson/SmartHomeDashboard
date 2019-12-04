@@ -1,4 +1,11 @@
-mat-tab-group {
-  height:100vh;
-  width:100vw;
+:host {
+    min-height:100vh;
+    height: 100vh;
+    width:100vw;
+    router-outlet {
+        height: 100vh;
+        width:100vw;
+    }
+
+
 }

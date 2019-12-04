@@ -20,7 +20,6 @@ import {
   moveItemInArray,
   transferArrayItem
 } from "@angular/cdk/drag-drop";
-import { injectAttributeImpl } from "@angular/core/src/render3/di";
 
 @Component({
   selector: "shd-chore-sorter",
@@ -75,6 +74,10 @@ export class ChoreSorterComponent implements OnInit {
     private choreService: ChoreService,
     private changeDetectorRef: ChangeDetectorRef
   ) {
+
+  }
+
+  ngOnInit() {
     this.choreStream = this.choreService.getCurrentChores();
     this.choreStream
       .pipe(
@@ -110,8 +113,6 @@ export class ChoreSorterComponent implements OnInit {
         }
       });
   }
-
-  ngOnInit() {}
 
   ngAfterViewInit() {
     this.loadingComplete.emit();

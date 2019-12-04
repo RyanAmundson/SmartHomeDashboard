@@ -57,8 +57,8 @@ export class PieAndTableComponent {
   oneToOneFlag = true;
 
 
-  @ViewChild("highchart") hiChart;
-  @ViewChild("matTable") table;
+  @ViewChild("highchart", {static:false}) hiChart;
+  @ViewChild("matTable", {static:false}) table;
 
   constructor(private firebase: AngularFireDatabase) {
   }

@@ -11,7 +11,7 @@ export class UtilitiesService {
 
   constructor(
     private AFD: AngularFireDatabase,
-    private utility: UtilityService
+    private utility: UtilityService,
   ) {}
 
   updateStatus(chore, fbRef: string) {
@@ -33,6 +33,23 @@ export class UtilitiesService {
         // this.messagingService.sendMessageToAZ(
         //   item.key + " status changed to " + newStatus
         // );
+      });
+  }
+
+  getUtilities() {
+    return this.AFD.list('utilities/breakdown').snapshotChanges()
+    .pipe(map(changes => changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))));
+  }
+
+  updateUtility(utility, fbRef: string) {
+    this.AFD.object(fbRef + "/" + utility.key)
+      .update(utility)
+      .then(res => {
+        console.log("chore updated for: " + utility.key);
+        // this.messageService.sendMessageToAZ("status updated for: " + chore.key + " to " + newStatus);
+      })
+      .then(() => {
+        // this.setCritical(chore, fbRef, false);
       });
   }
 }

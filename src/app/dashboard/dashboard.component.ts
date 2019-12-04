@@ -1,8 +1,8 @@
 import { Component, OnInit, HostListener, ViewChild, ContentChildren, QueryList, ViewChildren } from '@angular/core';
 import { SwPush } from '@angular/service-worker';
-import { PushNotificationService, PushNotificationOptions } from 'ngx-push-notifications';
+// import { PushNotificationService, PushNotificationOptions } from 'ngx-push-notifications';
 import { timer } from 'rxjs';
-import { TileComponent } from '../tile/tile.component';
+import { TileComponent } from '../_shared/tile/tile.component';
 import { AngularFireDatabase } from '@angular/fire/database';
 
 @Component({

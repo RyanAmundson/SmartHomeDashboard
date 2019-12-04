@@ -1,20 +1,21 @@
 
+
   <div id="chore-container" *ngIf="choreStream">
     <ng-container
-      *ngFor="let chore of choreStream | async | orderBy: 'person'; index as i"
-    >
+    *ngFor="let chore of choreStream | async | orderBy: 'person'; index as i"
+  >
       <ng-container
         *ngIf="!showCritical || (showCritical && chore?.isCritical)"
       >
         <div
-          class="chore animated fadeInRight faster"
+          class="chore animated fadeInRight faster {{chore?.status}}"
           [ngClass]="{
             'critical pulse': chore?.status == ChoreStatus.critical,
             warning: chore?.status == ChoreStatus.danger,
             good: chore?.status == ChoreStatus.good
           }"
         >
-          <div class="who" [@fade] *ngIf="!iconsOnly">
+          <div class="who {{chore?.status}}" [@fade] *ngIf="!iconsOnly">
             <span *ngIf="!showCritical">
                 {{ chore?.person }}
             </span>

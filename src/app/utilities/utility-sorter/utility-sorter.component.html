@@ -1,0 +1,67 @@
+
+<div class="chore-sorter-container" cdkDropListGroup>
+  <div class="list-container">
+    <div
+      cdkDropList
+      [cdkDropListData]="good"
+      class="good-list list"
+      (cdkDropListDropped)="drop($event, ChoreStatus.good)">
+      <div class="draggable-item {{item.status}}" *ngFor="let item of good" [cdkDragData]="{previousStatus: ChoreStatus.good}" cdkDrag>
+          <div class="icon">
+              <i
+              class="fas fa-{{ item?.icon }}"
+            ></i>
+          </div>
+          <!-- <div class="text"> -->
+              <!-- {{item.text}} -->
+          <!-- </div> -->
+          <div class="text">
+              {{item.text}}
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="list-container">
+    <div
+      cdkDropList
+      [cdkDropListData]="warning"
+      class="warning-list list"
+      (cdkDropListDropped)="drop($event, ChoreStatus.warning)">
+      <div class="draggable-item {{item.status}}" *ngFor="let item of warning" [cdkDragData]="{previousStatus: ChoreStatus.warning}" cdkDrag>
+          <div class="icon">
+              <i
+              class="fas fa-{{ item?.icon }}"
+            ></i>
+          </div>
+          <!-- <div class="text"> -->
+              <!-- {{item.text}} -->
+          <!-- </div> -->
+          <div class="text">
+              {{item.text}}
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="list-container">
+    <div
+      cdkDropList
+      [cdkDropListData]="critical"
+      class="critical-list list"
+      (cdkDropListDropped)="drop($event, ChoreStatus.critical)">
+      <div class="draggable-item {{item.status}}" *ngFor="let item of critical" [cdkDragData]="{previousStatus: ChoreStatus.critical}" cdkDrag>
+        <div class="icon">
+            <i
+            class="fas fa-{{ item?.icon }}"
+          ></i>
+        </div>
+        <!-- <div class="text"> -->
+            <!-- {{item.text}} -->
+        <!-- </div> -->
+        <div class="text">
+            {{item.text}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

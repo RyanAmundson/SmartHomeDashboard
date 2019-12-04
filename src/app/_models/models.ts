@@ -38,5 +38,10 @@ export class Issue {
   completed: boolean = false;
   timeCreated: number;
   timeCompleted: number = null;
+  timesPenalized: number = 0;
+  who:Partial<firebase.User>;
+}
 
+export enum TimeInMS {
+  hour = 3600000
 }

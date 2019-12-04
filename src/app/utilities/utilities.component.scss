@@ -1,4 +1,4 @@
-app-utilities:host {
+:host {
   display: flex;
   height: 100%;
   flex-direction: row;
@@ -137,4 +137,25 @@ app-utilities:host {
   justify-content: center;
   align-self: center;
   margin: 10px;
+}
+
+
+.good {
+  color:green;
+  // box-shadow: 0 3px 6px rgba(0, 254, 0, 0.16), 0 3px 6px rgba(0, 254, 0, 0.23)!important;
+  // text-shadow: 1px 1px 2px green, 0 0 1em green, 0 0 0.2em green;
+}
+
+.warning {
+  color:orange;
+  // border: 2px solid yellow;
+  // box-shadow: 0 3px 6px rgba(254, 0, 0, 0.16), 0 3px 6px rgba(254, 0, 0, 0.23)!important;
+  // text-shadow: 1px 1px 2px yellow, 0 0 1em yellow, 0 0 0.2em yellow;
+}
+
+.critical {
+  color:red;
+  // border: 2px solid red;
+  // box-shadow: 0 3px 6px rgba(254, 0, 0, 0.16), 0 3px 6px rgba(254, 0, 0, 0.23) !important;
+  // text-shadow: 1px 1px 2px red, 0 0 1em red, 0 0 0.2em red;
 }

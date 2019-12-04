@@ -8,7 +8,7 @@
 
     .create-issue-button {
         position:fixed;
-        bottom:80px;
+        bottom:30px;
         right:30px;
         display:flex;
         align-items: center;
@@ -28,4 +28,17 @@ mat-card-actions {
         align-items:center;
         justify-content: center; 
     }
+}
+
+
+.good {
+    background:green;
+}
+
+.warning {
+    background:yellow;
+}
+
+.danger {
+    background:red;
 }

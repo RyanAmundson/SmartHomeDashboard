@@ -1,11 +1,11 @@
 <div class="container">
   <div class="content">
 
-    <highcharts-chart *ngIf="chartOptions && dataSource?.length > 0" #highchart id="rent-hichart" [Highcharts]="Highcharts" [constructorType]="chartConstructor"
+    <!-- <highcharts-chart *ngIf="chartOptions && dataSource?.length > 0" #highchart id="rent-hichart" [Highcharts]="Highcharts" [constructorType]="chartConstructor"
       [options]="chartOptions" [callbackFunction]="chartCallback" [(update)]="updateFlag" [oneToOne]="oneToOneFlag">
-    </highcharts-chart>
+    </highcharts-chart> -->
 
-    <table mat-table #matTable [dataSource]="dataSource">
+    <!-- <table mat-table #matTable [dataSource]="dataSource">
       <ng-container *ngFor="let column of displayedColumns" matColumnDef="{{column}}">
         <th mat-header-cell *matHeaderCellDef> {{column | uppercase}} </th>
         <td mat-cell *matCellDef="let data"> {{data[column]}} </td>
@@ -13,7 +13,7 @@
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-    </table>
+    </table> -->
 
   </div>
 </div>

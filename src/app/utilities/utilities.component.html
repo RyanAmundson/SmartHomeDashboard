@@ -2,14 +2,14 @@
   <div id="chore-container">
     <ng-container *ngIf="!showCostRight">
       <div
-        class="chore animated flip faster"
+        class="chore animated flip faster {{utility.status}}"
         *ngFor="let utility of utilities | async; index as i"
         (click)="utilitiesService.updateStatus(utility, 'utilities/breakdown')"
       >
         <div class="who" [@fade] *ngIf="!iconsOnly">
           {{ utility.amount_due | currency }}
         </div>
-        <div class="icon" [ngStyle]="{ color: utility.status }">
+        <div class="icon {{utility.status}}">
           <i [@fade] class="fas fa-{{ utility.icon }}" title="Edit"></i>
         </div>
         <div class="text" [@fade] *ngIf="!iconsOnly">
@@ -26,11 +26,11 @@
     </ng-container>
     <ng-container *ngIf="showCostRight">
       <div
-        class="chore-cost-right animated flip faster"
+        class="chore-cost-right animated flip faster {{utility.status}}"
         *ngFor="let utility of utilities | async; index as i"
         (click)="utilitiesService.updateStatus(utility, 'utilities/breakdown')"
       >
-        <div class="icon" [ngStyle]="{ color: utility.status }">
+        <div class="icon {[utility.status}}">
           <i [@fade] class="fas fa-{{ utility.icon }}" title="Edit"></i>
         </div>
         <div class="text-container">

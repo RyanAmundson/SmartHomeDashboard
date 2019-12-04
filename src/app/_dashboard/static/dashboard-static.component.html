@@ -1,0 +1,87 @@
+<div class="container">
+  <div id="header">
+    <div id="header-card-1">
+      <div id="time">
+        {{ date + (timeObs | async) * 1000 | date: "mediumTime" }}
+      </div>
+      <div id="date">
+        {{ date + (timeObs | async) * 1000 | date: "fullDate" }}
+      </div>
+    </div>
+
+    <div id="header-card-2">
+      <a
+        class="weatherwidget-io"
+        href="https://forecast7.com/en/47d67n122d12/redmond/?unit=us"
+        data-label_1="REDMOND"
+        data-label_2="WEATHER"
+        data-font="Roboto Slab"
+        data-icons="Climacons Animated"
+        data-theme="original"
+        data-basecolor="rgba(255, 255, 255, 0.0)"
+        >REDMOND WEATHER</a
+      >
+    </div>
+  </div>
+  <!-- ================================================================= -->
+  <!-- <div class="body" *ngIf="!updater"> -->
+  <app-tile
+    id="utilities"
+    [noContainer]="true"
+    [noFlow]="true"
+    [ngStyle]="{ flex: '0 0 auto' }"
+  >
+    <shd-utilities [iconsOnly]="true" [showCostRight]="true"></shd-utilities>
+  </app-tile>
+
+  <app-tile
+    id="chores"
+    [noContainer]="true"
+    [noFlow]="true"
+    [ngStyle]="{ flex: '0 0 auto' }"
+  >
+    <shd-chores (loadingComplete)="loadingComplete()"></shd-chores>
+  </app-tile>
+
+  <app-tile id="notes">
+    <shd-notes></shd-notes>
+  </app-tile>
+
+  <app-tile id="open-issues">
+    <shd-open-issue-widget></shd-open-issue-widget>
+  </app-tile>
+
+  <!-- <app-tile id="supplies">
+      <app-supplies></app-supplies>
+    </app-tile> -->
+
+  <!-- <app-tile
+      [noContainer]="true"
+      [noFlow]="true"
+      [ngStyle]="{ flex: '0 0 auto' }"
+    > -->
+  <!-- <app-location-tracker></app-location-tracker> -->
+  <!-- </app-tile> -->
+
+  <!-- <app-tile
+    id="widgets"
+    [noContainer]="true"
+    [noFlow]="true"
+    [ngStyle]="{ flex: '0 0 auto' }"
+  > -->
+    <!-- <gate-code-widget></gate-code-widget>
+      <wifi-widget></wifi-widget> -->
+  <!-- </app-tile> -->
+</div>
+<!-- <div
+  class="big-modal"
+  [ngStyle]="{ display: criticalChores ? 'block' : 'none' }"
+>
+  <div class="modal-content">
+    {{ criticalChores }}
+    <shd-chores
+      (loadingComplete)="loadingComplete()"
+      [showCritical]="true"
+    ></shd-chores>
+  </div>
+</div> -->

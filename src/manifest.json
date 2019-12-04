@@ -1,11 +1,11 @@
 {
-  "name": "SmartHomeDashboard",
-  "short_name": "SmartHomeDashboard",
-  "theme_color": "#9e08cc",
-  "background_color": "#fafafa",
+  "name": "SmartHome Dashboard",
+  "short_name": "SHD",
+  "theme_color": "#003a0e",
+  "background_color": "#003a0e",
   "display": "standalone",
-  "scope": "/",
-  "start_url": "/",
+  "scope": "/mobile",
+  "start_url": "/mobile",
   "gcm_sender_id": "103953800507",
   "icons": [
     {

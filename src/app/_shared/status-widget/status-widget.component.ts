@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { AngularFireDatabase } from "@angular/fire/database";
 import { map } from "rxjs/operators";
-import {
-  PushNotificationOptions,
-  PushNotificationService
-} from "ngx-push-notifications";
+// import {
+  // PushNotificationOptions,
+  // PushNotificationService
+// } from "ngx-push-notifications";
 import { CssColorStrings } from "src/app/_models/models";
 import { MessagingService } from "../messaging.service";
 
@@ -23,7 +23,7 @@ export class StatusWidgetComponent implements OnInit {
 
   constructor(
     private firebase: AngularFireDatabase,
-    private pushNotificationService: PushNotificationService,
+    // private pushNotificationService: PushNotificationService,
     private messagingService: MessagingService
   ) {}
 
@@ -66,29 +66,29 @@ export class StatusWidgetComponent implements OnInit {
   }
 
   ngOnDestroy() {
-    const title = "Hello";
-    const options = new PushNotificationOptions();
-    options.body = "Native Push Notification";
+    // const title = "Hello";
+    // const options = new PushNotificationOptions();
+    // options.body = "Native Push Notification";
 
-    this.pushNotificationService.create(title, options).subscribe(
-      notif => {
-        if (notif.event.type === "show") {
-          console.log("onshow");
-          setTimeout(() => {
-            notif.notification.close();
-          }, 3000);
-        }
-        if (notif.event.type === "click") {
-          console.log("click");
-          notif.notification.close();
-        }
-        if (notif.event.type === "close") {
-          console.log("close");
-        }
-      },
-      err => {
-        console.log(err);
-      }
-    );
+    // this.pushNotificationService.create(title, options).subscribe(
+    //   notif => {
+    //     if (notif.event.type === "show") {
+    //       console.log("onshow");
+    //       setTimeout(() => {
+    //         notif.notification.close();
+    //       }, 3000);
+    //     }
+    //     if (notif.event.type === "click") {
+    //       console.log("click");
+    //       notif.notification.close();
+    //     }
+    //     if (notif.event.type === "close") {
+    //       console.log("close");
+    //     }
+    //   },
+    //   err => {
+    //     console.log(err);
+    //   }
+    // );
   }
 }

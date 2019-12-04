@@ -1,5 +1,5 @@
 <h1 mat-dialog-title>
-  Identify Current Issue
+  Identify Issue
   <h1>
     <div class="dialog" mat-dialog-content>
       <mat-form-field  class="full-width">
@@ -26,11 +26,19 @@
           placeholder="Describe in detail"
         ></textarea>
       </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Who Should Fix? (Leave blank if unsure)</mat-label>
+        <mat-select #select3>
+          <mat-option *ngFor="let user of users | async" [value]="user">
+            {{user.displayName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
     <div mat-dialog-actions>
       <button mat-button (click)="onNoClick()">Cancel</button>
-      <button mat-button (click)="onOkClick(select.value, textArea.value, select2.value)" cdkFocusInitial>
-        Ok
+      <button *ngIf="users" mat-button (click)="onOkClick(select.value, textArea.value, select2.value, select3.value)" cdkFocusInitial>
+        Create
       </button>
     </div>
   </h1>

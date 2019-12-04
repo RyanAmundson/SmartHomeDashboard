@@ -7,6 +7,8 @@ import { take } from "rxjs/operators";
 import { BehaviorSubject } from "rxjs";
 import * as firebase from 'firebase';
 import { HttpClient } from '@angular/common/http';
+// import { PushNotificationOptions, PushNotificationService } from 'ngx-push-notifications';
+import { AuthService } from '../_authentication/auth.service';
 
 @Injectable()
 export class MessagingService {
@@ -16,7 +18,9 @@ export class MessagingService {
     private angularFireDB: AngularFireDatabase,
     private angularFireAuth: AngularFireAuth,
     private angularFireMessaging: AngularFireMessaging,
-    private http: HttpClient
+    private http: HttpClient,
+    // private pushNotificationService: PushNotificationService,
+    private authService:AuthService
   ) {
     this.angularFireMessaging.messaging.subscribe(_messaging => {
       console.log(_messaging);
@@ -35,6 +39,27 @@ export class MessagingService {
         console.log("test foreground")
       })
     });
+    //different method
+    // Notification.requestPermission().then((permission) => {
+    //   if (permission === 'granted') {
+    //     console.log('Notification permission granted.');
+    //     // TODO(developer): Retrieve an Instance ID token for use with FCM.
+    //     // ...
+    //   } else {
+    //     console.log('Unable to get permission to notify.');
+    //   }
+    // });
+    // this.pushNotificationService.requestPermission();
+    // const isGranted = this.pushNotificationService.isPermissionGranted("granted");
+    // console.log(this.pushNotificationService.isPermissionGranted, isGranted)
+    // if(isGranted){
+    //   // this.messagingService.creatNotif();
+    // } else {
+    //   console.error("notifications arent allowed@@");
+    // }
+    // const userId = this.authService.checkIdentity();
+    // this.requestPermission(userId);
+    // this.receiveMessage();
   }
 
   /**
@@ -81,8 +106,35 @@ export class MessagingService {
 
 
   sendMessageToAZ(message:string) {
-    return this.http.post("https://iot123.azurewebsites.net/api/PushNotifications?code=t23hmvy8lTz4ya0yz9PIc0GIv9cbgcc9cp97RjsIMqWlxlIfYrIpnQ==",{message: message}).subscribe((res) => {
-      console.log(res)
-    });
+    // return this.http.post("https://iot123.azurewebsites.net/api/PushNotifications?code=t23hmvy8lTz4ya0yz9PIc0GIv9cbgcc9cp97RjsIMqWlxlIfYrIpnQ==",{message: message}).subscribe((res) => {
+    //   console.log(res)
+    // });
+  }
+
+  creatNotif() {
+    // const title = "Hello";
+    // const options = new PushNotificationOptions();
+    // options.body = "Native Push Notification";
+
+    // this.pushNotificationService.create(title, options).subscribe(
+    //   notif => {
+    //     if (notif.event.type === "show") {
+    //       console.log("onshow");
+    //       setTimeout(() => {
+    //         notif.notification.close();
+    //       }, 3000);
+    //     }
+    //     if (notif.event.type === "click") {
+    //       console.log("click");
+    //       notif.notification.close();
+    //     }
+    //     if (notif.event.type === "close") {
+    //       console.log("close");
+    //     }
+    //   },
+    //   err => {
+    //     console.log(err);
+    //   }
+    // );
   }
 }

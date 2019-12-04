@@ -1,51 +1,39 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { DashboardComponent } from "./dashboard/dashboard.component";
-import { MobileHomeComponent } from "./mobile/home/home.component";
 import { AppComponent } from "./app.component";
-import { DashboardStaticComponent } from "./dashboard-static/dashboard-static.component";
-import { MobileUtilitiesComponent } from "./mobile/utilities/utilities.component";
-import { UtilitiesComponent } from './utilities/utilities.component';
-import { OpenIssuesComponent } from './open-issues/open-issues.component';
+import { SignInComponent } from './sign-in/sign-in.component';
+import { SignedInGuard } from './_guards/signed-in.guard';
+
+
+
 
 const routes: Routes = [
   {
-    path: "dashboard",
-    component: DashboardStaticComponent,
-    outlet: "home"
-  },
-  {
-    path: "dashboard",
-    component: UtilitiesComponent,
-    outlet: "utilities"
-  },
-  {
-    path: "dashboard",
-    component: OpenIssuesComponent,
-    outlet: "openIssues"
+    path: 'sign-in',
+    component: SignInComponent
   },
   {
     path: "mobile",
-    component: MobileHomeComponent,
-    outlet: "home"
+    loadChildren: () => import('./_mobile/mobile.module').then(m => m.MobileModule),
+    canActivate: [SignedInGuard]
   },
   {
-    path: "mobile",
-    component: MobileUtilitiesComponent,
-    outlet: "utilities"
+    path: "dashboard",
+    loadChildren: () => import('./_dashboard/dashboard.module').then(m => m.DashboardModule),
   },
-  {
-    path: "mobile",
-    component: OpenIssuesComponent,
-    outlet: "openIssues"
-  },
+  // {
+  //   path: "desktop",
+  //   component: OpenIssuesComponent,
+  // },
   {
     path: "",
-    component: AppComponent
+    pathMatch: 'full',
+    redirectTo: 'sign-in'
   },
   {
     path: "**",
-    component: AppComponent
+    pathMatch: 'full',
+    redirectTo: 'sign-in'
   }
 ];
 

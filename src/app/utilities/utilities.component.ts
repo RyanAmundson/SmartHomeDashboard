@@ -7,7 +7,7 @@ import { trigger, transition, animate } from '@angular/animations';
 import { UtilitiesService } from './_services/utilities.service';
 
 @Component({
-  selector: 'app-utilities',
+  selector: 'shd-utilities',
   templateUrl: './utilities.component.html',
   styleUrls: ['./utilities.component.scss'],
   animations: [
@@ -19,8 +19,6 @@ import { UtilitiesService } from './_services/utilities.service';
       transition(`:enter`, [
         animate('0.5s ease', GeneratedStyles.Animations.fadeIn)
       ]),
-
-
     ]),
     trigger('fadeHorizontal', [
       transition(`:leave`, [
