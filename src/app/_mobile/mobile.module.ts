@@ -24,13 +24,15 @@ import {
   MdcListModule,
   MdcTabBarModule
 } from "@angular-mdc/web";
-import { AuthService } from "../_authentication/auth.service";
 import { ChoresModule } from "../chores/chores.module";
 import { OpenIssuesModule } from "../open-issues/open-issues.module";
 import { UtilitiesModule } from '../utilities/utilities.module';
 import { SharedModule } from '../_shared/shared.module';
 import { NotesModule } from '../notes/notes.module';
 import { MatMenuModule } from '@angular/material/menu';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { AuthModule } from '../_authentication/authentication.module';
+
 @NgModule({
   declarations: [MobileComponent],
   imports: [
@@ -50,6 +52,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatToolbarModule,
     MatDialogModule,
     MatSelectModule,
+    MatSidenavModule,
     //
     DragDropModule,
     //
@@ -64,9 +67,9 @@ import { MatMenuModule } from '@angular/material/menu';
     OpenIssuesModule,
     UtilitiesModule,
     SharedModule,
-    NotesModule
+    NotesModule,
   ],
   exports: [MobileComponent],
-  providers: [AuthService]
+  providers: []
 })
 export class MobileModule {}

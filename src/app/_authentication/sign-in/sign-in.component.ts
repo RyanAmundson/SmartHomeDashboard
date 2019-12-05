@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../_authentication/auth.service';
-import { Router } from '@angular/router';
+import { AuthService } from '../auth.service';
+import { Router, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 
 @Component({
   selector: 'shd-sign-in',
@@ -11,7 +11,8 @@ export class SignInComponent implements OnInit {
 
   constructor(
     public auth: AuthService,
-    public router: Router
+    public router: Router,
+    public activatedRoute:ActivatedRoute
   ) { }
 
   ngOnInit() {
@@ -19,7 +20,7 @@ export class SignInComponent implements OnInit {
 
   signInWithGoogle() {
     this.auth.signIn().then((res) => {
-      this.router.navigate(['mobile']);
+      this.router.navigate(['']);
     }, (err) => {
       console.error("failed to sign in: ", err);
     })

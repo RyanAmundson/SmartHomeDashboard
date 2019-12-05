@@ -56,7 +56,7 @@ import {
     ])
   ]
 })
-export class ChoreSorterComponent implements OnInit {
+export class ChoreSorterComponent {
   ChoreStatus = ChoreStatus; // required to use enums in template
   listFromFB; // used to check for equivalence only
   @Input() iconsOnly = false;
@@ -74,14 +74,12 @@ export class ChoreSorterComponent implements OnInit {
     private choreService: ChoreService,
     private changeDetectorRef: ChangeDetectorRef
   ) {
-
-  }
-
-  ngOnInit() {
+    console.log("chore sorter on init")
     this.choreStream = this.choreService.getCurrentChores();
     this.choreStream
       .pipe(
         map(list => {
+          console.log("!@@@#@#!")
           if(JSON.stringify(list) !== JSON.stringify(this.listFromFB)){
             this.listFromFB = list;
             return list;
@@ -104,6 +102,7 @@ export class ChoreSorterComponent implements OnInit {
         })
       )
       .subscribe(result => {
+        console.log(result)
         if(result != null) {
           this.good = result.good;
           this.warning = result.warning;

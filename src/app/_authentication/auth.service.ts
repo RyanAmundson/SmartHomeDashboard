@@ -9,25 +9,18 @@ import { Router } from "@angular/router";
 @Injectable()
 export class AuthService {
   user: firebase.User;
-  userAsync: Observable<firebase.User>;
-  authState: Observable<firebase.User>;
+  authState: Observable<firebase.User> = this.firebaseAuth.authState;
   constructor(
     private firebaseAuth: AngularFireAuth,
     private firebaseDB: AngularFireDatabase,
     public router: Router
   ) {
-    this.userAsync = firebaseAuth.authState;
-    if (this.user) {
-      this.router.navigate([""]);
-    }
-
-    firebaseAuth.auth.onAuthStateChanged(user => {
-      if (user) {
-        console.log("##Signed in##");
-        this.user = user;
+    this.authState.subscribe(user => {
+      if (this.firebaseAuth.auth.currentUser) {
+        this.user = firebaseAuth.auth.currentUser;
         this.router.navigate([""]);
       } else {
-        console.log("##NOT Signed in##");
+        this.router.navigate(["/auth/sign-in"]);
       }
     });
   }
@@ -47,8 +40,8 @@ export class AuthService {
               console.log(credential);
               this.firebaseDB.list("users").update(credential.user.uid, {
                 uid: credential.user.uid,
-                displayName: credential.user.uid,
-                photoURL: this.user.photoURL
+                displayName: credential.user.displayName,
+                photoURL: credential.user.photoURL
               });
             },
             error => {
@@ -59,7 +52,7 @@ export class AuthService {
   }
 
   signOut() {
-    this.firebaseAuth.auth.signOut().then(() => {
+    return this.firebaseAuth.auth.signOut().then(() => {
       console.log("Signed out");
       this.router.navigate(["sign-in"]);
     });
@@ -73,5 +66,9 @@ export class AuthService {
       id = localStorage.getItem("smarthomedashboardID");
     }
     return id;
+  }
+
+  getCurrentUser() {
+    return this.user;
   }
 }

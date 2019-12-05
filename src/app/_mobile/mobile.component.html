@@ -1,115 +1,119 @@
-<mdc-top-app-bar
-  [scrollTarget]="tabGroup"
-  [shortCollapsed]="false"
-  [fixed]="true"
->
-  <mdc-top-app-bar-row>
-    <mdc-top-app-bar-section align="start" title="SHD">
-      <button mdcTopAppBarNavIcon>
-        <mdc-icon>menu</mdc-icon>
-      </button>
-    </mdc-top-app-bar-section>
-    <mdc-top-app-bar-section align="end">
-      <button class="avatar-button" mat-button >
-
-        <mdc-icon mdcTopAppBarActionItem [matMenuTriggerFor]="menu"
-        ><img
-        style="border-radius: 50%;"
-        src="{{ (authService.userAsync | async)?.photoURL }}"
-        /></mdc-icon>
-      </button>
-        <mat-menu #menu="matMenu">
-            <button mat-menu-item (click)="authService.signOut()">Sign Out</button>
-          </mat-menu>
-    </mdc-top-app-bar-section>
-  </mdc-top-app-bar-row>
-</mdc-top-app-bar>
-
-<mat-tab-group
-  [color]="'accent'"
-  [backgroundColor]="'primary'"
-  mat-stretch-tabs
-  animationDuration="100"
-  [selectedIndex]="activeTab"
-  [backgroundColor]="'#1d567c'"
-  [color]="'white'"
-  [dynamicHeight]="false"
-  [headerPosition]="navLocation"
->
-  <!-- <mat-tab label="Home">
-    <router-outlet name="home"></router-outlet>
-  </mat-tab> -->
-
-  <mat-tab label="Chores">
-    <!-- <app-chores [iconsOnly]="true"></app-chores> -->
-    <mat-toolbar>
-        <span>Status</span>
-      </mat-toolbar>
-    <shd-chore-sorter></shd-chore-sorter>
-    <button
-      class="rotate-button"
-      mat-stroked-button
-      color="primary"
-      (click)="chores.rotateChores(4)"
+<mat-drawer-container [autosize]="true" class="example-container">
+  <mat-drawer #drawer mode="over">
+    <mat-list role="list">
+      <mat-list-item role="listitem" routerLink="/auth/sign-out"
+        >Sign Out {{ authService?.user?.displayName }}</mat-list-item
+      >
+      <mat-list-item role="listitem" [routerLink]="['/dashboard']">
+        Dashboard
+      </mat-list-item>
+    </mat-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <mdc-top-app-bar
+      [scrollTarget]="tabGroup"
+      [shortCollapsed]="false"
+      [fixed]="true"
     >
-      <i class="fas fa-sync"></i> Rotate Chores
-    </button>
-  </mat-tab>
+      <mdc-top-app-bar-row>
+        <mdc-top-app-bar-section align="start" title="SHD">
+          <button mdcTopAppBarNavIcon>
+            <mdc-icon (click)="drawer.toggle()">menu</mdc-icon>
+          </button>
+        </mdc-top-app-bar-section>
+        <mdc-top-app-bar-section align="end">
+          <mdc-icon mdcTopAppBarActionItem
+            ><img
+              style="border-radius: 50%;"
+              src="{{ authService.user?.photoURL }}"
+          /></mdc-icon>
+        </mdc-top-app-bar-section>
+      </mdc-top-app-bar-row>
+    </mdc-top-app-bar>
 
-  <mat-tab label="Open Issues">
-    <shd-open-issues></shd-open-issues>
-  </mat-tab>
+    <mat-tab-group
+      [color]="'accent'"
+      [backgroundColor]="'primary'"
+      mat-stretch-tabs
+      animationDuration="100"
+      [selectedIndex]="activeTab"
+      [backgroundColor]="'#1d567c'"
+      [color]="'white'"
+      [dynamicHeight]="false"
+      [headerPosition]="navLocation"
+    >
+      <mat-tab label="Chores">
+        <mat-toolbar>
+          <span>Status</span>
+        </mat-toolbar>
+        <shd-chore-sorter></shd-chore-sorter>
+        <button
+          class="rotate-button"
+          mat-stroked-button
+          color="primary"
+          (click)="chores.rotateChores(4)"
+        >
+          <i class="fas fa-sync"></i> Rotate Chores
+        </button>
+      </mat-tab>
 
-  <mat-tab label="Utilities">
-    <mat-toolbar>
-      <span>Status</span>
-    </mat-toolbar>
-    <shd-utilities-sorter></shd-utilities-sorter>
-    <mat-toolbar>
-      <span>Edit Utilities</span>
-    </mat-toolbar>
-    <app-tile>
-      <form-generator
-        [firebasePath]="'utilities/breakdown/Garbage'"
-        [listOrObj]="'obj'"
-        [ignoreFields]="['icon', 'status']"
-      ></form-generator>
-    </app-tile>
+      <mat-tab label="Open Issues">
+        <shd-open-issues></shd-open-issues>
+      </mat-tab>
 
-    <app-tile>
-      <form-generator
-        [firebasePath]="'utilities/breakdown/Water'"
-        [listOrObj]="'obj'"
-        [ignoreFields]="['icon', 'status']"
-      ></form-generator>
-    </app-tile>
+      <mat-tab label="Utilities">
+        <mat-toolbar>
+          <span>Status</span>
+        </mat-toolbar>
+        <shd-utilities-sorter></shd-utilities-sorter>
+        <mat-toolbar>
+          <span>Edit Utilities</span>
+        </mat-toolbar>
+        <app-tile>
+          <form-generator
+            [firebasePath]="'utilities/breakdown/Garbage'"
+            [listOrObj]="'obj'"
+            [ignoreFields]="['icon', 'status']"
+          ></form-generator>
+        </app-tile>
 
-    <app-tile>
-      <form-generator
-        [firebasePath]="'utilities/breakdown/Sewer'"
-        [listOrObj]="'obj'"
-        [ignoreFields]="['icon', 'status']"
-      ></form-generator>
-    </app-tile>
+        <app-tile>
+          <form-generator
+            [firebasePath]="'utilities/breakdown/Water'"
+            [listOrObj]="'obj'"
+            [ignoreFields]="['icon', 'status']"
+          ></form-generator>
+        </app-tile>
 
-    <app-tile>
-      <form-generator
-        [firebasePath]="'utilities/breakdown/Internet'"
-        [listOrObj]="'obj'"
-        [ignoreFields]="['icon', 'status']"
-      ></form-generator>
-    </app-tile>
+        <app-tile>
+          <form-generator
+            [firebasePath]="'utilities/breakdown/Sewer'"
+            [listOrObj]="'obj'"
+            [ignoreFields]="['icon', 'status']"
+          ></form-generator>
+        </app-tile>
 
-    <app-tile>
-      <form-generator
-        [firebasePath]="'utilities/breakdown/Electricity'"
-        [listOrObj]="'obj'"
-        [ignoreFields]="['icon', 'status']"
-      ></form-generator>
-    </app-tile>
-  </mat-tab>
+        <app-tile>
+          <form-generator
+            [firebasePath]="'utilities/breakdown/Internet'"
+            [listOrObj]="'obj'"
+            [ignoreFields]="['icon', 'status']"
+          ></form-generator>
+        </app-tile>
 
-  <mat-tab label="Notes">
-    <shd-notes></shd-notes>
-  </mat-tab>
-</mat-tab-group>
+        <app-tile>
+          <form-generator
+            [firebasePath]="'utilities/breakdown/Electricity'"
+            [listOrObj]="'obj'"
+            [ignoreFields]="['icon', 'status']"
+          ></form-generator>
+        </app-tile>
+      </mat-tab>
+
+      <mat-tab label="Notes">
+        <shd-notes></shd-notes>
+      </mat-tab>
+    </mat-tab-group>
+    Main content</mat-drawer-content
+  >
+</mat-drawer-container>

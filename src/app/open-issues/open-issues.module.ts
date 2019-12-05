@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { OpenIssuesDashboardWidget } from './open-issue-dash-widget/open-issue-dashboard-widget.component';
+import { AuthModule } from '../_authentication/authentication.module';
 
 
 
@@ -24,7 +25,8 @@ import { OpenIssuesDashboardWidget } from './open-issue-dash-widget/open-issue-d
     MatSelectModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    AuthModule
   ],
   exports: [
     DialogComponent,
