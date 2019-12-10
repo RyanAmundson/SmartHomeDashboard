@@ -42,7 +42,7 @@
     >
       Not Mine
     </button>
-    <button mat-stroked-button (click)="completeIssue(issue)" cdkFocusInitial>
+    <button mat-stroked-button *ngIf="!!issue.who" (click)="completeIssue(issue)" cdkFocusInitial>
       Complete
     </button>
   </mat-card-actions>
