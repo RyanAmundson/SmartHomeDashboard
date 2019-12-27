@@ -1,0 +1,11 @@
+<ng-content></ng-content>
+<nav mat-tab-nav-bar [color]="'accent'" [backgroundColor]="'primary'" animationDuration="100"
+  [backgroundColor]="'#1d567c'" [color]="'white'">
+
+  <a mat-tab-link routerLink="chores" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive">
+    Chores
+  </a>
+</nav>
+<div>
+  <router-outlet></router-outlet>
+</div>

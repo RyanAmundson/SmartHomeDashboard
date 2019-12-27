@@ -64,9 +64,9 @@ export class ChoreSorterComponent {
   @Output() loadingComplete: EventEmitter<void> = new EventEmitter();
 
   choreStream: Observable<any>;
-  good = [];
-  warning = [];
-  critical = [];
+  good;
+  warning;
+  critical;
 
 
   constructor(
@@ -74,13 +74,16 @@ export class ChoreSorterComponent {
     private choreService: ChoreService,
     private changeDetectorRef: ChangeDetectorRef
   ) {
+
+  }
+
+  ngOnInit() {
     console.log("chore sorter on init")
-    this.choreStream = this.choreService.getCurrentChores();
-    this.choreStream
+    this.choreStream = this.choreService.getCurrentChores()
       .pipe(
         map(list => {
           console.log("!@@@#@#!")
-          if(JSON.stringify(list) !== JSON.stringify(this.listFromFB)){
+          if (JSON.stringify(list) !== JSON.stringify(this.listFromFB)) {
             this.listFromFB = list;
             return list;
           } else {
@@ -90,7 +93,7 @@ export class ChoreSorterComponent {
       )
       .pipe(
         map(list => {
-          if(list != null) {
+          if (list != null) {
             return {
               good: list.filter(i => i.status === ChoreStatus.good),
               warning: list.filter(i => i.status === ChoreStatus.warning),
@@ -100,10 +103,11 @@ export class ChoreSorterComponent {
             return null;
           }
         })
-      )
+      );
+    this.choreStream
       .subscribe(result => {
         console.log(result)
-        if(result != null) {
+        if (result != null) {
           this.good = result.good;
           this.warning = result.warning;
           this.critical = result.critical;
@@ -140,7 +144,7 @@ export class ChoreSorterComponent {
     chore.previousStatus = event.item.data.previousStatus;
     chore.status = status;
     console.log(event.item.data, event.container.data, chore);
-    if(chore.status != chore.previousStatus) {
+    if (chore.status != chore.previousStatus) {
       this.choreService.updateChore(chore, "/chores/breakdown");
     } else {
       console.log("no status change")

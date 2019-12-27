@@ -14,16 +14,26 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { OrderModule } from 'ngx-order-pipe';
 import { ChoreService } from './_services/chore.service';
+import { ChoresRoutingModule } from './chores.routing';
+import { ChoresWidgetComponent } from './chores-widget/chores-widget.component';
+import { ChoresPageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ChoreRotaterComponent } from './chore-rotater/chore-rotater.component';
+import { ChorePage1Component } from './chore-pages/chore-page1/chore-page1.component';
 
 
 @NgModule({
   declarations: [
     ChoreSorterComponent,
     ChoresComponent,
-    ChoreUpdaterComponent
+    ChoreUpdaterComponent,
+    ChoresWidgetComponent,
+    ChoresPageNotFoundComponent,
+    ChoreRotaterComponent,
+    ChorePage1Component
   ],
   imports: [
     CommonModule,
+    ChoresRoutingModule,
     DragDropModule,
     SharedModule,
     MatIconModule,
@@ -33,7 +43,7 @@ import { ChoreService } from './_services/chore.service';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    OrderModule
+    OrderModule,
     
   ],
   exports :[

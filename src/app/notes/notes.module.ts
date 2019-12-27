@@ -15,15 +15,23 @@ import { MatButtonModule } from '@angular/material/button';
 import { OrderModule } from 'ngx-order-pipe';
 import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
-
-
+import { NotesPageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { NotesRoutingModule } from './notes.routing';
+import { MdcTextFieldModule } from '@angular-mdc/web';
+import { MdcListModule } from '@angular-mdc/web';
+import { MdcIconModule } from '@angular-mdc/web';
 
 @NgModule({
   declarations: [
-    NotesComponent
+    NotesComponent,
+    NotesPageNotFoundComponent
   ],
   imports: [
     CommonModule,
+    NotesRoutingModule,
+    MdcTextFieldModule,
+    MdcIconModule,
+    MdcListModule,
     SharedModule,
     DragDropModule,
     MatCardModule,

@@ -1,0 +1,16 @@
+<div #boundary class="example-boundary">
+    <div class="start-point">
+        <div #slider class="example-box" cdkDragLockAxis="x" [cdkDragFreeDragPosition]="dragPosition"
+            (cdkDragMoved)="moved($event)" (cdkDragReleased)="release($event)" cdkDragBoundary=".example-boundary"
+            cdkDrag>
+            <mat-icon>{{icon}}</mat-icon>
+        </div>
+    </div>
+    <div class="middle-point">
+        {{text}}
+    </div>
+    <div #endpoint class="end-point" cdkDropList (cdkDropListEntered)="release($event)"
+        (cdkDropListDropped)="release($event)">
+
+    </div>
+</div>

@@ -1,20 +1,14 @@
-<mat-drawer-container [autosize]="true" class="example-container">
-  <mat-drawer #drawer mode="over">
-    <mat-list role="list">
-      <mat-list-item role="listitem" routerLink="/auth/sign-out"
-        >Sign Out {{ authService?.user?.displayName }}</mat-list-item
-      >
-      <mat-list-item role="listitem" [routerLink]="['/dashboard']">
-        Dashboard
-      </mat-list-item>
-    </mat-list>
+<mat-drawer-container class="container" [autosize]="true" class="example-container">
+
+  <mat-drawer class="drawer" #drawer mode="over">
+
+    <shd-drawer-menu></shd-drawer-menu>
+
   </mat-drawer>
+
   <mat-drawer-content>
-    <mdc-top-app-bar
-      [scrollTarget]="tabGroup"
-      [shortCollapsed]="false"
-      [fixed]="true"
-    >
+    <mdc-top-app-bar #topBar [scrollTarget]="mainOutlet" [dense]="true" [fixedAdjustElement]="mainOutlet"
+      (navigationSelected)="nav($event)">
       <mdc-top-app-bar-row>
         <mdc-top-app-bar-section align="start" title="SHD">
           <button mdcTopAppBarNavIcon>
@@ -22,27 +16,44 @@
           </button>
         </mdc-top-app-bar-section>
         <mdc-top-app-bar-section align="end">
-          <mdc-icon mdcTopAppBarActionItem
-            ><img
-              style="border-radius: 50%;"
-              src="{{ authService.user?.photoURL }}"
-          /></mdc-icon>
+          <mdc-icon mdcTopAppBarActionItem><img style="border-radius: 50%;" src="{{ authService.user?.photoURL }}" />
+          </mdc-icon>
         </mdc-top-app-bar-section>
       </mdc-top-app-bar-row>
+
+      <mdc-top-app-bar-row>
+        <mdc-top-app-bar-section>
+          <nav mat-tab-nav-bar [color]="'accent'" [backgroundColor]="'primary'" animationDuration="100"
+            [backgroundColor]="'#1d567c'" [color]="'white'">
+
+            <a mat-tab-link routerLink="chores" routerLinkActive #rla1="routerLinkActive" [active]="rla1.isActive">
+              Chores
+            </a>
+            <a mat-tab-link routerLink="utilities" routerLinkActive #rla2="routerLinkActive" [active]="rla2.isActive">
+              Utilities
+            </a>
+            <a mat-tab-link routerLink="open-issues" routerLinkActive #rla3="routerLinkActive" [active]="rla3.isActive">
+              Open Issues
+            </a>
+            <a mat-tab-link routerLink="notes" routerLinkActive #rla4="routerLinkActive" [active]="rla4.isActive">
+              Notes
+            </a>
+          </nav>
+        </mdc-top-app-bar-section>
+      </mdc-top-app-bar-row>
+
     </mdc-top-app-bar>
 
-    <mat-tab-group
-      [color]="'accent'"
-      [backgroundColor]="'primary'"
-      mat-stretch-tabs
-      animationDuration="100"
-      [selectedIndex]="activeTab"
-      [backgroundColor]="'#1d567c'"
-      [color]="'white'"
-      [dynamicHeight]="false"
-      [headerPosition]="navLocation"
-    >
-      <mat-tab label="Chores">
+    <div id="main-outlet" #mainOutlet style="padding-top:96px">
+      <router-outlet></router-outlet>
+    </div>
+
+  </mat-drawer-content>
+
+</mat-drawer-container>
+
+
+<!-- <mat-tab label="Chores">
         <mat-toolbar>
           <span>Status</span>
         </mat-toolbar>
@@ -112,8 +123,4 @@
 
       <mat-tab label="Notes">
         <shd-notes></shd-notes>
-      </mat-tab>
-    </mat-tab-group>
-    Main content</mat-drawer-content
-  >
-</mat-drawer-container>
+      </mat-tab> -->

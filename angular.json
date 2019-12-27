@@ -10,7 +10,7 @@
       "prefix": "shd",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "sass"
+          "style": "scss"
         }
       },
       "architect": {
@@ -61,17 +61,41 @@
               ],
               "serviceWorker": true,
               "ngswConfigPath": "src/ngsw-config.json"
+            },
+            "development": {
+              "fileReplacements": [],
+              "optimization": false,
+              "outputHashing": "all",
+              "sourceMap": true,
+              "extractCss": false,
+              "namedChunks": false,
+              "aot": false,
+              "extractLicenses": false,
+              "vendorChunk": false,
+              "buildOptimizer": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "src/ngsw-config.json"
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "SmartHomeDashboard:build"
+            "browserTarget": "SmartHomeDashboard:build:development"
           },
           "configurations": {
             "production": {
               "browserTarget": "SmartHomeDashboard:build:production"
+            },
+            "development": {
+              "browserTarget": "SmartHomeDashboard:build:development"
             }
           }
         },

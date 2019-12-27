@@ -14,11 +14,18 @@ import { ChoreService } from '../chores/_services/chore.service';
 })
 export class MobileComponent {
 
-  @ViewChild('mat-tab-group', {static: false}) tabGroup;
+  @ViewChild('mat-tab-group', { static: false }) tabGroup;
 
   title = "SmartHomeDashboard";
   activeTab = 0;
   navLocation = 'above';
+
+  tabLinks = [
+    {
+      path: "chores/sorter",
+      label: "Chores"
+    }
+  ]
 
   constructor(
     // private pushNotificationService: PushNotificationService,
@@ -26,9 +33,12 @@ export class MobileComponent {
     public firebase: AngularFireDatabase,
     public router: Router,
     public utility: UtilityService,
-    public authService:AuthService,
-    public chores: ChoreService
+    public authService: AuthService,
   ) {
+  }
+
+  nav(event) {
+    console.log(event)
   }
 
 }

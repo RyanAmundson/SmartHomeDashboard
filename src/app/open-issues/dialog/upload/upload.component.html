@@ -1,0 +1,7 @@
+<!-- <mdc-linear-progress *ngIf="uploadProgressAsync" determinate [progress]="uploadProgressAsync | async" secondary>
+</mdc-linear-progress> -->
+<mat-progress-spinner *ngIf="(uploadProgressAsync | async) < 100" [diameter]="75" [color]="'green'"
+    [mode]="'determinate'" [value]="uploadProgressAsync | async">
+</mat-progress-spinner>
+<input #img (change)="uploadFile($event)" type="file" accept="image/*" capture="environment">
+<img *ngIf="downloadURL" [src]="downloadURL" style="max-height:200px;max-width:200px;">

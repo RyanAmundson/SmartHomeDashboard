@@ -1,0 +1,44 @@
+<h1 mat-dialog-title>
+  Identify Issue
+  <h1>
+    <div class="dialog" mat-dialog-content>
+      <mat-form-field class="full-width">
+        <mat-label>Issue</mat-label>
+        <mat-select #select>
+          <mat-option *ngFor="let issueTemplate of issueTemplatesAsync | async" [value]="issueTemplate">
+            {{issueTemplate.description}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Location</mat-label>
+        <mat-select #select2>
+          <mat-option *ngFor="let location of locationsAsync | async" [value]="location">
+            {{location}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <textarea #textArea class="generic-text-area" matInput placeholder="Describe in detail"></textarea>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Who Should Fix?</mat-label>
+        <mat-select #select3>
+          <mat-option *ngFor="let user of usersAsync | async" [value]="user">
+            {{user.displayName}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <shd-upload #upload></shd-upload>
+    </div>
+    <div mat-dialog-actions>
+      <button mat-raised-button (click)="onNoClick()">Cancel</button>
+      <button mat-raised-button *ngIf="usersAsync | async" mat-button style="height:36px;"
+        (click)="onOkClick(select.value, textArea.value, select2.value, select3.value)" [disabled]="!formCorrect"
+        cdkFocusInitial>
+        <ng-container *ngIf="upload.status !== UploadStatus.inProgress">Create</ng-container>
+        <mat-spinner diameter="25" *ngIf="upload.status == UploadStatus.inProgress"></mat-spinner>
+      </button>
+    </div>
+  </h1>
+</h1>

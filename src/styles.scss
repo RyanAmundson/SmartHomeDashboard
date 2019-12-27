@@ -1,35 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
 
+html,
 body {
   min-height: 100vh;
   height: auto;
   width: 100vw;
   margin: 0;
-  overflow:hidden;
+  overflow: hidden;
   font-display: swap;
+  position: fixed;
+  top: 0;
+  bottom: 0;
 }
 
 text.highcharts-credits {
   color: white !important;
   fill: white !important;
-}
-.mat-tab-body-wrapper,
-.mat-tab-body {
-  // height: 100%;
-  // width: 100%;
-}
-
-mat-tab-group {
-  // height: 100vh;
-  // height: 100vh;
-}
-mat-tab-body,
-mat-tab-group {
-  // height: 100%;
-  // width: 100%;
-}
-.mat-tab-body-content {
-  // overflow:hidden!important;
 }
 
 .mat-form-field-wrapper {

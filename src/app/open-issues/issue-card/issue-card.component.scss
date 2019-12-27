@@ -1,0 +1,66 @@
+mat-card {
+    margin:10px 5px;
+    background-color:rgba(255, 255, 255, 0.26);
+    border:1px solid rgba(0,0,0,0.2);
+    mat-card-title {
+        display:flex;
+        justify-content: stretch;
+        align-items:center;
+        .time-left {
+            display:flex;
+            flex:1 1 auto;
+            align-items:center;
+            justify-content: flex-end;
+        }
+    }
+}
+
+mat-card-image {
+    display:flex;
+     max-height:300px;
+     align-self:center;
+     border-radius:12px;
+}
+mat-spinner {
+    display:flex;
+    align-self:center;
+}
+
+.status-color {
+    height:25px;
+    width:25px;
+    border-radius:50%;
+    display:inline-block;
+    vertical-align: middle;
+    margin-left:3px;
+}
+
+mat-card-actions {
+    display:flex;
+    justify-content: flex-start;
+    button {
+        flex: 1 1 100%;
+        display:flex;
+        align-self:flex-end;
+        margin-left:8px;   
+        align-items:center;
+        justify-content: center; 
+    }
+}
+
+.good {
+    background:green;
+}
+
+.warning {
+    background:yellow;
+}
+
+.danger {
+    background:red;
+}
+
+img {
+    // max-height:300px;
+
+}

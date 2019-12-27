@@ -13,13 +13,18 @@ import { MessagingService } from "./_shared/messaging.service";
 import { AngularFireMessagingModule } from "@angular/fire/messaging";
 import { HttpClientModule } from "@angular/common/http";
 import { UtilityService } from "./_services/utility.service";
-import {PlatformModule} from '@angular/cdk/platform';
+import { PlatformModule } from '@angular/cdk/platform';
 import { SharedModule } from './_shared/shared.module';
 import { AuthModule } from './_authentication/authentication.module';
+import { CountdownFormatPipe } from './_pipes/countdown.pipe';
+import { PageNotFoundComponent } from './_common/page-not-found/page-not-found.component';
+import { MobileModule } from './_mobile/mobile.module';
+import { DialogComponent } from './open-issues/dialog/dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,7 +37,6 @@ import { AuthModule } from './_authentication/authentication.module';
     HttpClientModule,
     PlatformModule,
     SharedModule,
-    AuthModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     ServiceWorkerModule.register("firebase-messaging-sw.js", { enabled: true })
   ],
@@ -43,6 +47,6 @@ import { AuthModule } from './_authentication/authentication.module';
     UtilityService,
   ],
   bootstrap: [AppComponent],
-  exports: [],
+  exports: [PageNotFoundComponent],
 })
-export class AppModule {}
+export class AppModule { }

@@ -9,7 +9,7 @@ export const environment = {
     authDomain: "smarthomedashboard-3e912.firebaseapp.com",
     databaseURL: "https://smarthomedashboard-3e912.firebaseio.com",
     projectId: "smarthomedashboard-3e912",
-    storageBucket:"smarthomedashboard-3e912.appspot.com",
+    storageBucket: "smarthomedashboard-3e912.appspot.com",
     messagingSenderId: "711104728228",
     appId: "1:711104728228:web:226988a66d6b3a03"
   }
@@ -22,4 +22,4 @@ export const environment = {
  * This import should be commented out in production mode because it will have a negative impact
  * on performance if an error is thrown.
  */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+import 'zone.js/dist/zone-error';  // Included with Angular CLI.

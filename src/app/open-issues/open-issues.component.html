@@ -1,66 +1,12 @@
-<mat-card *ngFor="let issue of openIssues | slice: 0:3">
-  <mat-card-title>
-    {{ issue.type }}
-    <div style="position:absolute; right:15px;top:15px;">
-      <div style="display:inline-block; vertical-align: middle; margin-right:15px;">
-        {{ countdowns.get(issue.id) | async }}
-      </div>
-      <div style="height:25px;width:25px;border-radius:50%;display:inline-block;vertical-align: middle;"
-      [ngClass]="{
-        good: issue.who != null,
-        warning: issue.who == null && issue.timesPenalized == 0,
-        danger: issue.timesPenalized > 0
-      }"></div>
-    </div>
-  </mat-card-title>
-  <mat-card-subtitle>
-    {{ issue.location }}
-  </mat-card-subtitle>
-  <mat-card-content>
-    {{ issue.description }}
+<ng-container *ngFor="let issue of (openIssuesAsync | async)">
+  <shd-issue-card [issue]="issue"></shd-issue-card>
+</ng-container>
 
-    <br />
-    <br />
-    <br />
-  <i>This issue has been penalized
-    {{ issue.timesPenalized }} times.</i>
-  </mat-card-content>
-  <mat-card-actions>
-    <button
-      *ngIf="!issue?.who"
-      mat-stroked-button
-      (click)="claimIssue(issue)"
-      cdkFocusInitial
-    >
-      Claim
-    </button>
-    <button
-      *ngIf="issue?.who?.uid == authService?.user?.uid"
-      mat-stroked-button
-      (click)="unclaimIssue(issue)"
-      cdkFocusInitial
-    >
-      Not Mine
-    </button>
-    <button mat-stroked-button *ngIf="!!issue.who" (click)="completeIssue(issue)" cdkFocusInitial>
-      Complete
-    </button>
-  </mat-card-actions>
-  <mat-card-footer>
-    {{ issue?.who?.displayName || "Unclaimed" }}
-  </mat-card-footer>
-</mat-card>
-
-<div *ngIf="openIssues.length == 0">
+<div class="no issues" *ngIf="!openIssuesAsync">
   No current Issues
 </div>
 
-<button
-  *ngIf="utility.isMobileDevice() && showAddButton"
-  class="create-issue-button"
-  mat-fab
-  color="primary"
-  (click)="createIssue()"
->
+<button *ngIf="utility.isMobileDevice() && showAddButton" class="create-issue-button" mat-fab color="primary"
+  (click)="createIssue()">
   +
 </button>

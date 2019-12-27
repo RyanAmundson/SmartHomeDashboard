@@ -1,0 +1,39 @@
+<mat-card>
+    <mat-card-title>
+        <div>
+            {{ issue.type }}
+        </div>
+        <div class="time-left">
+            <div *ngIf="issue" class="status-color"
+                [ngClass]="{ good: issue?.who != null, warning: issue?.who == null && issue?.timesPenalized == 0, danger: issue?.timesPenalized > 0 }">
+            </div>
+        </div>
+    </mat-card-title>
+    <mat-card-subtitle>
+        {{ issue.location }}
+    </mat-card-subtitle>
+    <img mat-card-image *ngIf="issue.attachedImgPath" [src]="issue.attachedImgPath" alt="Do yo ISH">
+    <mat-card-content>
+        {{ issue.description }}
+        <hr>
+        <i>
+            This issue has been penalized
+            {{ OIService.calculateTimesPenalized(issue) }} times.
+        </i>
+    </mat-card-content>
+    <mat-card-actions>
+        <button *ngIf="issue?.who?.uid !== authService?.user?.uid" mat-stroked-button
+            (click)="OIService.claimIssue(issue)" cdkFocusInitial>
+            Claim
+        </button>
+        <button mat-stroked-button *ngIf="!!issue.who" (click)="OIService.completeIssue(issue)" cdkFocusInitial>
+            Complete
+        </button>
+    </mat-card-actions>
+    <mat-card-footer>
+        <i>{{ issue?.who?.displayName || "Unclaimed" }}</i>
+        <shd-countdown-timer #timer [startTime]="issue.timeLastReset || issue.timeCreated"
+            [duration]="issue.timeToResolve" (timerCompleted)="timerCompleted(issue)">
+        </shd-countdown-timer>
+    </mat-card-footer>
+</mat-card>

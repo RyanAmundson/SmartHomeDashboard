@@ -30,15 +30,20 @@ import { UtilitiesModule } from '../utilities/utilities.module';
 import { SharedModule } from '../_shared/shared.module';
 import { NotesModule } from '../notes/notes.module';
 import { MatMenuModule } from '@angular/material/menu';
-import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { AuthModule } from '../_authentication/authentication.module';
+import { RouterModule } from '@angular/router';
+import { MobilePageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AuthService } from '../_authentication/auth.service';
+import { DrawerMenuComponent } from './drawer-menu/drawer-menu.component';
+import { DrawerContentComponent } from './drawer-content/drawer-content.component';
 
 @NgModule({
-  declarations: [MobileComponent],
+  declarations: [MobileComponent, MobilePageNotFoundComponent, DrawerMenuComponent, DrawerContentComponent],
   imports: [
     CommonModule,
-    MobileRoutingModule,
     HttpClientModule,
+    MobileRoutingModule,
     //
     MatTabsModule,
     MatCardModule,
@@ -62,14 +67,8 @@ import { AuthModule } from '../_authentication/authentication.module';
     MdcTopAppBarModule,
     MdcListModule,
     MdcTabBarModule,
-    //
-    ChoresModule,
-    OpenIssuesModule,
-    UtilitiesModule,
-    SharedModule,
-    NotesModule,
   ],
   exports: [MobileComponent],
-  providers: []
+  providers: [AuthService]
 })
-export class MobileModule {}
+export class MobileModule { }

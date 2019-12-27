@@ -28,7 +28,7 @@ export class SignedInGuard implements CanActivate {
            map(user => !!user),
            tap(loggedIn => {
              if (!loggedIn) {
-               console.log("access denied")
+               console.error("access denied")
                this.router.navigate(['/auth/sign-in'], next);
              } else {
                console.log("logged in");

@@ -1,0 +1,102 @@
+:host {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 100%;
+    align-items: stretch;
+    justify-content: stretch;
+    font-family: monospace;
+    overflow:hidden;
+    #chore-container {
+      display: flex;
+      flex-direction: row;
+      flex: 1 1 auto;
+      align-items: stretch;
+      justify-content: space-evenly;
+      font-family: monospace;
+      .chore:first-child {
+        margin-left: 0;
+      }
+  
+      .chore:last-child {
+        margin-right: 0;
+      }
+      
+      .chore {
+        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: black;
+        // color:white;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+        background-color:rgba(255, 255, 255, 0.5);
+        margin: 5px;
+        padding: 5px;
+        border-radius: 5px;
+        flex: 1 1 25%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        .who {
+          flex: 0 0 auto;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 2.5rem;
+        }
+  
+        .icon {
+          -webkit-text-stroke-width: 1px;
+          -webkit-text-stroke-color: black;
+          flex: 0 0 auto;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1.5vmin;
+        }
+  
+        .text {
+          font-size: 2.5rem;
+          flex: 0 0 auto;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+        }
+      }
+    }
+    .update-form {
+      flex: 1 1 100%;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+    }
+  }
+  
+  .rotate-button {
+    display: flex;
+    align-items: Center;
+    justify-content: center;
+    align-self: center;
+    margin: 10px;
+  }
+  
+  .good {
+    // box-shadow: 0 3px 6px rgba(0, 254, 0, 0.16), 0 3px 6px rgba(0, 254, 0, 0.23)!important;
+    text-shadow: 1px 1px 2px green, 0 0 1em green, 0 0 0.2em green;
+    color:green;
+  }
+  
+  .warning {
+    // border: 2px solid yellow;
+    // box-shadow: 0 3px 6px rgba(254, 0, 0, 0.16), 0 3px 6px rgba(254, 0, 0, 0.23)!important;
+    text-shadow: 1px 1px 2px orange, 0 0 1em orange, 0 0 0.2em orange;
+    color:orange;
+  }
+  
+  .critical {
+    // border: 2px solid red;
+    // box-shadow: 0 3px 6px rgba(254, 0, 0, 0.16), 0 3px 6px rgba(254, 0, 0, 0.23)!important;
+    text-shadow: 1px 1px 2px red, 0 0 1em red, 0 0 0.2em red;
+    color:red;
+  }

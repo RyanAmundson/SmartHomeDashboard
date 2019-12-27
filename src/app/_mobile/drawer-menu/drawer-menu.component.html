@@ -1,0 +1,7 @@
+<mat-list role="list">
+        <mat-list-item role="listitem" routerLink="/auth/sign-out">Sign Out {{ authService?.user?.displayName }}
+        </mat-list-item>
+        <mat-list-item role="listitem" [routerLink]="['/dashboard']">
+          Dashboard
+        </mat-list-item>
+      </mat-list>

@@ -46,21 +46,12 @@ import { Chore, ChoreStatus } from '../_models/models';
   ]
 })
 export class ChoresComponent implements OnInit {
-  ChoreStatus = ChoreStatus;
-  @Input() iconsOnly = false;
-  @Input() showCritical = false;
-  @Output() loadingComplete: EventEmitter<void> = new EventEmitter();
-
-  choreStream:Observable<any>;
-
-  constructor(private utility: UtilityService, private choreService:ChoreService, private changeDetectorRef:ChangeDetectorRef) {
-    this.choreStream = this.choreService.getCurrentChores();
+  constructor() {
   }
 
   ngOnInit() {
   }
 
   ngAfterViewInit() {
-    this.loadingComplete.emit();
   }
 }

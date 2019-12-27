@@ -17,6 +17,8 @@ import { OrderModule } from 'ngx-order-pipe';
 import { UtilitiesService } from './_services/utilities.service';
 import { MatTableModule } from '@angular/material/table';
 import { MatListModule } from '@angular/material/list';
+import { UtilitiesRoutingModule } from './utilites.routing';
+import { UtilitiesPageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 
@@ -24,9 +26,11 @@ import { MatListModule } from '@angular/material/list';
   declarations: [
     UtilitiesComponent,
     UtilitiesSorterComponent,
+    UtilitiesPageNotFoundComponent,
   ],
   imports: [
     CommonModule,
+    UtilitiesRoutingModule,
     SharedModule,
     DragDropModule,
     MatCardModule,
