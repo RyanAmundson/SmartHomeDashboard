@@ -49,8 +49,8 @@ export class ChoreRotaterComponent implements OnInit {
     }
   }
 
-  moved($event) {
-    this.text = "";
+  moved(event) {
+    console.log(event)
   }
 
   getPosition(el) {

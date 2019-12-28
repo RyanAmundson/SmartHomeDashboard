@@ -61,7 +61,8 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     OpenIssuesService,
   ],
   entryComponents: [
-    DialogComponent
+    DialogComponent,
+    UploadComponent
   ]
 })
 export class OpenIssuesModule { }

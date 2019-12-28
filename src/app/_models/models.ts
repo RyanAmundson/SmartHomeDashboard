@@ -67,3 +67,10 @@ export enum OpenIssueLocations {
   "Back Yard",
   "Family Room"
 }
+
+
+export class Lane {
+  styles;
+  name;
+
+}

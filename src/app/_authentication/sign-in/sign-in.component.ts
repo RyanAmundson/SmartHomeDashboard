@@ -12,15 +12,22 @@ export class SignInComponent implements OnInit {
   constructor(
     public auth: AuthService,
     public router: Router,
-    public activatedRoute:ActivatedRoute
-  ) { }
+    public activatedRoute: ActivatedRoute
+  ) {
+
+
+  }
 
   ngOnInit() {
+    if (this.auth.user) {
+      this.router.navigate(['/mobile']);
+    }
   }
 
   signInWithGoogle() {
     this.auth.signIn().then((res) => {
-      this.router.navigate(['']);
+      console.log(res);
+      this.router.navigate(['/mobile']);
     }, (err) => {
       console.error("failed to sign in: ", err);
     })

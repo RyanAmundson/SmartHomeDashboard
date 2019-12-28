@@ -13,8 +13,8 @@ import { AngularFireStorage } from '@angular/fire/storage';
 export class DialogComponent {
   UploadStatus = UploadStatus;
   usersAsync: Observable<Partial<firebase.User>[]> = this.firebase.list("users").valueChanges();
-  issueTemplatesAsync: Observable<Issue[]> = <Observable<Issue[]>>this.firebase.list("open-issues/issues").valueChanges();
-  locationsAsync: Observable<OpenIssueLocations[]> = <Observable<OpenIssueLocations[]>>this.firebase.list("open-issues/locations").valueChanges();
+  issueTemplatesAsync: Observable<Issue[]> = <Observable<Issue[]>> this.firebase.list("open-issues/issues").valueChanges();
+  locationsAsync: Observable<OpenIssueLocations[]> = <Observable<OpenIssueLocations[]>> this.firebase.list("open-issues/locations").valueChanges();
 
   get formCorrect() {
     return this.type.value != undefined && this.who.value != undefined && this.upload.status != UploadStatus.inProgress;
@@ -41,6 +41,7 @@ export class DialogComponent {
   }
 
   onOkClick(issue, description, location, user) {
+    console.log(this.upload.downloadURL)
     this.dialogRef.close({
       issue: issue,
       type: issue.description,

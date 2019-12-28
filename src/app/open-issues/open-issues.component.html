@@ -2,11 +2,15 @@
   <shd-issue-card [issue]="issue"></shd-issue-card>
 </ng-container>
 
-<div class="no issues" *ngIf="!openIssuesAsync">
+<div class="no-issues"
+  *ngIf="(openIssuesAsync | async)?.length == 0">
   No current Issues
 </div>
 
-<button *ngIf="utility.isMobileDevice() && showAddButton" class="create-issue-button" mat-fab color="primary"
+<button *ngIf="utility.isMobileDevice() && showAddButton"
+  class="create-issue-button"
+  mat-fab
+  color="primary"
   (click)="createIssue()">
   +
 </button>

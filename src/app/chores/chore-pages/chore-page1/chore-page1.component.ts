@@ -8,7 +8,7 @@ import { ChoreService } from '../../_services/chore.service';
 })
 export class ChorePage1Component implements OnInit {
 
-  constructor(private choreService: ChoreService) { }
+  constructor(public choreService: ChoreService) { }
 
   ngOnInit() {
   }

@@ -1,3 +1,5 @@
+import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
+import { AuthModule } from './../_authentication/authentication.module';
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 
@@ -24,15 +26,8 @@ import {
   MdcListModule,
   MdcTabBarModule
 } from "@angular-mdc/web";
-import { ChoresModule } from "../chores/chores.module";
-import { OpenIssuesModule } from "../open-issues/open-issues.module";
-import { UtilitiesModule } from '../utilities/utilities.module';
-import { SharedModule } from '../_shared/shared.module';
-import { NotesModule } from '../notes/notes.module';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { AuthModule } from '../_authentication/authentication.module';
-import { RouterModule } from '@angular/router';
 import { MobilePageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AuthService } from '../_authentication/auth.service';
 import { DrawerMenuComponent } from './drawer-menu/drawer-menu.component';
@@ -44,6 +39,7 @@ import { DrawerContentComponent } from './drawer-content/drawer-content.componen
     CommonModule,
     HttpClientModule,
     MobileRoutingModule,
+    AuthModule,
     //
     MatTabsModule,
     MatCardModule,
@@ -69,6 +65,6 @@ import { DrawerContentComponent } from './drawer-content/drawer-content.componen
     MdcTabBarModule,
   ],
   exports: [MobileComponent],
-  providers: [AuthService]
+  providers: [AuthService, AngularFireAuthGuard]
 })
 export class MobileModule { }

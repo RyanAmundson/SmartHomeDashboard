@@ -7,19 +7,11 @@ import { AppComponent } from './app.component';
 
 
 const routes: Routes = [
+
   {
     path: "mobile",
     loadChildren: () => import('./_mobile/mobile.module').then(m => m.MobileModule),
   },
-  // {
-  //   path: "auth",
-  //   loadChildren: () => import('./_authentication/authentication.module').then(m => m.AuthModule),
-  // },
-  {
-    path: "dashboard",
-    loadChildren: () => import('./_dashboard/dashboard.module').then(m => m.DashboardModule),
-  },
-
   { path: '', redirectTo: 'mobile', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
 ];

@@ -12,7 +12,7 @@ export class SignOutComponent {
     this.auth.signOut().then(
       result => {
         console.log("Signed out successfully");
-        router.navigate(['/auth/sign-in']);
+        router.navigate(['/mobile/auth/sign-in']);
       },
       err => {
         console.error("failed to sign out: ", err);

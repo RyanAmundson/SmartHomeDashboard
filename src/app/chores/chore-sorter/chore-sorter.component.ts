@@ -1,3 +1,4 @@
+import { Chore } from './../../_models/models';
 import {
   Component,
   OnInit,
@@ -5,16 +6,17 @@ import {
   Output,
   EventEmitter,
   Input,
-  ChangeDetectorRef
+  ChangeDetectorRef,
+  ViewChild
 } from "@angular/core";
 import { AngularFireDatabase } from "@angular/fire/database";
 import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
+import { map, distinctUntilChanged, distinctUntilKeyChanged, flatMap, tap, bufferCount, toArray } from "rxjs/operators";
 import { GeneratedStyles } from "../../../assets/animate";
 import { trigger, transition, animate } from "@angular/animations";
 import { UtilityService } from "../../_services/utility.service";
 import { ChoreService } from "../_services/chore.service";
-import { Chore, ChoreStatus } from "../../_models/models";
+import { ChoreStatus } from "../../_models/models";
 import {
   CdkDragDrop,
   moveItemInArray,
@@ -62,12 +64,16 @@ export class ChoreSorterComponent {
   @Input() iconsOnly = false;
   @Input() showCritical = false;
   @Output() loadingComplete: EventEmitter<void> = new EventEmitter();
-
+  @ViewChild('warning', { static: false }) warningList;
   choreStream: Observable<any>;
   good;
   warning;
   critical;
 
+  goodAsync;
+  warningAsync;
+  criticalAsync;
+  listLength;
 
   constructor(
     private utility: UtilityService,
@@ -81,73 +87,72 @@ export class ChoreSorterComponent {
     console.log("chore sorter on init")
     this.choreStream = this.choreService.getCurrentChores()
       .pipe(
-        map(list => {
-          console.log("!@@@#@#!")
-          if (JSON.stringify(list) !== JSON.stringify(this.listFromFB)) {
-            this.listFromFB = list;
-            return list;
-          } else {
-            return null;
-          }
-        })
-      )
-      .pipe(
-        map(list => {
-          if (list != null) {
-            return {
-              good: list.filter(i => i.status === ChoreStatus.good),
-              warning: list.filter(i => i.status === ChoreStatus.warning),
-              critical: list.filter(i => i.status === ChoreStatus.critical)
-            };
-          } else {
-            return null;
-          }
-        })
+        // tap((list) => this.listLength == list.length),
+        // tap(console.log),
+        // flatMap((list) => list),
+        distinctUntilChanged(),
+        // tap(console.log),
+        // bufferCount(4, 4)
       );
-    this.choreStream
-      .subscribe(result => {
-        console.log(result)
-        if (result != null) {
-          this.good = result.good;
-          this.warning = result.warning;
-          this.critical = result.critical;
-        } else {
-          console.log("no changes");
-        }
-      });
+
+    this.goodAsync = this.choreStream.pipe(
+      map((items) => {
+        console.log(items);
+        return items.filter(i => i.status === ChoreStatus.good);
+      })
+    );
+    this.warningAsync = this.choreStream.pipe(
+      map((items) => items.filter(i => i.status === ChoreStatus.warning))
+    );
+    this.criticalAsync = this.choreStream.pipe(
+      map((items) => items.filter(i => i.status === ChoreStatus.critical))
+    );
+
+    // this.choreStream
+    //   .subscribe(result => {
+    //     console.log(result)
+    //     if (result != null) {
+    //       this.good = result.good;
+    //       this.warning = result.warning;
+    //       this.critical = result.critical;
+    //     } else {
+    //       console.log("no changes");
+    //     }
+    //   });
   }
 
   ngAfterViewInit() {
     this.loadingComplete.emit();
   }
 
-
+  sorting(event) {
+    console.log(event)
+  }
 
   drop(event: CdkDragDrop<string[]>, status: string) {
-    // ignore event if list updated from server since picking up
-    console.log(event);
+    let chore = event.item.data.details;
+    console.log(event, chore);
     if (event.previousContainer === event.container) {
+      console.log("Moved in same array", event.item.data.previousList,
+        event.currentIndex)
       moveItemInArray(
         event.container.data,
         event.previousIndex,
         event.currentIndex
       );
-    } else {
+    } else if (event.previousContainer !== event.container) {
       transferArrayItem(
         event.previousContainer.data,
         event.container.data,
         event.previousIndex,
         event.currentIndex
       );
-    }
-    let chore = <any>event.container.data[event.currentIndex];
-    chore.previousStatus = event.item.data.previousStatus;
-    chore.status = status;
-    console.log(event.item.data, event.container.data, chore);
-    if (chore.status != chore.previousStatus) {
-      this.choreService.updateChore(chore, "/chores/breakdown");
-    } else {
-      console.log("no status change")
+
+      (<any> event.container.data[event.currentIndex]).previousStatus = event.item.data.previousStatus;
+      (<any> event.container.data[event.currentIndex]).status = status;
+      if (chore.status != chore.previousStatus) {
+        this.choreService.updateStatus(status, event.item.data.previousStatus, "/chores/breakdown/" + chore.key);
+      }
     }
   }
 
@@ -161,5 +166,15 @@ export class ChoreSorterComponent {
     } else {
       return false;
     }
+
+    // (a: Chore[], b: Chore[]) => {
+
+    //   a.forEach((aEntry) => {
+    //     if (b.find((bEntry) => aEntry.person !== bEntry.person || aEntry.status !== bEntry.status)) {
+    //       return true;
+    //     }
+    //   });
+    //   return false;
+    // },
   }
 }

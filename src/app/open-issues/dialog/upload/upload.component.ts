@@ -32,21 +32,26 @@ export class UploadComponent implements OnInit {
   ngOnInit() {
   }
 
-  uploadFile(event): Observable<string> {
+  uploadFile(event): void {
     this.status = UploadStatus.started;
     const file = event.target.files[0];
     this.image = file;
-    const filePath = this.firebaseDirectory + file.name;
-    const fileRef = this.storage.ref(filePath);
+    const filePath = this.firebaseDirectory + file.name + new Date().getTime().toString();
     const task = this.storage.upload(filePath, file);
-
     this.uploadProgressAsync = task.percentageChanges();
-    this.downloadURLAsync = fileRef.getDownloadURL();
-    this.downloadURLAsync.subscribe((url) => {
-      this.status = UploadStatus.completed;
-      return this.downloadURL = url;
+    task.then(() => {
+      const fileRef = this.storage.ref(filePath);
+
+
+      fileRef.getDownloadURL().subscribe((url) => {
+        this.status = UploadStatus.completed;
+        this.downloadURL = url;
+        console.log(url);
+      }, err => {
+        this.status = UploadStatus.completed;
+        console.error(err);
+      });
     });
-    return this.downloadURLAsync;
   }
 
 }

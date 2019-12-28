@@ -4,7 +4,8 @@
             {{ issue.type }}
         </div>
         <div class="time-left">
-            <div *ngIf="issue" class="status-color"
+            <div *ngIf="issue"
+                class="status-color"
                 [ngClass]="{ good: issue?.who != null, warning: issue?.who == null && issue?.timesPenalized == 0, danger: issue?.timesPenalized > 0 }">
             </div>
         </div>
@@ -12,7 +13,10 @@
     <mat-card-subtitle>
         {{ issue.location }}
     </mat-card-subtitle>
-    <img mat-card-image *ngIf="issue.attachedImgPath" [src]="issue.attachedImgPath" alt="Do yo ISH">
+    <img mat-card-image
+        *ngIf="issue.attachedImgPath !== ''"
+        [src]="issue.attachedImgPath || 'https://firebasestorage.googleapis.com/v0/b/smarthomedashboard-3e912.appspot.com/o/open-issues%2Fimages%2Fimage-placeholder-1200x800.jpg?alt=media&token=0fa6fc16-c15e-4b68-9600-a441b0d91b50'"
+        alt="Do yo ISH">
     <mat-card-content>
         {{ issue.description }}
         <hr>
@@ -22,18 +26,25 @@
         </i>
     </mat-card-content>
     <mat-card-actions>
-        <button *ngIf="issue?.who?.uid !== authService?.user?.uid" mat-stroked-button
-            (click)="OIService.claimIssue(issue)" cdkFocusInitial>
+        <button *ngIf="issue?.who?.uid !== authService?.user?.uid"
+            mat-stroked-button
+            (click)="OIService.claimIssue(issue)"
+            cdkFocusInitial>
             Claim
         </button>
-        <button mat-stroked-button *ngIf="!!issue.who" (click)="OIService.completeIssue(issue)" cdkFocusInitial>
+        <button mat-stroked-button
+            *ngIf="!!issue.who"
+            (click)="OIService.completeIssue(issue)"
+            cdkFocusInitial>
             Complete
         </button>
     </mat-card-actions>
     <mat-card-footer>
         <i>{{ issue?.who?.displayName || "Unclaimed" }}</i>
-        <shd-countdown-timer #timer [startTime]="issue.timeLastReset || issue.timeCreated"
-            [duration]="issue.timeToResolve" (timerCompleted)="timerCompleted(issue)">
+        <shd-countdown-timer #timer
+            [startTime]="issue.timeLastReset || issue.timeCreated"
+            [duration]="issue.timeToResolve"
+            (timerCompleted)="timerCompleted(issue)">
         </shd-countdown-timer>
     </mat-card-footer>
 </mat-card>

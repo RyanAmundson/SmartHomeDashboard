@@ -1,9 +1,10 @@
+import { Router } from '@angular/router';
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { environment } from "src/environments/environment.prod";
+import { environment } from "src/environments/environment";
 import { AngularFireModule, FirebaseApp } from "@angular/fire";
 import { AngularFireDatabaseModule } from "@angular/fire/database";
 import { MatButtonModule } from "@angular/material/button";
@@ -49,4 +50,5 @@ import { DialogComponent } from './open-issues/dialog/dialog.component';
   bootstrap: [AppComponent],
   exports: [PageNotFoundComponent],
 })
-export class AppModule { }
+export class AppModule {
+}

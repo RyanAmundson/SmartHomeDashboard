@@ -1,3 +1,4 @@
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormGenerator } from './form-generator/form-generator.component';
@@ -16,17 +17,20 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { TileComponent } from './tile/tile.component';
 import { PieAndTableComponent } from './pie-and-table/pie-and-table.component';
 import { StatusWidgetComponent } from './status-widget/status-widget.component';
+// import { SorterComponent } from './sorter/sorter.component';
 
 @NgModule({
   declarations: [
     FormGenerator,
     TileComponent,
     PieAndTableComponent,
-    StatusWidgetComponent
+    StatusWidgetComponent,
+    // SorterComponent
   ],
   imports: [
     CommonModule,
     MatFormFieldModule,
+    DragDropModule,
     MatInputModule,
     MatButtonModule,
     MatTabsModule,
@@ -48,11 +52,12 @@ import { StatusWidgetComponent } from './status-widget/status-widget.component';
     OrderModule,
     MatListModule,
     MatTableModule,
-    
+
   ],
-  exports :[
+  exports: [
     FormGenerator,
-    TileComponent
+    TileComponent,
+    // SorterComponent
   ]
 })
 export class SharedModule { }

@@ -1,41 +1,71 @@
-<mat-drawer-container class="container" [autosize]="true" class="example-container">
+<mat-drawer-container class="container"
+  [autosize]="true"
+  class="example-container">
 
-  <mat-drawer class="drawer" #drawer mode="over">
+  <mat-drawer class="drawer"
+    #drawer
+    mode="over">
 
     <shd-drawer-menu></shd-drawer-menu>
 
   </mat-drawer>
 
   <mat-drawer-content>
-    <mdc-top-app-bar #topBar [scrollTarget]="mainOutlet" [dense]="true" [fixedAdjustElement]="mainOutlet"
+    <mdc-top-app-bar #topBar
+      [scrollTarget]="mainOutlet"
+      [dense]="true"
+      [fixedAdjustElement]="mainOutlet"
       (navigationSelected)="nav($event)">
       <mdc-top-app-bar-row>
-        <mdc-top-app-bar-section align="start" title="SHD">
+        <mdc-top-app-bar-section align="start"
+          title="SHD">
           <button mdcTopAppBarNavIcon>
             <mdc-icon (click)="drawer.toggle()">menu</mdc-icon>
           </button>
         </mdc-top-app-bar-section>
         <mdc-top-app-bar-section align="end">
-          <mdc-icon mdcTopAppBarActionItem><img style="border-radius: 50%;" src="{{ authService.user?.photoURL }}" />
+          <mdc-icon *ngIf="authService.user"
+            mdcTopAppBarActionItem><img style="border-radius: 50%;"
+              src="{{ authService.user?.photoURL }}" />
           </mdc-icon>
         </mdc-top-app-bar-section>
       </mdc-top-app-bar-row>
 
       <mdc-top-app-bar-row>
         <mdc-top-app-bar-section>
-          <nav mat-tab-nav-bar [color]="'accent'" [backgroundColor]="'primary'" animationDuration="100"
-            [backgroundColor]="'#1d567c'" [color]="'white'">
+          <nav mat-tab-nav-bar
+            [color]="'accent'"
+            [backgroundColor]="'primary'"
+            animationDuration="100"
+            [backgroundColor]="'#1d567c'"
+            [color]="'white'">
 
-            <a mat-tab-link routerLink="chores" routerLinkActive #rla1="routerLinkActive" [active]="rla1.isActive">
+            <a mat-tab-link
+              routerLink="/mobile/chores"
+              routerLinkActive
+              #rla1="routerLinkActive"
+              [active]="rla1.isActive">
               Chores
             </a>
-            <a mat-tab-link routerLink="utilities" routerLinkActive #rla2="routerLinkActive" [active]="rla2.isActive">
+            <a mat-tab-link
+              [routerLink]="['/','mobile','utilities']"
+              routerLinkActive
+              #rla2="routerLinkActive"
+              [active]="rla2.isActive">
               Utilities
             </a>
-            <a mat-tab-link routerLink="open-issues" routerLinkActive #rla3="routerLinkActive" [active]="rla3.isActive">
+            <a mat-tab-link
+              routerLink="/mobile/open-issues"
+              routerLinkActive
+              #rla3="routerLinkActive"
+              [active]="rla3.isActive">
               Open Issues
             </a>
-            <a mat-tab-link routerLink="notes" routerLinkActive #rla4="routerLinkActive" [active]="rla4.isActive">
+            <a mat-tab-link
+              routerLink="notes"
+              routerLinkActive
+              #rla4="routerLinkActive"
+              [active]="rla4.isActive">
               Notes
             </a>
           </nav>
@@ -44,7 +74,9 @@
 
     </mdc-top-app-bar>
 
-    <div id="main-outlet" #mainOutlet style="padding-top:96px">
+    <div id="main-outlet"
+      #mainOutlet
+      style="padding-top:96px">
       <router-outlet></router-outlet>
     </div>
 

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router, CanActivate } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router, CanActivate } from '@angular/router';
 import { Observable } from 'rxjs';
 import { of } from 'rxjs';
 import { pipe } from 'rxjs';
@@ -21,18 +21,18 @@ export class SignedInGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if (this.auth.getCurrentUser()) { return true; }
+    if (this.auth.getCurrentUser()) { return true; }
 
-      return this.auth.authState.pipe(
-           take(1),
-           map(user => !!user),
-           tap(loggedIn => {
-             if (!loggedIn) {
-               console.error("access denied")
-               this.router.navigate(['/auth/sign-in'], next);
-             } else {
-               console.log("logged in");
-             }
-         }));
+    return this.auth.authState.pipe(
+      take(1),
+      map(user => !!user),
+      tap(loggedIn => {
+        if (!loggedIn) {
+          console.error("access denied")
+          this.router.navigate(['/mobile/auth/sign-in'], next);
+        } else {
+          console.log("logged in");
+        }
+      }));
   }
 }

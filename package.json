@@ -11,6 +11,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-mdc/web": "^3.2.1",
     "@angular/animations": "^8.2.14",
     "@angular/cdk": "^8.2.3",
     "@angular/common": "~8.2.14",
@@ -33,11 +34,11 @@
     "hammerjs": "^2.0.8",
     "highcharts": "^7.2.1",
     "highcharts-angular": "^2.4.0",
+    "ngx-auth-firebaseui": "^0.1.2",
     "ngx-order-pipe": "^2.0.4",
     "rxjs": "~6.5.3",
     "tslib": "^1.10.0",
-    "zone.js": "~0.10.2",
-    "@angular-mdc/web": "^3.2.1"
+    "zone.js": "~0.10.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.19",

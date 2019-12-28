@@ -14,7 +14,7 @@ export class ChoreService {
   ).valueChanges();
   rotationScheduleStream: Observable<any>;
   choreBreakdownStream: Observable<any> = this.AFD.list("chores/breakdown")
-    .snapshotChanges()
+    .snapshotChanges(['child_added'])
     .pipe(map(v => this.utility.fbObjSquash(v)));
   chores: Array<Chore>;
   rotationIndex: number;
@@ -26,7 +26,7 @@ export class ChoreService {
   constructor(
     private AFD: AngularFireDatabase,
     private utility: UtilityService,
-    private messageService:MessagingService
+    private messageService: MessagingService
   ) {
     this.getChores().then(chores => {
       Object.keys(chores.val()).forEach(choreKey => {
@@ -81,7 +81,7 @@ export class ChoreService {
   rotateChores(choreCount: number) {
     this.checkCritical(this.chores).then(() => {
       var ref = this.AFD.database.ref("chores/rotationIndex");
-      ref.transaction(function(currentIndex) {
+      ref.transaction(function (currentIndex) {
         var newIndex = (currentIndex || 0) + 1;
         if (newIndex >= choreCount) {
           newIndex = 0;
@@ -124,5 +124,17 @@ export class ChoreService {
       .then(() => {
         // this.setCritical(chore, fbRef, false);
       });
+  }
+
+  updateStatus(newStatus: string, previousStatus: string, statusRef: string) {
+    console.log(newStatus, previousStatus, statusRef)
+    return Promise.all([
+      this.AFD.database.ref(statusRef + '/previousStatus').set(previousStatus),
+      this.AFD.database.ref(statusRef + '/status').set(newStatus)
+        .then(res => {
+          // this.messageService.sendMessageToAZ("status updated for: " + chore.key + " to " + newStatus);
+        })
+    ]);
+
   }
 }

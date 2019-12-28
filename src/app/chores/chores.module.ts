@@ -44,14 +44,14 @@ import { ChorePage1Component } from './chore-pages/chore-page1/chore-page1.compo
     MatInputModule,
     MatButtonModule,
     OrderModule,
-    
+
   ],
-  exports :[
+  exports: [
     ChoreSorterComponent,
     ChoresComponent,
     ChoreUpdaterComponent
   ],
-  providers: [ 
+  providers: [
     ChoreService
   ]
 })
