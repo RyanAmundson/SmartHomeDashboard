@@ -25,7 +25,7 @@
       "openIssues openIssues notes notes notes"
       "openIssues openIssues notes notes notes"
       "chores chores chores chores chores";
-    grid-template-rows: 105px 12% 30% 30% 10%;
+    grid-template-rows: 105px 12% auto auto auto;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     align-items: stretch;
     align-content: stretch;

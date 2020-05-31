@@ -40,7 +40,7 @@
     [noFlow]="true"
     [ngStyle]="{ flex: '0 0 auto' }"
   >
-    <shd-chores (loadingComplete)="loadingComplete()"></shd-chores>
+    <shd-chores-widget (loadingComplete)="loadingComplete()"></shd-chores-widget>
   </app-tile>
 
   <app-tile id="notes">
@@ -73,15 +73,15 @@
       <wifi-widget></wifi-widget> -->
   <!-- </app-tile> -->
 </div>
-<!-- <div
+<div
   class="big-modal"
   [ngStyle]="{ display: criticalChores ? 'block' : 'none' }"
 >
   <div class="modal-content">
     {{ criticalChores }}
-    <shd-chores
+    <shd-chores-widget
       (loadingComplete)="loadingComplete()"
       [showCritical]="true"
-    ></shd-chores>
+    ></shd-chores-widget>
   </div>
-</div> -->
+</div>

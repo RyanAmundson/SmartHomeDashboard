@@ -49,7 +49,8 @@ import { ChorePage1Component } from './chore-pages/chore-page1/chore-page1.compo
   exports: [
     ChoreSorterComponent,
     ChoresComponent,
-    ChoreUpdaterComponent
+    ChoreUpdaterComponent,
+    ChoresWidgetComponent
   ],
   providers: [
     ChoreService
