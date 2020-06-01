@@ -13,7 +13,7 @@ import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 export class IssueCardComponent {
 
   @Input() issue: Issue;
-  @ViewChild("timer", { static: false }) timer: ElementRef;
+  @ViewChild("timer") timer: ElementRef;
 
   issueImageAsync: Observable<any>;
 

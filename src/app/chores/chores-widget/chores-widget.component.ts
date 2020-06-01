@@ -51,10 +51,10 @@ export class ChoresWidgetComponent implements OnInit {
   @Input() showCritical = false;
   @Output() loadingComplete: EventEmitter<void> = new EventEmitter();
 
-  choreStream:Observable<any>;
+  chorePersonMap$:Observable<any>;
 
   constructor(private utility: UtilityService, private choreService:ChoreService, private changeDetectorRef:ChangeDetectorRef) {
-    this.choreStream = this.choreService.getCurrentChores();
+    this.chorePersonMap$ = this.choreService.getCurrentChores();
   }
 
   ngOnInit() {

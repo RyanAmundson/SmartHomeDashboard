@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MobileComponent } from './mobile.component';
-import { SignedInGuard } from '../_guards/signed-in.guard';
+import { SignedInGuard } from '../_authentication/_guards/signed-in.guard';
 import { MobilePageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
 

@@ -1,26 +1,23 @@
-<div id="chore-container" *ngIf="choreStream">
-  <ng-container *ngFor="let chore of choreStream | async | orderBy: 'person'; index as i">
-    <ng-container *ngIf="!showCritical || (showCritical && chore?.isCritical)">
-      <div class="chore animated fadeInRight faster {{chore?.status}}" [ngClass]="{
-                'critical pulse': chore?.status == ChoreStatus.critical,
-                warning: chore?.status == ChoreStatus.danger,
-                good: chore?.status == ChoreStatus.good
+<div id="chore-container" *ngIf="chorePersonMap$">
+  <ng-container *ngFor="let chorePerson of chorePersonMap$ | async | orderBy: 'person'; index as i">
+    <ng-container *ngIf="!showCritical || (showCritical && chorePerson?.isCritical)">
+      <div class="chore animated fadeInRight faster {{chorePerson?.status}}" [ngClass]="{
+                'critical pulse': chorePerson?.status == ChoreStatus.critical,
+                warning: chorePerson?.status == ChoreStatus.danger,
+                good: chorePerson?.status == ChoreStatus.good
               }">
-        <div class="who {{chore?.status}}" [@fade] *ngIf="!iconsOnly">
+        <div class="who {{chorePerson?.chore.status}}" [@fade] *ngIf="!iconsOnly">
           <span *ngIf="!showCritical">
-            {{ chore?.person }}
-          </span>
-          <span *ngIf="showCritical">
-            {{ chore?.criticalPerson }}
+            {{ chorePerson?.person?.name }}
           </span>
         </div>
-        <div class="icon {{chore?.status}}">
-          <i [@fadeHorizontal]="rI" class="fas fa-{{ chore?.icon }} fa-8x" [ngClass]="{
-                    'animated pulse infinite': chore?.status == ChoreStatus.critical
+        <div class="icon {{chorePerson?.chore?.status}}">
+          <i [@fadeHorizontal]="rI" class="fas fa-{{ chorePerson?.chore?.icon }} fa-8x" [ngClass]="{
+                    'animated pulse infinite': chorePerson?.chore?.status == ChoreStatus.critical
                   }" title="Edit"></i>
         </div>
-        <div class="text" [@fade] *ngIf="!iconsOnly">
-          {{ chore?.text }}
+        <div class="text {{chorePerson?.chore?.status}}" [@fade] *ngIf="!iconsOnly">
+          {{ chorePerson?.chore?.text }}
         </div>
       </div>
     </ng-container>

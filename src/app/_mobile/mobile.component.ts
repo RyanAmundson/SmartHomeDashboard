@@ -14,7 +14,7 @@ import { ChoreService } from '../chores/_services/chore.service';
 })
 export class MobileComponent {
 
-  @ViewChild('mat-tab-group', { static: false }) tabGroup;
+  @ViewChild('mat-tab-group') tabGroup;
 
   title = "SmartHomeDashboard";
   activeTab = 0;

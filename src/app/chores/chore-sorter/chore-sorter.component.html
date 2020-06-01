@@ -10,17 +10,17 @@
       (cdkDropListDropped)="drop($event, ChoreStatus.good)">
 
       <div cdkDrag
-        class="draggable-item {{item.status}}"
+        class="draggable-item {{item.chore.status}}"
         *ngFor="let item of good.data"
         [cdkDragData]="{previousStatus: ChoreStatus.good, previousList: good.data, details: item}">
         <div class="icon">
-          <i class="fas fa-{{ item?.icon }}"></i>
+          <i class="fas fa-{{ item?.chore.icon }}"></i>
         </div>
         <!-- <div class="text"> -->
         <!-- {{item.text}} -->
         <!-- </div> -->
         <div class="text">
-          {{item.person}}
+          {{item.person.name}}
         </div>
       </div>
     </div>
@@ -35,22 +35,23 @@
       class="warning-list list"
       (cdkDropListSorted)="sorting($event)"
       (cdkDropListDropped)="drop($event, ChoreStatus.warning)">
-      <div class="draggable-item {{item.status}}"
+      <div class="draggable-item {{item.chore.status}}"
         *ngFor="let item of warning.data"
         [cdkDragData]="{previousStatus: ChoreStatus.warning, previousList: warning.data, details: item}"
         cdkDrag>
         <div class="icon">
-          <i class="fas fa-{{ item?.icon }}"></i>
+          <i class="fas fa-{{ item?.chore.icon }}"></i>
         </div>
         <!-- <div class="text"> -->
         <!-- {{item.text}} -->
         <!-- </div> -->
         <div class="text">
-          {{item.person}}
+          {{item.person.name}}
         </div>
       </div>
     </div>
   </div>
+  
   <div class="list-container">
     <div #critical="cdkDropList"
       [cdkDropListData]="criticalAsync | async"
@@ -59,18 +60,18 @@
       [cdkDropListData]=""
       class="critical-list list"
       (cdkDropListDropped)="drop($event, ChoreStatus.critical)">
-      <div class="draggable-item {{item.status}}"
+      <div class="draggable-item {{item.chore.status}}"
         *ngFor="let item of critical.data"
         [cdkDragData]="{previousStatus: ChoreStatus.critical, previousList: critical.data, details: item}"
         cdkDrag>
         <div class="icon">
-          <i class="fas fa-{{ item?.icon }}"></i>
+          <i class="fas fa-{{ item?.chore.icon }}"></i>
         </div>
         <!-- <div class="text"> -->
         <!-- {{item.text}} -->
         <!-- </div> -->
         <div class="text">
-          {{item.person}}
+          {{item.person.name}}
         </div>
       </div>
     </div>

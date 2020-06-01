@@ -7,8 +7,8 @@ import { Component, OnInit, ViewChild, EventEmitter, Output } from '@angular/cor
 })
 export class ChoreRotaterComponent implements OnInit {
 
-  @ViewChild('slider', { static: false }) slider;
-  @ViewChild('boundary', { static: false }) boundary;
+  @ViewChild('slider') slider;
+  @ViewChild('boundary') boundary;
   @Output() swiped: EventEmitter<void> = new EventEmitter();
   dragPosition = { x: 0, y: 0 };
   icon = "refresh";

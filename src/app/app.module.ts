@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
+import { NgModule, ModuleWithProviders } from "@angular/core";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -21,6 +21,7 @@ import { CountdownFormatPipe } from './_pipes/countdown.pipe';
 import { PageNotFoundComponent } from './_common/page-not-found/page-not-found.component';
 import { MobileModule } from './_mobile/mobile.module';
 import { DialogComponent } from './open-issues/dialog/dialog.component';
+import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,6 @@ import { DialogComponent } from './open-issues/dialog/dialog.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireMessagingModule,
@@ -39,7 +39,10 @@ import { DialogComponent } from './open-issues/dialog/dialog.component';
     PlatformModule,
     SharedModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    ServiceWorkerModule.register("firebase-messaging-sw.js", { enabled: true })
+    ServiceWorkerModule.register("firebase-messaging-sw.js", { enabled: true }),
+    AuthModule,
+    AngularFireAuthGuardModule,
+    AppRoutingModule,
   ],
   providers: [
     FormGeneration,

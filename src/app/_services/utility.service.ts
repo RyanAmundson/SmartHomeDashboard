@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 
 Injectable();
+@Injectable()
 export class UtilityService {
   isMobileDevice() {
     return window.innerWidth < 800;

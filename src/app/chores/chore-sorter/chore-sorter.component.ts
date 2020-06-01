@@ -64,7 +64,7 @@ export class ChoreSorterComponent {
   @Input() iconsOnly = false;
   @Input() showCritical = false;
   @Output() loadingComplete: EventEmitter<void> = new EventEmitter();
-  @ViewChild('warning', { static: false }) warningList;
+  @ViewChild('warning') warningList;
   choreStream: Observable<any>;
   good;
   warning;
@@ -98,14 +98,14 @@ export class ChoreSorterComponent {
     this.goodAsync = this.choreStream.pipe(
       map((items) => {
         console.log(items);
-        return items.filter(i => i.status === ChoreStatus.good);
+        return items.filter(i => i.chore.status === ChoreStatus.good);
       })
     );
     this.warningAsync = this.choreStream.pipe(
-      map((items) => items.filter(i => i.status === ChoreStatus.warning))
+      map((items) => items.filter(i => i.chore.status === ChoreStatus.warning))
     );
     this.criticalAsync = this.choreStream.pipe(
-      map((items) => items.filter(i => i.status === ChoreStatus.critical))
+      map((items) => items.filter(i => i.chore.status === ChoreStatus.critical))
     );
 
     // this.choreStream
@@ -130,8 +130,8 @@ export class ChoreSorterComponent {
   }
 
   drop(event: CdkDragDrop<string[]>, status: string) {
-    let chore = event.item.data.details;
-    console.log(event, chore);
+    let choreAndPerson = event.item.data.details;
+    console.log(event, choreAndPerson);
     if (event.previousContainer === event.container) {
       console.log("Moved in same array", event.item.data.previousList,
         event.currentIndex)
@@ -150,8 +150,8 @@ export class ChoreSorterComponent {
 
       (<any> event.container.data[event.currentIndex]).previousStatus = event.item.data.previousStatus;
       (<any> event.container.data[event.currentIndex]).status = status;
-      if (chore.status != chore.previousStatus) {
-        this.choreService.updateStatus(status, event.item.data.previousStatus, "/chores/breakdown/" + chore.key);
+      if (choreAndPerson.status != choreAndPerson.previousStatus) {
+        this.choreService.updateStatus(status, event.item.data.previousStatus, "/chores/breakdown/" + choreAndPerson.chore.key);
       }
     }
   }

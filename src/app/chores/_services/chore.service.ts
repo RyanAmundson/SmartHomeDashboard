@@ -1,21 +1,21 @@
 import { Injectable } from "@angular/core";
 import { AngularFireDatabase } from "@angular/fire/database";
-import { map, flatMap, mapTo } from "rxjs/operators";
+import { map, flatMap, mapTo, tap, switchMap, withLatestFrom } from "rxjs/operators";
 import { Chore, CssColorStrings, ChoreStatus } from "src/app/_models/models";
-import { Observable, Subject } from "rxjs";
+import { Observable, Subject, combineLatest } from "rxjs";
 import { forkJoin } from "rxjs";
 import { UtilityService } from "src/app/_services/utility.service";
 import { MessagingService } from 'src/app/_shared/messaging.service';
 
 @Injectable()
 export class ChoreService {
-  rotationIndexStream: Observable<any> = this.AFD.object(
+  currentRotation$: Observable<any> = this.AFD.object(
     "chores/rotationIndex"
   ).valueChanges();
-  rotationScheduleStream: Observable<any>;
-  choreBreakdownStream: Observable<any> = this.AFD.list("chores/breakdown")
-    .snapshotChanges(['child_added'])
-    .pipe(map(v => this.utility.fbObjSquash(v)));
+  rotationSchedule$: Observable<any>;
+  rotationIndex$: Observable<any>;
+  people$ = this.AFD.list("people").snapshotChanges(['child_added', 'child_changed']).pipe(map(v => this.utility.fbObjSquash(v)));
+  chores$: Observable<any> = this.AFD.list("chores/breakdown").snapshotChanges().pipe(map(v => this.utility.fbObjSquash(v)));
   chores: Array<Chore>;
   rotationIndex: number;
 
@@ -28,25 +28,25 @@ export class ChoreService {
     private utility: UtilityService,
     private messageService: MessagingService
   ) {
-    this.getChores().then(chores => {
-      Object.keys(chores.val()).forEach(choreKey => {
-        console.log(choreKey);
-        this.AFD.object("chores/breakdown" + "/" + choreKey + "/isCritical")
-          .valueChanges()
-          .subscribe(val => {
-            if (val) {
-              this.criticalChores.set(choreKey, true);
-            } else {
-              this.criticalChores.delete(choreKey);
-            }
-            if (this.criticalChores.size > 0) {
-              this.hasCriticalChore.next(true);
-            } else {
-              this.hasCriticalChore.next(false);
-            }
-          });
-      });
-    });
+    // this.getChores().then(chores => {
+    //   Object.keys(chores.val()).forEach(choreKey => {
+    //     console.log(choreKey);
+    //     this.AFD.object("chores/breakdown" + "/" + choreKey + "/isCritical")
+    //       .valueChanges()
+    //       .subscribe(val => {
+    //         if (val) {
+    //           this.criticalChores.set(choreKey, true);
+    //         } else {
+    //           this.criticalChores.delete(choreKey);
+    //         }
+    //         if (this.criticalChores.size > 0) {
+    //           this.hasCriticalChore.next(true);
+    //         } else {
+    //           this.hasCriticalChore.next(false);
+    //         }
+    //       });
+    //   });
+    // });
   }
 
   getChores() {
@@ -54,31 +54,31 @@ export class ChoreService {
   }
 
   getCurrentChores() {
-    return this.rotationIndexStream.pipe(
-      map((index: number) => {
-        this.rotationIndex = index;
-        return index;
-      }),
-      flatMap((index: number) => {
-        return this.AFD.list(`chores/rotation/${index}`)
-          .snapshotChanges()
-          .pipe(map(v => this.utility.fbObjSquash(v)));
-      }),
-      flatMap(schedule => {
-        return this.choreBreakdownStream.pipe(
-          map((chores: Array<Chore>) => {
-            chores.forEach(chore => {
-              chore.person = schedule.filter(s => s.key == chore.id)[0].value;
-            });
-            this.chores = chores;
-            return chores;
-          })
-        );
-      })
+
+    let choreIdToPersonId$ = this.currentRotation$.pipe(
+      switchMap((index) => this.AFD.list(`chores/rotation/${index}`).snapshotChanges().pipe(map(v => this.utility.fbObjSquash(v))))
     );
+
+    let currentChoreMap$ = combineLatest([choreIdToPersonId$, this.chores$, this.people$]).pipe(
+      map(([choreIdToPersonId, chores, people] : [any[],any[],any[]]) => {
+        console.log(choreIdToPersonId)
+        return choreIdToPersonId.map(({ choreId, personId }) => {
+          console.log(choreId,personId)
+          return { "chore": chores.find((chore) => choreId === chore.id), "person": people.find((person) => personId === person.id) }
+        })
+      }),
+      tap(console.log)
+    );
+
+    return currentChoreMap$;
   }
 
   rotateChores(choreCount: number) {
+    var currentRotationIndexRef = this.AFD.database.ref("chores/rotationIndex");
+
+    combineLatest([this.rotationIndex$, this.people$])
+
+
     this.checkCritical(this.chores).then(() => {
       var ref = this.AFD.database.ref("chores/rotationIndex");
       ref.transaction(function (currentIndex) {

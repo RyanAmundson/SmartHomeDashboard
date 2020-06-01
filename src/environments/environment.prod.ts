@@ -3,7 +3,7 @@ export const environment = {
   production: true,
   firebase: {
     apiKey: "AIzaSyBnEzFa5GNV7DHdMuKEEHN_B-wTSXfg2iI",
-    authDomain: "smarthomedashboard-3e912.firebaseapp.com",
+    authDomain: "smarthomedashboard-prod.firebaseapp.com",
     databaseURL: "https://smarthomedashboard-prod.firebaseio.com/",
     projectId: "smarthomedashboard-3e912",
     storageBucket: "smarthomedashboard-3e912.appspot.com",

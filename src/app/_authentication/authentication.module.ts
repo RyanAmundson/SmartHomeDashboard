@@ -1,4 +1,4 @@
-import { NgModule } from "@angular/core";
+import { NgModule, ModuleWithProviders } from "@angular/core";
 import { AuthRouteModule } from './auth.routing';
 import { AuthService } from './auth.service';
 import { SignOutComponent } from './sign-out/sign-out.component';
@@ -6,7 +6,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { MatButtonModule } from '@angular/material/button';
-import { SignedInGuard } from '../_guards/signed-in.guard';
+import { SignedInGuard } from './_guards/signed-in.guard';
 
 
 @NgModule({
@@ -15,15 +15,27 @@ import { SignedInGuard } from '../_guards/signed-in.guard';
     SignOutComponent
   ],
   imports: [
-    AuthRouteModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     MatButtonModule,
+    AuthRouteModule,
   ],
   providers: [
     AuthService,
     SignedInGuard
   ],
-  exports: [],
+  exports: [
+    SignInComponent,
+    SignOutComponent,
+  ],
 })
-export class AuthModule {}
+export class AuthModule {
+  // static forRoot(): ModuleWithProviders {
+  //   return {
+  //     ngModule: AuthModule,
+  //     providers:[
+  //       AuthService
+  //     ]
+  //   }
+  // }
+}

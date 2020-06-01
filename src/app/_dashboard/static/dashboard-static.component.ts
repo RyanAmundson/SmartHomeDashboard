@@ -28,7 +28,7 @@ export class DashboardStaticComponent implements OnInit {
   rotationIndex = this.firebase.object('chores/rotationIndex').valueChanges();
 
   @ViewChildren(TileComponent) tiles: QueryList<TileComponent>;
-  @ViewChild(ChoresComponent, {static:false}) choreComp: ChoresComponent;
+  @ViewChild(ChoresComponent) choreComp: ChoresComponent;
   
   criticalChores = false;
 

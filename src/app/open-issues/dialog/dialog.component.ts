@@ -20,9 +20,9 @@ export class DialogComponent {
     return this.type.value != undefined && this.who.value != undefined && this.upload.status != UploadStatus.inProgress;
   }
 
-  @ViewChild('upload', { static: false }) upload: any;
-  @ViewChild('select', { static: false }) type: any;
-  @ViewChild('select3', { static: false }) who: any;
+  @ViewChild('upload') upload: any;
+  @ViewChild('select') type: any;
+  @ViewChild('select3') who: any;
 
   constructor(
     public dialogRef: MatDialogRef<DialogComponent>,
