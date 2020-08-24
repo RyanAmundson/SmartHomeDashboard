@@ -12,7 +12,7 @@
   "private": true,
   "dependencies": {
     "@angular-builders/custom-webpack": "^8.4.1",
-    "@angular-mdc/web": "^3.2.1",
+    "@angular-mdc/web": "^5.1.1",
     "@angular/animations": "^9.1.12",
     "@angular/cdk": "^9.2.4",
     "@angular/common": "~9.1.12",
@@ -27,6 +27,7 @@
     "@angular/service-worker": "~9.1.12",
     "@babel/compat-data": "^7.8.0",
     "@fortawesome/angular-fontawesome": "^0.5.0",
+    "@material/top-app-bar": "^7.0.0",
     "angular-fontawesome": "^1.0.0",
     "angular-highcharts": "^8.0.3",
     "animate.css": "^3.7.2",

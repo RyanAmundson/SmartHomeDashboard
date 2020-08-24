@@ -28,25 +28,6 @@ export class ChoreService {
     private utility: UtilityService,
     private messageService: MessagingService
   ) {
-    // this.getChores().then(chores => {
-    //   Object.keys(chores.val()).forEach(choreKey => {
-    //     console.log(choreKey);
-    //     this.AFD.object("chores/breakdown" + "/" + choreKey + "/isCritical")
-    //       .valueChanges()
-    //       .subscribe(val => {
-    //         if (val) {
-    //           this.criticalChores.set(choreKey, true);
-    //         } else {
-    //           this.criticalChores.delete(choreKey);
-    //         }
-    //         if (this.criticalChores.size > 0) {
-    //           this.hasCriticalChore.next(true);
-    //         } else {
-    //           this.hasCriticalChore.next(false);
-    //         }
-    //       });
-    //   });
-    // });
   }
 
   getChores() {
@@ -75,43 +56,6 @@ export class ChoreService {
 
   rotateChores(choreCount: number) {
     var currentRotationIndexRef = this.AFD.database.ref("chores/rotationIndex");
-
-    combineLatest([this.rotationIndex$, this.people$])
-
-
-    this.checkCritical(this.chores).then(() => {
-      var ref = this.AFD.database.ref("chores/rotationIndex");
-      ref.transaction(function (currentIndex) {
-        var newIndex = (currentIndex || 0) + 1;
-        if (newIndex >= choreCount) {
-          newIndex = 0;
-        }
-        return newIndex;
-      }).then(() => {
-        // this.messageService.sendMessageToAZ("Chores have been rotated!");
-      });
-    });
-  }
-
-  checkCritical([...chores]) {
-    let promises = [];
-    console.log("check critical");
-    chores.forEach(chore => {
-      if (chore.status == ChoreStatus.critical) {
-        promises.push(this.setCritical(chore, "chores/breakdown", true));
-        // this.messageService.sendMessageToAZ(chore.key + " needs to be done before chores can rotate");
-      } else {
-        promises.push(this.setCritical(chore, "chores/breakdown", false));
-      }
-    });
-    return Promise.all(promises);
-  }
-
-  setCritical(chore, fbRef, isCritical) {
-    return this.AFD.object(fbRef + "/" + chore.key).update({
-      isCritical: isCritical,
-      criticalPerson: chore.person
-    });
   }
 
   updateChore(chore, fbRef: string) {

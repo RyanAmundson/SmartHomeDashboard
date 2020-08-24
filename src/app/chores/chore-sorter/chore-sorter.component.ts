@@ -88,7 +88,7 @@ export class ChoreSorterComponent {
     this.choreStream = this.choreService.getCurrentChores()
       .pipe(
         // tap((list) => this.listLength == list.length),
-        // tap(console.log),
+        tap(console.log),
         // flatMap((list) => list),
         distinctUntilChanged(),
         // tap(console.log),
@@ -176,5 +176,9 @@ export class ChoreSorterComponent {
     //   });
     //   return false;
     // },
+  }
+
+  updateRotation() {
+    
   }
 }

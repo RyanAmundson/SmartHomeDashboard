@@ -2,8 +2,8 @@ import { Component, OnInit, Input } from "@angular/core";
 import { AngularFireDatabase } from "@angular/fire/database";
 import { map } from "rxjs/operators";
 // import {
-  // PushNotificationOptions,
-  // PushNotificationService
+// PushNotificationOptions,
+// PushNotificationService
 // } from "ngx-push-notifications";
 import { CssColorStrings } from "src/app/_models/models";
 import { MessagingService } from "../messaging.service";
@@ -25,16 +25,19 @@ export class StatusWidgetComponent implements OnInit {
     private firebase: AngularFireDatabase,
     // private pushNotificationService: PushNotificationService,
     private messagingService: MessagingService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.firebase
       .list(this.fbRef)
       .snapshotChanges()
       .pipe(
-        map(changes =>
-          changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
-        )
+        map(changes => {
+          changes.map(c => {
+            let values = c.payload.val();
+            return { key: c.payload.key, ...values as Array<any> }
+          })
+        })
       )
       .subscribe(list => {
         this.list = list;

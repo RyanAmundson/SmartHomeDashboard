@@ -38,7 +38,7 @@ export class UtilitiesService {
 
   getUtilities() {
     return this.AFD.list('utilities/breakdown').snapshotChanges()
-    .pipe(map(changes => changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))));
+    .pipe(map(changes => changes.map(c => ({ key: c.payload.key, ...c.payload.val() as object }))));
   }
 
   updateUtility(utility, fbRef: string) {
