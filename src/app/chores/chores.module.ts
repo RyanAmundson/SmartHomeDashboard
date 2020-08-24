@@ -19,6 +19,7 @@ import { ChoresWidgetComponent } from './chores-widget/chores-widget.component';
 import { ChoresPageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ChoreRotaterComponent } from './chore-rotater/chore-rotater.component';
 import { ChorePage1Component } from './chore-pages/chore-page1/chore-page1.component';
+import {MatSliderModule} from '@angular/material/slider';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { ChorePage1Component } from './chore-pages/chore-page1/chore-page1.compo
     MatInputModule,
     MatButtonModule,
     OrderModule,
+    MatSliderModule
 
   ],
   exports: [

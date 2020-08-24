@@ -13,7 +13,7 @@ const routes: Routes = [
     children: [
       {
         path: "premade-1",
-        component: ChorePage1Component,
+        component: ChoreSorterComponent,
       },
       {
         path: "sorter",

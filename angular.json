@@ -33,6 +33,11 @@
               "src/styles.scss",
               "src/themes/core-theme.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "node_modules/"
+              ]
+            },
             "scripts": [],
             "es5BrowserSupport": true
           },
