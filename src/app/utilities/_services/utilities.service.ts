@@ -12,7 +12,7 @@ export class UtilitiesService {
   constructor(
     private AFD: AngularFireDatabase,
     private utility: UtilityService,
-  ) {}
+  ) { }
 
   updateStatus(chore, fbRef: string) {
     let newStatus = chore.status;
@@ -27,7 +27,7 @@ export class UtilitiesService {
       .object(fbRef + "/" + chore.key + "/status")
       .set(newStatus)
       .then(res => {
-        console.log(res, "status udpdated for: " + chore.key);
+        // console.log(res, "status udpdated for: " + chore.key);
       })
       .then(() => {
         // this.messagingService.sendMessageToAZ(
@@ -38,7 +38,7 @@ export class UtilitiesService {
 
   getUtilities() {
     return this.AFD.list('utilities/breakdown').snapshotChanges()
-    .pipe(map(changes => changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))));
+      .pipe(map(changes => changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))));
   }
 
   updateUtility(utility, fbRef: string) {

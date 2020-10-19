@@ -59,8 +59,8 @@ import {
   ]
 })
 export class ChoreSorterComponent {
-  ChoreStatus = ChoreStatus; // required to use enums in template
-  listFromFB; // used to check for equivalence only
+  ChoreStatus = ChoreStatus;
+
   @Input() iconsOnly = false;
   @Input() showCritical = false;
   @Output() loadingComplete: EventEmitter<void> = new EventEmitter();
@@ -97,7 +97,7 @@ export class ChoreSorterComponent {
 
     this.goodAsync = this.choreStream.pipe(
       map((items) => {
-        console.log(items);
+        // console.log(items);
         return items.filter(i => i.status === ChoreStatus.good);
       })
     );
@@ -126,12 +126,12 @@ export class ChoreSorterComponent {
   }
 
   sorting(event) {
-    console.log(event)
+    // console.log(event)
   }
 
   drop(event: CdkDragDrop<string[]>, status: string) {
     let chore = event.item.data.details;
-    console.log(event, chore);
+    // console.log(event, chore);
     if (event.previousContainer === event.container) {
       console.log("Moved in same array", event.item.data.previousList,
         event.currentIndex)
@@ -156,25 +156,25 @@ export class ChoreSorterComponent {
     }
   }
 
-  compare(a: Chore[], b: Chore[]) {
-    let res = a.filter(item => {
-      return b.find((x: Chore) => x.key == item.key && x.person == item.person);
-    });
+  // compare(a: Chore[], b: Chore[]) {
+  //   let res = a.filter(item => {
+  //     return b.find((x: Chore) => x.key == item.key && x.person == item.person);
+  //   });
 
-    if ((res.length = a.length)) {
-      return true;
-    } else {
-      return false;
-    }
+  //   if ((res.length = a.length)) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
 
-    // (a: Chore[], b: Chore[]) => {
+  // (a: Chore[], b: Chore[]) => {
 
-    //   a.forEach((aEntry) => {
-    //     if (b.find((bEntry) => aEntry.person !== bEntry.person || aEntry.status !== bEntry.status)) {
-    //       return true;
-    //     }
-    //   });
-    //   return false;
-    // },
-  }
+  //   a.forEach((aEntry) => {
+  //     if (b.find((bEntry) => aEntry.person !== bEntry.person || aEntry.status !== bEntry.status)) {
+  //       return true;
+  //     }
+  //   });
+  //   return false;
+  // },
+  // }
 }

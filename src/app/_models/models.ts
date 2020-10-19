@@ -1,3 +1,4 @@
+
 import { Observable } from 'rxjs';
 export enum CssColorStrings {
   green = "darkgreen",
@@ -73,4 +74,31 @@ export class Lane {
   styles;
   name;
 
+}
+export interface Person {
+
+}
+
+export interface ChoreAssignment {
+  chore: Chore | Promise<Chore>,
+  person: Person | Promise<Person>,
+  status: ChoreStatus,
+  criticalPersonID: number,
+  isCritical: boolean
+}
+
+export interface ChoreRotationEntry {
+  choreID: number,
+  personID: number,
+  status: ChoreStatus,
+  criticalPersonID: number,
+  isCritical: boolean
+}
+
+
+export enum FirebaseRefStrings {
+  chores = "chores",
+  choreRotations = "chore-assignment/rotations",
+  choreRotationIndex = "chore-assignment/rotationIndex",
+  people = "people"
 }

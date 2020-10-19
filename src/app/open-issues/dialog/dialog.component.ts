@@ -41,7 +41,7 @@ export class DialogComponent {
   }
 
   onOkClick(issue, description, location, user) {
-    console.log(this.upload.downloadURL)
+    // console.log(this.upload.downloadURL)
     this.dialogRef.close({
       issue: issue,
       type: issue.description,

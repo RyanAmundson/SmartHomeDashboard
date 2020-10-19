@@ -30,7 +30,7 @@ export class CountdownTimerComponent implements OnInit {
   ngOnChanges(simpleChanges: SimpleChanges) {
     let startTimeChange = simpleChanges['startTime'];
     let durationChange = simpleChanges['duration'];
-    console.log("ng changes", this.startTime, this.duration);
+    // console.log("ng changes", this.startTime, this.duration);
     if (startTimeChange && startTimeChange.currentValue !== startTimeChange.previousValue) {
       this.setCountdown(startTimeChange.currentValue, durationChange.currentValue);
     } else if (durationChange && durationChange.currentValue !== durationChange.previousValue) {
@@ -48,9 +48,9 @@ export class CountdownTimerComponent implements OnInit {
       let timePassed = currentTime - this.startTime;
       let timeRemaining = endTime - currentTime;
       if (timeRemaining < 0) {
-        console.log("Countdown has already expired");
+        // console.log("Countdown has already expired");
       } else {
-        let counter = <Observable<number>>interval(1000).pipe(
+        let counter = <Observable<number>> interval(1000).pipe(
           map((count) => Math.max(0, timeRemaining - (count * 1000))),
           takeWhile(v => v >= 0),
           tap((x) => {

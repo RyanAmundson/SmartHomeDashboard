@@ -78,8 +78,8 @@ export class UtilitiesSorterComponent implements OnInit {
     this.choreStream
       .pipe(
         map(list => {
-          console.log(list)
-          if(JSON.stringify(list) !== JSON.stringify(this.listFromFB)){
+          // console.log(list)
+          if (JSON.stringify(list) !== JSON.stringify(this.listFromFB)) {
             this.listFromFB = list;
             return list;
           } else {
@@ -89,7 +89,7 @@ export class UtilitiesSorterComponent implements OnInit {
       )
       .pipe(
         map(list => {
-          if(list != null) {
+          if (list != null) {
             return {
               good: list.filter(i => i.status === ChoreStatus.good),
               warning: list.filter(i => i.status === ChoreStatus.warning),
@@ -101,18 +101,18 @@ export class UtilitiesSorterComponent implements OnInit {
         })
       )
       .subscribe(result => {
-        console.log(result)
-        if(result != null) {
+        // console.log(result)
+        if (result != null) {
           this.good = result.good;
           this.warning = result.warning;
           this.critical = result.critical;
         } else {
-          console.log("no changes");
+          // console.log("no changes");
         }
       });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   ngAfterViewInit() {
     this.loadingComplete.emit();
@@ -122,7 +122,7 @@ export class UtilitiesSorterComponent implements OnInit {
 
   drop(event: CdkDragDrop<string[]>, status: string) {
     // ignore event if list updated from server since picking up
-    console.log(event);
+    // console.log(event);
     if (event.previousContainer === event.container) {
       moveItemInArray(
         event.container.data,
@@ -137,14 +137,14 @@ export class UtilitiesSorterComponent implements OnInit {
         event.currentIndex
       );
     }
-    let chore = <any>event.container.data[event.currentIndex];
+    let chore = <any> event.container.data[event.currentIndex];
     chore.previousStatus = event.item.data.previousStatus;
     chore.status = status;
-    console.log(event.item.data, event.container.data, chore);
-    if(chore.status != chore.previousStatus) {
+    // console.log(event.item.data, event.container.data, chore);
+    if (chore.status != chore.previousStatus) {
       this.utilitiesService.updateUtility(chore, "/utilities/breakdown");
     } else {
-      console.log("no status change")
+      // console.log("no status change")
     }
   }
 

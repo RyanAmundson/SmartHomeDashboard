@@ -35,10 +35,11 @@ export class MobileComponent {
     public utility: UtilityService,
     public authService: AuthService,
   ) {
+    console.log(this.router.getCurrentNavigation());
   }
 
   nav(event) {
-    console.log(event)
+    // console.log(event)
   }
 
 }

@@ -7,14 +7,19 @@ import { forkJoin } from "rxjs";
 import { UtilityService } from "src/app/_services/utility.service";
 import { MessagingService } from 'src/app/_shared/messaging.service';
 
+
+export interface IChoreService {
+
+}
+
 @Injectable()
 export class ChoreService {
-  rotationIndexStream: Observable<any> = this.AFD.object(
+  rotationIndexStream: Observable<any> = this.database.object(
     "chores/rotationIndex"
   ).valueChanges();
   rotationScheduleStream: Observable<any>;
-  choreBreakdownStream: Observable<any> = this.AFD.list("chores/breakdown")
-    .snapshotChanges(['child_added'])
+  choreBreakdownStream: Observable<any> = this.database.list("chores/breakdown")
+    .snapshotChanges()
     .pipe(map(v => this.utility.fbObjSquash(v)));
   chores: Array<Chore>;
   rotationIndex: number;
@@ -24,33 +29,33 @@ export class ChoreService {
   hasCriticalChore: Subject<boolean> = new Subject<boolean>();
 
   constructor(
-    private AFD: AngularFireDatabase,
+    private database: AngularFireDatabase,
     private utility: UtilityService,
     private messageService: MessagingService
   ) {
-    this.getChores().then(chores => {
-      Object.keys(chores.val()).forEach(choreKey => {
-        console.log(choreKey);
-        this.AFD.object("chores/breakdown" + "/" + choreKey + "/isCritical")
-          .valueChanges()
-          .subscribe(val => {
-            if (val) {
-              this.criticalChores.set(choreKey, true);
-            } else {
-              this.criticalChores.delete(choreKey);
-            }
-            if (this.criticalChores.size > 0) {
-              this.hasCriticalChore.next(true);
-            } else {
-              this.hasCriticalChore.next(false);
-            }
-          });
-      });
-    });
+    // this.getChores().then(chores => {
+    //   Object.keys(chores.val()).forEach(choreKey => {
+    //     console.log(choreKey);
+    //     this.database.object("chores/breakdown" + "/" + choreKey + "/isCritical")
+    //       .valueChanges()
+    //       .subscribe(val => {
+    //         if (val) {
+    //           this.criticalChores.set(choreKey, true);
+    //         } else {
+    //           this.criticalChores.delete(choreKey);
+    //         }
+    //         if (this.criticalChores.size > 0) {
+    //           this.hasCriticalChore.next(true);
+    //         } else {
+    //           this.hasCriticalChore.next(false);
+    //         }
+    //       });
+    //   });
+    // });
   }
 
   getChores() {
-    return this.AFD.database.ref(`chores/breakdown`).once("value");
+    return this.database.database.ref(`chores/breakdown`).once("value");
   }
 
   getCurrentChores() {
@@ -60,7 +65,8 @@ export class ChoreService {
         return index;
       }),
       flatMap((index: number) => {
-        return this.AFD.list(`chores/rotation/${index}`)
+        // console.log(index)
+        return this.database.list(`chores/rotation/${index}`)
           .snapshotChanges()
           .pipe(map(v => this.utility.fbObjSquash(v)));
       }),
@@ -69,8 +75,10 @@ export class ChoreService {
           map((chores: Array<Chore>) => {
             chores.forEach(chore => {
               chore.person = schedule.filter(s => s.key == chore.id)[0].value;
+              // console.log(chore.person, chore.id, schedule)
             });
             this.chores = chores;
+            // console.log(chores)
             return chores;
           })
         );
@@ -80,7 +88,7 @@ export class ChoreService {
 
   rotateChores(choreCount: number) {
     this.checkCritical(this.chores).then(() => {
-      var ref = this.AFD.database.ref("chores/rotationIndex");
+      var ref = this.database.database.ref("chores/rotationIndex");
       ref.transaction(function (currentIndex) {
         var newIndex = (currentIndex || 0) + 1;
         if (newIndex >= choreCount) {
@@ -95,7 +103,7 @@ export class ChoreService {
 
   checkCritical([...chores]) {
     let promises = [];
-    console.log("check critical");
+    // console.log("check critical");
     chores.forEach(chore => {
       if (chore.status == ChoreStatus.critical) {
         promises.push(this.setCritical(chore, "chores/breakdown", true));
@@ -108,17 +116,17 @@ export class ChoreService {
   }
 
   setCritical(chore, fbRef, isCritical) {
-    return this.AFD.object(fbRef + "/" + chore.key).update({
+    return this.database.object(fbRef + "/" + chore.key).update({
       isCritical: isCritical,
       criticalPerson: chore.person
     });
   }
 
   updateChore(chore, fbRef: string) {
-    this.AFD.object(fbRef + "/" + chore.key)
+    this.database.object(fbRef + "/" + chore.key)
       .update(chore)
       .then(res => {
-        console.log("chore updated for: " + chore.key);
+        // console.log("chore updated for: " + chore.key);
         // this.messageService.sendMessageToAZ("status updated for: " + chore.key + " to " + newStatus);
       })
       .then(() => {
@@ -127,10 +135,10 @@ export class ChoreService {
   }
 
   updateStatus(newStatus: string, previousStatus: string, statusRef: string) {
-    console.log(newStatus, previousStatus, statusRef)
+    // console.log(newStatus, previousStatus, statusRef)
     return Promise.all([
-      this.AFD.database.ref(statusRef + '/previousStatus').set(previousStatus),
-      this.AFD.database.ref(statusRef + '/status').set(newStatus)
+      this.database.database.ref(statusRef + '/previousStatus').set(previousStatus),
+      this.database.database.ref(statusRef + '/status').set(newStatus)
         .then(res => {
           // this.messageService.sendMessageToAZ("status updated for: " + chore.key + " to " + newStatus);
         })

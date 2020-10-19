@@ -21,11 +21,13 @@ import { CountdownFormatPipe } from './_pipes/countdown.pipe';
 import { PageNotFoundComponent } from './_common/page-not-found/page-not-found.component';
 import { MobileModule } from './_mobile/mobile.module';
 import { DialogComponent } from './open-issues/dialog/dialog.component';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { SplashComponent } from './splash/splash.component';
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
+    SplashComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,6 +40,8 @@ import { DialogComponent } from './open-issues/dialog/dialog.component';
     HttpClientModule,
     PlatformModule,
     SharedModule,
+    MobileModule,
+    MatProgressSpinnerModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     ServiceWorkerModule.register("firebase-messaging-sw.js", { enabled: true })
   ],

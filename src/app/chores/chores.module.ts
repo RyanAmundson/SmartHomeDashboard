@@ -1,3 +1,4 @@
+import { ChoresService } from './_services/chore-fixed.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChoreSorterComponent } from './chore-sorter/chore-sorter.component';
@@ -52,7 +53,8 @@ import { ChorePage1Component } from './chore-pages/chore-page1/chore-page1.compo
     ChoreUpdaterComponent
   ],
   providers: [
-    ChoreService
+    ChoreService,
+    ChoresService
   ]
 })
 export class ChoresModule { }

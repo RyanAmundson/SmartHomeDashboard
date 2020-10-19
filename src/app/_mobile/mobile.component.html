@@ -44,28 +44,32 @@
               routerLink="/mobile/chores"
               routerLinkActive
               #rla1="routerLinkActive"
-              [active]="rla1.isActive">
+              [active]="rla1.isActive"
+              (click)="router.navigate(['/mobile/chores'])">
               Chores
             </a>
             <a mat-tab-link
               [routerLink]="['/','mobile','utilities']"
               routerLinkActive
               #rla2="routerLinkActive"
-              [active]="rla2.isActive">
+              [active]="rla2.isActive"
+              (click)="router.navigate(['/mobile/utilities'])">
               Utilities
             </a>
             <a mat-tab-link
               routerLink="/mobile/open-issues"
               routerLinkActive
               #rla3="routerLinkActive"
-              [active]="rla3.isActive">
+              [active]="rla3.isActive"
+              (click)="router.navigate(['/mobile/open-issues'])">
               Open Issues
             </a>
             <a mat-tab-link
               routerLink="notes"
               routerLinkActive
               #rla4="routerLinkActive"
-              [active]="rla4.isActive">
+              [active]="rla4.isActive"
+              (click)="router.navigate(['/mobile/notes'])">
               Notes
             </a>
           </nav>

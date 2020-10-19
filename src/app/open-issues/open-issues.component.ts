@@ -41,9 +41,9 @@ export class OpenIssuesComponent {
       })
     }));
     authService.authState.subscribe((x) => {
-      console.log(x.uid)
+      // console.log(x.uid)
       this.OIService.getPenaltyCountByUser(x.uid).then((val) => {
-        console.log(val);
+        // console.log(val);
         this.myPenalties = val;
 
       })
@@ -51,7 +51,7 @@ export class OpenIssuesComponent {
   }
 
   timerUpdate(issue) {
-    console.log("timerupdate")
+    // console.log("timerupdate")
     this.OIService.penalizeIssue(issue);
     this.changeRef.markForCheck();
   }

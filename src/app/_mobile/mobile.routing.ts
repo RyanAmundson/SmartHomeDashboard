@@ -8,7 +8,7 @@ import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'mobile',
     component: MobileComponent,
     children: [
       {
@@ -36,10 +36,10 @@ const routes: Routes = [
         loadChildren: () => import('../_authentication/authentication.module').then(m => m.AuthModule),
       },
 
-      { path: '', redirectTo: 'chores', pathMatch: 'full' },
-      { path: '**', component: MobilePageNotFoundComponent },
-    ]
+    ],
   },
+  { path: '', redirectTo: 'mobile/chores', pathMatch: 'full' },
+  { path: '**', component: MobilePageNotFoundComponent },
 ];
 
 @NgModule({

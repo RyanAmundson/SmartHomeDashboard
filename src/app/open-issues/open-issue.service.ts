@@ -19,11 +19,11 @@ export class OpenIssuesService {
     }
 
     getAllOpenIssues(user?: string): Observable<Issue[]> {
-        return (<Observable<Issue[]>>this.firebaseDB.list("open-issues/full-list").valueChanges());
+        return (<Observable<Issue[]>> this.firebaseDB.list("open-issues/full-list").valueChanges());
     }
 
     getNewIssues(): Observable<Issue[]> {
-        return (<Observable<Issue[]>>this.firebaseDB.list("open-issues/full-list").valueChanges()).pipe(
+        return (<Observable<Issue[]>> this.firebaseDB.list("open-issues/full-list").valueChanges()).pipe(
             map((issues: Issue[]) => {
                 return issues.filter((issue: Issue) => {
                     return (new Date().getTime() - issue.timeCreated) > 3600000;
@@ -33,7 +33,7 @@ export class OpenIssuesService {
     }
 
     getAlmostDueIssues(): Observable<Issue[]> {
-        return (<Observable<Issue[]>>this.firebaseDB.list("open-issues/full-list").valueChanges()).pipe(
+        return (<Observable<Issue[]>> this.firebaseDB.list("open-issues/full-list").valueChanges()).pipe(
             map((issues: Issue[]) => {
                 return issues.filter((issue: Issue) => {
                     return ((issue.timeCreated + issue.timeToResolve) - new Date().getTime()) < 3600000;
@@ -43,7 +43,7 @@ export class OpenIssuesService {
     }
 
     getPastDueIssues(): Observable<Issue[]> {
-        return (<Observable<Issue[]>>this.firebaseDB.list("open-issues/full-list").valueChanges()).pipe(
+        return (<Observable<Issue[]>> this.firebaseDB.list("open-issues/full-list").valueChanges()).pipe(
             map((issues: Issue[]) => {
                 return issues.filter((issue: Issue) => {
                     return ((issue.timeCreated + issue.timeToResolve) - new Date().getTime()) < 0;
@@ -56,8 +56,8 @@ export class OpenIssuesService {
         if (result) {
             let ref = this.firebaseDB.list("open-issues/full-list").push(new Issue());
             let timeCreated = new Date().getTime();
-            console.log(result)
-            return ref.set(<Issue>{
+            // console.log(result)
+            return ref.set(<Issue> {
                 id: ref.key,
                 type: result.type,
                 description: result.description,
@@ -122,7 +122,7 @@ export class OpenIssuesService {
         };
 
         return this.firebaseDB.list("open-issues/full-list").update(issue.id, issue).catch((err) => {
-            console.error(err);
+            // console.error(err);
             throw "Failed to claim issue";
         });
     }
@@ -130,7 +130,7 @@ export class OpenIssuesService {
     unclaimIssue(issue: Issue): Promise<void> {
         issue.who = null;
         return this.firebaseDB.list("open-issues/full-list").update(issue.id, issue).catch((err) => {
-            console.error(err);
+            // console.error(err);
             throw "Failed to unclaim issue";
         });
     }
@@ -143,14 +143,14 @@ export class OpenIssuesService {
                 this.firebaseDB.list("open-issues/full-list").remove(issue.id)
             ]
         ).catch((err) => {
-            console.error(err);
+            // console.error(err);
             throw "Failed to complete issue";
         });
     }
 
     getPenaltyCountByUser(userId) {
         let archived = this.firebaseDB.list("open-issues/archive").query.once('value').then((items) => {
-            console.log(items.val());
+            // console.log(items.val());
             if (items.val()) {
                 let res = Object.values(items.val())
                     .filter((item: Issue) => {
@@ -160,17 +160,17 @@ export class OpenIssuesService {
                         return item.timesPenalized
                     })
                     .reduce((acc: any, val: any) => {
-                        console.log(acc, val)
+                        // console.log(acc, val)
                         return acc + val;
                     });
 
-                console.log(res);
+                // console.log(res);
                 return res;
             }
             return null;
         });
         let active = this.firebaseDB.list("open-issues/full-list").query.once('value').then((items) => {
-            console.log(items.val());
+            // console.log(items.val());
             if (items.val()) {
                 let res = Object.values(items.val())
                     .filter((item: Issue) => {
@@ -180,7 +180,7 @@ export class OpenIssuesService {
                         return item.timesPenalized
                     })
                     .reduce((acc: any, val: any) => {
-                        console.log(acc, val)
+                        // console.log(acc, val)
                         return acc + val;
                     });
 

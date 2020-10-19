@@ -20,7 +20,7 @@ export class DashboardComponent implements OnInit {
   disableCycleButton = false;
 
   choreList = [];
-  utilitiesList = ["water","electricity","garbage", 'internet', 'sewer'];
+  utilitiesList = ["water", "electricity", "garbage", 'internet', 'sewer'];
   updater = false;
 
   @ViewChildren(TileComponent) tiles: QueryList<TileComponent>;
@@ -44,7 +44,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    console.log(this.tiles);
+    // console.log(this.tiles);
     this.resizeAllGridItems();
   }
 
@@ -53,7 +53,7 @@ export class DashboardComponent implements OnInit {
   }
 
   onKeydown(event) {
-    console.log(event.key)
+    // console.log(event.key)
     if (event.key == "39") {
       this.activeTab++;
     } else if (event.key == "37") {
@@ -62,7 +62,7 @@ export class DashboardComponent implements OnInit {
   }
 
   resizeAllGridItems() {
-    console.log(this.tiles)
+    // console.log(this.tiles)
     this.tiles.forEach((item) => {
       this.resizeGridItem(item);
     });

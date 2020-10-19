@@ -57,15 +57,15 @@ export class PieAndTableComponent {
   oneToOneFlag = true;
 
 
-  @ViewChild("highchart", {static:false}) hiChart;
-  @ViewChild("matTable", {static:false}) table;
+  @ViewChild("highchart", { static: false }) hiChart;
+  @ViewChild("matTable", { static: false }) table;
 
   constructor(private firebase: AngularFireDatabase) {
   }
-  
+
   ngOnChanges() {
-    console.log(this.dataSource)
-    if(this.table.renderRows && this.dataSource){
+    // console.log(this.dataSource)
+    if (this.table.renderRows && this.dataSource) {
       // this.table.renderRows();
     }
 

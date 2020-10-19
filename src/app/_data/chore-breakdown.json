@@ -1,0 +1,46 @@
+{
+    "bathroom": {
+        "criticalPerson": "",
+        "icon": "bath",
+        "id": 4,
+        "isCritical": false,
+        "key": "bathroom",
+        "person": "",
+        "previousStatus": "good",
+        "status": "good",
+        "text": "Yard/Bath"
+    },
+    "floors": {
+        "criticalPerson": "",
+        "icon": "broom",
+        "id": 3,
+        "isCritical": false,
+        "key": "floors",
+        "person": "",
+        "previousStatus": "good",
+        "status": "good",
+        "text": "Floors"
+    },
+    "kitchen": {
+        "criticalPerson": "Ryan",
+        "icon": "coffee",
+        "id": 2,
+        "isCritical": false,
+        "key": "kitchen",
+        "person": "Ryan",
+        "previousStatus": "good",
+        "status": "warning",
+        "text": "Kitchen"
+    },
+    "trash": {
+        "criticalPerson": "Elizabeth",
+        "icon": "trash",
+        "id": 1,
+        "isCritical": false,
+        "key": "trash",
+        "person": "Elizabeth",
+        "previousStatus": "warning",
+        "status": "good",
+        "text": "Garbage"
+    }
+}

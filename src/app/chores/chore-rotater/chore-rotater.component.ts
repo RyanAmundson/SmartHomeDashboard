@@ -36,12 +36,16 @@ export class ChoreRotaterComponent implements OnInit {
 
     let xPosition = (boundingClientRect.x - parentPosition.left);
     let yPosition = (boundingClientRect.y - parentPosition.top);
-    console.log(xPosition, boundaryWidth)
+    // console.log(xPosition, boundaryWidth)
     if (xPosition > (boundaryWidth / 3) * 2) {
       this.resetPosition();
       this.swiped.emit();
       this.icon = "check";
       this.text = "Rotated!";
+      setTimeout(() => {
+        this.text = "Slide to Rotate Chores";
+        this.icon = "refresh";
+      }, 1500);
     } else {
       this.text = "Slide to Rotate Chores";
       this.icon = "refresh";
@@ -50,7 +54,7 @@ export class ChoreRotaterComponent implements OnInit {
   }
 
   moved(event) {
-    console.log(event)
+    // console.log(event)
   }
 
   getPosition(el) {

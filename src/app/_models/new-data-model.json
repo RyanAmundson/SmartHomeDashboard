@@ -1,0 +1,456 @@
+{
+  "chores": {
+    "list": [
+      {
+        "icon": "broom",
+        "id": 3,
+        "key": "floors",
+        "text": "Floors"
+      },
+      {
+        "icon": "coffee",
+        "id": 2,
+        "key": "kitchen",
+        "text": "Kitchen"
+      },
+      {
+        "icon": "trash",
+        "id": 1,
+        "key": "trash",
+        "text": "Garbage"
+      },
+      {
+        "icon": "bath",
+        "id": 4,
+        "isCritical": false,
+        "key": "bathroom",
+        "text": "Yard/Bath"
+      }
+    ],
+    "rotations": [
+      [
+        {
+          "choreID": 1,
+          "personID": 1
+        },
+        {
+          "choreID": 2,
+          "personID": 1
+        },
+        {
+          "choreID": 3,
+          "personID": 1
+        },
+        {
+          "choreID": 4,
+          "personID": 1
+        }
+      ],
+      [
+        {
+          "choreID": 1,
+          "personID": 1
+        },
+        {
+          "choreID": 2,
+          "personID": 1
+        },
+        {
+          "choreID": 3,
+          "personID": 1
+        },
+        {
+          "choreID": 4,
+          "personID": 1
+        }
+      ],
+      [
+        {
+          "choreID": 1,
+          "personID": 1
+        },
+        {
+          "choreID": 2,
+          "personID": 1
+        },
+        {
+          "choreID": 3,
+          "personID": 1
+        },
+        {
+          "choreID": 4,
+          "personID": 1
+        }
+      ],
+      [
+        {
+          "choreID": 1,
+          "personID": 1
+        },
+        {
+          "choreID": 2,
+          "personID": 1
+        },
+        {
+          "choreID": 3,
+          "personID": 1
+        },
+        {
+          "choreID": 4,
+          "personID": 1
+        }
+      ]
+    ],
+    "statuses": [
+      {
+        "id": 4,
+        "choreID": 4,
+        "status": "",
+        "isCritical": false,
+        "criticalPerson": ""
+      },
+      {
+        "id": 3,
+        "choreID": 4,
+        "status": "",
+        "isCritical": false,
+        "criticalPerson": ""
+      },
+      {
+        "id": 2,
+        "choreID": 2,
+        "status": "",
+        "isCritical": false,
+        "criticalPerson": ""
+      },
+      {
+        "id": 1,
+        "choreID": 1,
+        "status": "",
+        "isCritical": false,
+        "criticalPerson": ""
+      }
+    ],
+    "rotationIndex": 0
+  },
+  "fcmTokens": {
+    "-LqJXHrBlXqFCia8yeZY": "dP4Y12kUQV0:APA91bEF5TsSIkrk49EPQwgg3ZWbuWupN7hrbcXERsZMaO2tAnGVHcMW6F9d2La7YWT8hq-8xfhC9I5XP8cjrl7gbz7SjokdOT37owqdqjBFlaXJ9lIwYPnKLjQs3R8wJvWyq12epc6W",
+    "-LqeDCsl3V_Zfx7oQ7ba": "eYAm1TOTR3Y:APA91bFKWE9DRbrLcPWrRYvOohVchtBbCTooJfQMdOFmQ6WuPqsB0MdxXo_CVAE-kAZIz3SlEj1hUg3XGCdjQOk65kA143_BHabX9_bI1LAvKQpZLyEnFUN9wzP-XHWEVaAPY2lDGM_l",
+    "-LqeGLbTqog69ZbMzjYH": "cNx7vWjkZcI:APA91bFvLLeFlz5FeAkP4Gl2kU4fZE3EepQ--kZKSwyRotkTBawu_RKvFWCKbM_4VlYOF9A3utw6XHhWZeEpeJT40CmoNNFLk7Px0GNvnLCl-9qxstLVQ4RxCZGhcsEfNZ1fbqi0gWbl",
+    "-LqeH-57uUQROnWviPnR": "e7JoVpkiB1c:APA91bHTOfqRAhduue0HeFbSU3DkAXf7k6wJea03XUywBkP0bIYL2zvBSKsPrD89kooBv-z2lVEZSSD69HX-iT_VS-agK5vXl8tdS93P56nh2nElq_R5Nqj07lYcIl65rnG69AdtEtVw",
+    "-LqeJMC33NLBR0-S_oVe": "fMzQKIjqvGQ:APA91bHNOlAODXB1MocEZyNqLcZYZI0l8QeMIWeFnOS1fbrTeATEBEVNOiUiKFkAZfgJzuj_gtMyiS4JG3YKx-KiG6zmMq4kKzKq8jmNdVGlvms3GuQ71jo_1ypF3TERsrYKNc4yIHOo",
+    "-Lqh8-CKDkk4H2LJiKXb": "dUGRr8T1ViY:APA91bFGyETX37DXp8m1FXDKVH0X1IpYNdDpqLZR7ExT81GLggK3IVd8ffFqHl3yK8bkx4JNOE5q-W5EvtCduOWgS2kyJtE83NxYJztl0uRt4bptrPj6RiGviwWMVURr277M36gE_HW7",
+    "-Lqi3bWEH3ql7qmEI_mE": "fVu1U7Gwlek:APA91bGK2D9SASOuTT2He4Awzrj2TNWomD3hbf0DG-HuNn9oL8ITkNvAR0rZ5FxV7pvNTjvFwsaNtNX7Ly_eI1RoKMIzi092Lzt_ThR9tOf2vB2PQcdg2Eoc3m9z6yU2L5RwMEgTrewx",
+    "-Lqi446wJNjCexcBlp1P": "fBi6o1x1BiU:APA91bG-PngWm9igae7Ci4_aVuyb35lIwE8cKCdvF-MLijAwiLPuvcOmsfeBWb0E-fMBKA6HBkT8JzmDiktkNRRdPyEgk91Mg6TKSVpDY5KgkjLRL9fV8DlHO-rz1EYuwiUMht15RBSP",
+    "-LqlykHHC061ow_4aFEx": "dh7g5QIUJhE:APA91bHJivFOScFXwbqmHkz5aqHteQaITXwaO5JS2jaeOPcd1hCBCYyd9yjT4f2Cwn09S5VY6fvMwZ66xx29LMo_R85poAdO44jPdcoZ9y0WaX8cQml48HnOgPnXqx0VAFRvINEQP3au",
+    "-LqnMPXou7VnOQvVQ2l2": "fleXll6EfF0:APA91bGJlgX4Q-UX800xe3RNOV56MA0I79pS76Qc41q37-1Y8lii_LeH0WjUGc5uSGlnE8YEl_Q3F70lmQR-C4dgno1Ioj7Xa-qoDgLNWGc7ons-vfZ3efgMsX1fzkrD9I7NqARkZDMs",
+    "-Lrfps4CKl1-faW5JAoL": "dKfl3D5ow-o:APA91bFWRHjX8gZfLozFERYdROEb2C8k7b6ZIfXHjtV6_M3hhd1jfH4V0-DJy13On4nY7ErG8TUbnwlsKMuNtYuiW85MerJR0vW4viQqy7zBTKLdqa6Rz8P1R9wMkpnNeMKMYIlvwyim",
+    "-LtlyOryym8VhsI-73DD": "eiJZB-HUkNI:APA91bEnbBMmsYvBFmmzGP_e_LHDR9Ij3_F_rb-4mYcK-v_UHQFBb0gbpfX6ybGVCGE6CC9lpuM-31ecz-bdwjj-juf9q_cDtTMuYPPU3Fkw5uXB1afJnqoqHML4j-5gAjYYUHan3x2D",
+    "-LuiZURq5dlK4Tp5bUTB": "eIN7rwjvryg:APA91bFEBv0JZociFWrd36BPfPxU_8P6-ciwoaiou9W30sZGoIuI3XpJQ2z4wCKzggU763WRCpDWbZfww9nLv5UjI_qmw-V__dWfGAgO1O8dNdKfSmCosYog_avWnfVRoGWuaxMAo7nl",
+    "-Lv3chsTh3ge5YVBU2Y4": "cS7Y4-fFoKA:APA91bGThSCHJfVNBOlO_xE96Cg1ckQA1s0_SuveFfhc5RHSBGybCSU8acftvCOOBl-g5n7vWxL7cT7SiYUlQsBEPrjc_gSXdwc8TfbrN-HzIqo8gXWCj6KnvA5y9K9-PbexV0fSfer1"
+  },
+  "open-issues": {
+    "archive": {},
+    "types": [],
+    "issue-templates": [
+      {
+        "id": 1,
+        "description": "Deep clean for bathroom",
+        "penaltyAmount": 4,
+        "timeToResolve": 86400000,
+        "type": "Chore"
+      },
+      {
+        "description": "Deep clean for kitchen",
+        "id": 2,
+        "penaltyAmount": 4,
+        "timeToResolve": 86400000,
+        "type": "Chore"
+      },
+      {
+        "description": "Personal belongings",
+        "id": 3,
+        "penaltyAmount": 1,
+        "timeToResolve": 86400000,
+        "type": "Mess"
+      },
+      {
+        "description": "Rotten food",
+        "id": 4,
+        "penaltyAmount": 1,
+        "timeToResolve": 86400000,
+        "type": "Mess"
+      },
+      {
+        "description": "Food spill",
+        "id": 5,
+        "penaltyAmount": 1,
+        "timeToResolve": 86400000,
+        "type": "Mess"
+      },
+      {
+        "description": "Dishwasher empty",
+        "id": 6,
+        "penaltyAmount": 1,
+        "timeToResolve": 86400000,
+        "type": "Chore"
+      },
+      {
+        "description": "Dishwasher full",
+        "id": 7,
+        "penaltyAmount": 1,
+        "timeToResolve": 86400000,
+        "type": "Chore"
+      },
+      {
+        "description": "Recycle needs attention",
+        "id": 8,
+        "penaltyAmount": 1,
+        "timeToResolve": 86400000,
+        "type": "Chore"
+      },
+      {
+        "description": "Garbage needs attention",
+        "id": 9,
+        "penaltyAmount": 1,
+        "timeToResolve": 86400000,
+        "type": "Chore"
+      },
+      {
+        "description": "Compost needs attention",
+        "id": 10,
+        "penaltyAmount": 1,
+        "timeToResolve": 86400000,
+        "type": "Chore"
+      },
+      {
+        "description": "Deep clean for floors",
+        "id": 11,
+        "penaltyAmount": 4,
+        "timeToResolve": 86400000,
+        "type": "Chore"
+      },
+      {
+        "description": "Kitchen floors need attention",
+        "id": 12,
+        "penaltyAmount": 1,
+        "timeToResolve": 86400000,
+        "type": "Chore"
+      },
+      {
+        "description": "TV room floors need attention",
+        "id": 13,
+        "penaltyAmount": 1,
+        "timeToResolve": 86400000,
+        "type": "Chore"
+      },
+      {
+        "description": "TV room floors need attention",
+        "id": 14,
+        "penaltyAmount": 1,
+        "timeToResolve": 86400000,
+        "type": "Chore"
+      },
+      {
+        "description": "Garage lights left on",
+        "id": 15,
+        "penaltyAmount": 1,
+        "timeToResolve": 86400000,
+        "type": "QOL"
+      },
+      {
+        "description": "Kitchen lights left on",
+        "id": 16,
+        "penaltyAmount": 1,
+        "timeToResolve": 86400000,
+        "type": "QOL"
+      },
+      {
+        "description": "TV room lights left on",
+        "id": 17,
+        "penaltyAmount": 1,
+        "timeToResolve": 86400000,
+        "type": "QOL"
+      },
+      {
+        "description": "TV left on",
+        "id": 18,
+        "penaltyAmount": 1,
+        "timeToResolve": 86400000,
+        "type": "QOL"
+      }
+    ],
+    "locations": [
+      "Kitchen",
+      "Guest Bathroom",
+      "Living Room",
+      "Hallway",
+      "Garage",
+      "Front yard",
+      "Back Yard",
+      "Family Room"
+    ],
+    "all-issues": [],
+    "expiring-soon": []
+  },
+  "rent": {
+    "amount": {
+      "Elizabeth": {
+        "amount": 1075,
+        "name": "Elizabeth",
+        "paid": 1075
+      },
+      "Gary": {
+        "amount": 1075,
+        "name": "Gary",
+        "paid": 1075
+      },
+      "Rachael": {
+        "amount": 1075,
+        "name": "Rachael",
+        "paid": 1075
+      },
+      "Ryan": {
+        "amount": 1275,
+        "name": "Ryan",
+        "paid": 1275
+      }
+    },
+    "due": "1st",
+    "status": "success",
+    "total": 4500
+  },
+  "supplies": {
+    "0": {
+      "bought_by": "Elizabeth",
+      "cost": "",
+      "item": ""
+    },
+    "1": {
+      "bought_by": "",
+      "cost": 0,
+      "item": ""
+    },
+    "2": {
+      "bought_by": "",
+      "cost": 0,
+      "item": ""
+    },
+    "-LmHfNFXuNYEH0lW3spw": {
+      "bought_by": "Rachael",
+      "cost": "",
+      "item": ""
+    }
+  },
+  "users": {
+    "Ge8FCxbOFQaZNGmkJkrTX9befX43": {
+      "displayName": "Elizabeth Maunsell",
+      "photoURL": "https://lh6.googleusercontent.com/-qdRH457ieE4/AAAAAAAAAAI/AAAAAAAAAAA/ACHi3rc9CbWiShT14QAAa3EItqBkOUnvAw/photo.jpg",
+      "uid": "Ge8FCxbOFQaZNGmkJkrTX9befX43",
+      "hasChores": true,
+      "id": "Ge8FCxbOFQaZNGmkJkrTX9befX43",
+      "location": {
+        "lastUpdated": "never",
+        "name": "unknown"
+      }
+    },
+    "MhflTCxI99RBVgPgZz7iWfDlgIY2": {
+      "displayName": "Gary Wiley",
+      "photoURL": "https://lh3.googleusercontent.com/a-/AAuE7mBpkQQcSH2F5zwP9U83P2ThU81DpShcIPhirwmO",
+      "uid": "MhflTCxI99RBVgPgZz7iWfDlgIY2",
+      "hasChores": true,
+      "id": "MhflTCxI99RBVgPgZz7iWfDlgIY2",
+      "location": {
+        "lastUpdated": "never",
+        "name": "unknown"
+      }
+    },
+    "YCkMmWsAhsMnrOd1jBmlB0Gut4P2": {
+      "displayName": "Ryan Amundson",
+      "photoURL": "https://lh4.googleusercontent.com/-gm4sW28sdmQ/AAAAAAAAAAI/AAAAAAAAAAA/ACHi3rdf3CBoAC_ROcJYjd8HlScxP3tF8Q/photo.jpg",
+      "uid": "YCkMmWsAhsMnrOd1jBmlB0Gut4P2",
+      "hasChores": true,
+      "id": "YCkMmWsAhsMnrOd1jBmlB0Gut4P2",
+      "location": {
+        "lastUpdated": "never",
+        "name": "unknown"
+      }
+    },
+    "zUf9SKzKp1QoTthS3J6jYwj0r0w2": {
+      "displayName": "Rachael Amundson",
+      "photoURL": "https://lh5.googleusercontent.com/-iq4TT771gk0/AAAAAAAAAAI/AAAAAAAAAAA/ACHi3rddLv_2Jw619psbRbjiQPactHuMrg/photo.jpg",
+      "uid": "zUf9SKzKp1QoTthS3J6jYwj0r0w2",
+      "hasChores": true,
+      "id": "zUf9SKzKp1QoTthS3J6jYwj0r0w2",
+      "location": {
+        "lastUpdated": "never",
+        "name": "unknown"
+      }
+    }
+  },
+  "utilities": {
+    "breakdown": {
+      "Electricity": {
+        "amount_due": "10",
+        "due_date": "1st",
+        "icon": "bolt",
+        "key": "Electricity",
+        "paid": false,
+        "paid_by": "test",
+        "period": "june",
+        "previousStatus": "warning",
+        "status": "good",
+        "text": "Electricity"
+      },
+      "Garbage": {
+        "amount_due": "0",
+        "due_date": 0,
+        "icon": "trash",
+        "key": "Garbage",
+        "paid": false,
+        "paid_by": "?",
+        "period": "august",
+        "previousStatus": "critical",
+        "status": "good",
+        "text": "Garbage"
+      },
+      "Internet": {
+        "amount_due": "54.98",
+        "due_date": "",
+        "icon": "wifi",
+        "key": "Internet",
+        "paid": "True",
+        "paid_by": "Ryan",
+        "period": "October",
+        "previousStatus": "warning",
+        "status": "good",
+        "text": "Internet"
+      },
+      "Sewer": {
+        "amount_due": "0",
+        "due_date": 0,
+        "icon": "toilet",
+        "key": "Sewer",
+        "paid": false,
+        "paid_by": "test",
+        "period": 0,
+        "previousStatus": "critical",
+        "status": "good",
+        "text": "Sewer"
+      },
+      "Water": {
+        "amount_due": "207.84",
+        "due_date": "12/9",
+        "icon": "tint",
+        "key": "Water",
+        "paid": false,
+        "paid_by": "Ryan",
+        "period": "9/9 to 11/12",
+        "previousStatus": "warning",
+        "status": "good",
+        "text": "Water"
+      }
+    },
+    "total": 0
+  }
+}
