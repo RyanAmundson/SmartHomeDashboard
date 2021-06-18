@@ -22,6 +22,10 @@ import { PageNotFoundComponent } from './_common/page-not-found/page-not-found.c
 import { MobileModule } from './_mobile/mobile.module';
 import { DialogComponent } from './open-issues/dialog/dialog.component';
 import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { GridsterModule } from 'angular-gridster2';
+import { MatIconModule } from '@angular/material/icon';
+import { FreeBoardCloneModule } from './free-board-clone/free-board-clone.module';
 
 @NgModule({
   declarations: [
@@ -43,6 +47,11 @@ import { AngularFireAuthGuardModule } from '@angular/fire/auth-guard';
     AuthModule,
     AngularFireAuthGuardModule,
     AppRoutingModule,
+    MatSidenavModule,
+    MatIconModule,
+    GridsterModule,
+    MatButtonModule,
+    FreeBoardCloneModule
   ],
   providers: [
     FormGeneration,

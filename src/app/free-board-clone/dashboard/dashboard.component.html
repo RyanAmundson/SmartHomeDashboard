@@ -1,21 +1,20 @@
-<!-- <button mat-mini-fab class="toggle-menu" color="primary" aria-label="Example icon button with a menu icon">
-    <mat-icon>menu</mat-icon>
-</button> -->
-
-<div class="invis-hover-div" [ngStyle]="{'width': sideNavWidth}" (mouseover)="sideNav.open();sideNavWidth = '500px'"
-    (mouseout)="sideNav.close(); sideNavWidth = '25px'"></div>
 <mat-sidenav-container>
     <mat-sidenav [ngStyle]="{'width': sideNavWidth}" #sideNav mode="push">Start</mat-sidenav>
     <mat-sidenav position="end">End</mat-sidenav>
-    <section style="height:100vh;">
+    <section>
         <gridster [options]="options">
-            <gridster-item [item]="item" *ngFor="let item of dashboard">
+            <!-- <gridster-item [item]="item" *ngFor="let item of dashboard">
                 <div class="button-holder">
                     <button mat-mini-fab (mousedown)="removeItem($event, item)" (touchstart)="removeItem($event, item)">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </div>
+            </gridster-item> -->
+            <gridster-item [item]="{cols: 24, rows: 5, y: 0, x: 12}">
+                <a style="height:100%" class="weatherwidget-io" href="https://forecast7.com/en/47d62n122d04/sammamish/?unit=us" data-label_1="SAMMAMISH" data-label_2="WEATHER" data-font="Ubuntu" data-icons="Climacons Animated" data-theme="dark" >SAMMAMISH WEATHER</a>
             </gridster-item>
         </gridster>
+        <mat-toolbar color="primary">
+        </mat-toolbar>
     </section>
 </mat-sidenav-container>

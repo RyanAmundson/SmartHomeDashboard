@@ -1,18 +1,31 @@
-.toggle-menu {
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
-    z-index: 100;
-}
-
-
 .invis-hover-div {
     position:absolute;
     top:0;
     left:0;
-    height:100vh;
+    height:100px;
     width:50px;
     background:black;
     opacity:0.1;
     z-index: 100;
+}
+
+section {
+    height:100vh;
+    flex:1 1 100vh;
+    display:flex;
+    flex-direction: column;
+
+    gridster {
+        display: flex;
+        flex: 1 1 100%;
+        gridster-item {
+            background:black;
+        }
+    }
+
+    mat-toolbar {
+        max-height:25px;
+        height:25px;
+        background-color: black;
+    }
 }

@@ -2,40 +2,32 @@ import { Component, OnInit } from '@angular/core';
 import { DisplayGrid, GridsterConfig, GridsterItem, GridType } from 'angular-gridster2';
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'free-board-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class GridsterDashboardComponent implements OnInit {
   options: GridsterConfig;
   dashboard: Array<GridsterItem>;
-  sideNavWidth:string = '50px';
+  sideNavWidth: string = '50px';
 
   ngOnInit(): void {
     this.options = {
       gridType: GridType.Fit,
-      displayGrid: DisplayGrid.Always,
+      displayGrid: DisplayGrid.OnDragAndResize,
       pushItems: true,
       draggable: {
         enabled: true
       },
       resizable: {
         enabled: true
-      }
+      },
+      margin: 5,
+      minCols: 36,
+      minRows: 36,
     };
 
     this.dashboard = [
-      {cols: 2, rows: 1, y: 0, x: 0},
-      {cols: 2, rows: 2, y: 0, x: 2},
-      {cols: 1, rows: 1, y: 0, x: 4},
-      {cols: 3, rows: 2, y: 1, x: 4},
-      {cols: 1, rows: 1, y: 4, x: 5},
-      {cols: 1, rows: 1, y: 2, x: 1},
-      {cols: 2, rows: 2, y: 5, x: 5},
-      {cols: 2, rows: 2, y: 3, x: 2},
-      {cols: 2, rows: 1, y: 2, x: 2},
-      {cols: 1, rows: 1, y: 3, x: 4},
-      {cols: 1, rows: 1, y: 0, x: 6}
     ];
   }
 
@@ -52,6 +44,6 @@ export class DashboardComponent implements OnInit {
   }
 
   addItem(): void {
-    this.dashboard.push({x: 0, y: 0, cols: 1, rows: 1});
+    this.dashboard.push({ x: 0, y: 0, cols: 1, rows: 1 });
   }
 }
