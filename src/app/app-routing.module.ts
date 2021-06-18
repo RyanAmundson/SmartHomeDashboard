@@ -7,6 +7,7 @@ import { SignInComponent } from './_authentication/sign-in/sign-in.component';
 import { SignOutComponent } from './_authentication/sign-out/sign-out.component';
 import { SignedInGuard } from './_authentication/_guards/signed-in.guard';
 import { hasCustomClaim, redirectUnauthorizedTo, redirectLoggedInTo, AngularFireAuthGuard, canActivate } from '@angular/fire/auth-guard';
+import { DashboardComponent } from "./free-board-clone/dashboard/dashboard.component";
 
 const adminOnly = () => hasCustomClaim('admin');
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['sign-in']);
@@ -30,6 +31,10 @@ const routes: Routes = [
   {
     path: "dashboard",
     loadChildren: () => import('./_dashboard/dashboard.module').then(m => m.DashboardModule),
+  },
+  {
+    path: "free-board-clone",
+    component: DashboardComponent
   },
   { path: '', redirectTo: 'sign-in', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
