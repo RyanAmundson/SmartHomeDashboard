@@ -3,6 +3,7 @@ $mdc-theme-secondary: #ffffff; // secondary color
 $theme-danger: #720000;
 $theme-warning: #e0ac00;
 
+@use '~@angular/material' as mat;
 @import "~@angular-mdc/theme/material";
 
 @import "~@angular/material/theming";
@@ -11,7 +12,7 @@ $theme-warning: #e0ac00;
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
-@include mat-core();
+@include mat.core();
 
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
@@ -50,14 +51,14 @@ $md-mcgpalette0: (
   )
 );
 
-$core-app-primary: mat-palette($md-mcgpalette0);
-$core-app-accent: mat-palette($mat-green, A200, A100, A400);
+$core-app-primary: mat.define-palette($md-mcgpalette0);
+$core-app-accent: mat.define-palette(mat.$green-palette, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
-$core-app-warn: mat-palette($mat-red);
+$core-app-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object (a Sass map containing all of the palettes).
-$core-app-theme: mat-light-theme(
+$core-app-theme: mat.define-light-theme(
   $core-app-primary,
   $core-app-accent,
   $core-app-warn
@@ -66,21 +67,21 @@ $core-app-theme: mat-light-theme(
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
-@include angular-material-theme($core-app-theme);
+@include mat.all-component-themes($core-app-theme);
 
 //========================================================================
 
 // Define an alternate dark theme.
-$dark-primary: mat-palette($mat-blue-grey);
-$dark-accent: mat-palette($mat-amber, A200, A100, A400);
-$dark-warn: mat-palette($mat-deep-orange);
-$dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+$dark-primary: mat.define-palette(mat.$blue-grey-palette);
+$dark-accent: mat.define-palette(mat.$amber-palette, A200, A100, A400);
+$dark-warn: mat.define-palette(mat.$deep-orange-palette);
+$dark-theme: mat.define-dark-theme($dark-primary, $dark-accent, $dark-warn);
 
 // Include the alternative theme styles inside of a block with a CSS class. You can make this
 // CSS class whatever you want. In this example, any component inside of an element with
 // `.unicorn-dark-theme` will be affected by this alternate dark theme instead of the default theme.
 .core-dark-theme {
-  @include angular-material-theme($dark-theme);
+  @include mat.all-component-themes($dark-theme);
 }
 
 
@@ -96,17 +97,17 @@ $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
   // Define any styles affected by the theme.
   .custom-carousel {
     // Use mat-color to extract individual colors from a palette.
-    background-color: mat-color($primary);
-    border-color: mat-color($accent, A400);
+    background-color: mat.get-color-from-palette($primary);
+    border-color: mat.get-color-from-palette($accent, A400);
   }
 }
 
 @mixin custom-carousel-typography($config) {
   .custom-carousel {
     font: {
-      family: mat-font-family($config, body-1);
-      size: mat-font-size($config, body-1);
-      weight: mat-font-weight($config, body-1);
+      family: mat.font-family($config, body-1);
+      size: mat.font-size($config, body-1);
+      weight: mat.font-weight($config, body-1);
     }
   }
 }

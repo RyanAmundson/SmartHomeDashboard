@@ -17,7 +17,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "aot": true,
             "outputPath": "dist/SmartHomeDashboard",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -39,7 +38,12 @@
               ]
             },
             "scripts": [],
-            "es5BrowserSupport": true
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -52,9 +56,7 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -74,15 +76,10 @@
             },
             "development": {
               "fileReplacements": [],
-              "optimization": false,
               "outputHashing": "all",
-              "sourceMap": true,
-              "extractCss": false,
               "namedChunks": false,
               "aot": false,
-              "extractLicenses": false,
               "vendorChunk": false,
-              "buildOptimizer": false,
               "budgets": [
                 {
                   "type": "initial",
@@ -97,7 +94,8 @@
               "serviceWorker": true,
               "ngswConfigPath": "src/ngsw-config.json"
             }
-          }
+          },
+          "defaultConfiguration": ""
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",

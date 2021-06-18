@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { StatusWidgetComponent } from './status-widget.component';
 
@@ -6,7 +6,7 @@ describe('StatusWidgetComponent', () => {
   let component: StatusWidgetComponent;
   let fixture: ComponentFixture<StatusWidgetComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ StatusWidgetComponent ]
     })
